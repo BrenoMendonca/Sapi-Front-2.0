@@ -1,13 +1,30 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import App from './App';
+//import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+//Configurando o Router
+import{createBrowserRouter, RouterProvider} from 'react-router-dom';
+
+//Importando Rotas
+import Login from "./Pages/Login/Login.jsx";
+import PaginaInicio from "./Pages/PaginaInicio/PaginaInicio";
+
+
+const router = createBrowserRouter([
+{path:"/",element: <Login/>},
+{path:"/login",element: <Login/>},
+{path:"PaginaInicio",element: <PaginaInicio/>}
+]);
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
+
+//<App /> -- implementar no App.js e importar pra ca com o App
+
 root.render(
   <React.StrictMode>
-    <App />
+    <RouterProvider router={router}/>
   </React.StrictMode>
 );
 
