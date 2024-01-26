@@ -8,4 +8,9 @@
 
 <h4>Bibliotecas e frameworks utilizados</h4>
 *React
+
 *React-Router-DOM
+
+*Axios
+
+
