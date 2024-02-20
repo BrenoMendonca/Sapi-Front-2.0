@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import './Login.css';
+import '../Login/Login.css'
 import UniforIcon from "../../Assets/icon-unifor.svg";
 import UniforImage from "../../Assets/UniforCC.png";
 import { validarSenha, validarMatricula} from '../../Utils/Validadores';
