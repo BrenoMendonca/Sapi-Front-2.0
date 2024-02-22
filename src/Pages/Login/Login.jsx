@@ -4,40 +4,46 @@ import UniforIcon from "../../Assets/icon-unifor.svg";
 import UniforImage from "../../Assets/UniforCC.png";
 import { validarSenha, validarMatricula} from '../../Utils/Validadores';
 import UserService from '../../Services/Services';
-
-
+import { useNavigate } from 'react-router-dom';
+import { useToast } from "@chakra-ui/react";
 const userService = new UserService()
 
-
 export const Login = () => {
-  /*
-  function buttonFunction(){
-    getfunction()
-    .then(data=>console.log(data))
-    .catch(error => console.error(error));
+  const navigate  =useNavigate()
+  const toast =useToast()
 
-  }
-  */
   const [loading, setLoading] = useState()
   const [form, setForm] = useState([])
 
   const  handleSubmit = async (event) =>{
+    
+    
+   
     event.preventDefault();
 
     await userService.login(form)
       .then(({ data }) => {
         if (data.user) {
           const session = {
-            name: data.user.name,
+            //name: data.user.name,
             token: data.user.token,
             matricula: data.user.matricula,
-          };
+          }
+          
+          navigate('PaginaInicio');
 
           localStorage.setItem("session", JSON.stringify(session));
         }
       })
       .catch((err) => {
-        alert(JSON.stringify(err.response.data.msg));
+        toast({
+          title: "Erro",
+          description: JSON.stringify(err.response.data.msg),
+          status: "error",
+          duration: 5000, // Duração em milissegundos
+          isClosable: true,
+        });
+        console.log(err)
       });
   }
 
@@ -56,6 +62,7 @@ export const Login = () => {
 
 
   return (
+    <div className='BackgroundLogin'>
     <div className='wrapper'>
        <div className='Login'>
         <div className='logo-container'>
@@ -82,6 +89,7 @@ export const Login = () => {
              </div> */}
         
         <button 
+
         type='submit' 
         onClick={handleSubmit}
         disabled={loading === true || !validadorInput}
@@ -95,7 +103,7 @@ export const Login = () => {
             <img className='UniforImage' src={UniforImage} alt="Imagem CC"/>
         
     </div>
-
+    </div>
   )
 }
 

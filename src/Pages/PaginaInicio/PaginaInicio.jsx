@@ -2,15 +2,16 @@ import React from 'react';
 import './../PaginaInicio/paginaInicio.css';
 import Sidebar from '../../Components/Sidebar/Sidebar';
 import Navbar from '../../Components/Navbar/Navbar';
+import UserService from '../../Services/Services';
 import { useLayoutEffect, useState } from "react";
 import { BrowserRouter, Routes, Link, Route } from "react-router-dom";
-import { toast, ToastContainer } from "react-toastify";
 import axios from 'axios';
-
+import { useToast } from "@chakra-ui/react";
 
 
 export const  PaginaInicio = ()=>{
-
+    
+    
     return(
         <div className='PaginaInicio'>
             <Navbar></Navbar>
@@ -18,7 +19,7 @@ export const  PaginaInicio = ()=>{
                 <div className="container">
                 <div className="header">
                 <span>Editais</span>
-                <button>Novo Edital</button>
+                <button>Criar Edital</button>
                 </div>
             
                 <div className="divTable">
@@ -34,7 +35,6 @@ export const  PaginaInicio = ()=>{
                     </tr>
                     </thead>
                     <tbody>
-                    {/* Aqui você pode adicionar as linhas da tabela, se houver */}
                     </tbody>
                 </table>
                 </div>
