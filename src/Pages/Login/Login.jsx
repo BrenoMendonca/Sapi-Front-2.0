@@ -37,7 +37,7 @@ export const Login = () => {
       .then(({ data }) => {
         if (data.user) {
           const session = {
-            //name: data.user.name,
+            name: data.user.name,
             token: data.user.token,
             matricula: data.user.matricula,
           }
