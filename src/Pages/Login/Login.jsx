@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react'
 import '../Login/Login.css'
 import UniforIcon from "../../Assets/icon-unifor.svg";
@@ -5,13 +6,24 @@ import UniforImage from "../../Assets/UniforCC.png";
 import { validarSenha, validarMatricula} from '../../Utils/Validadores';
 import UserService from '../../Services/Services';
 import { useNavigate } from 'react-router-dom';
-import { useToast } from "@chakra-ui/react";
+
+
+
+import {
+  Alert,
+  AlertIcon,
+  AlertTitle,
+  AlertDescription,
+} from '@chakra-ui/react'
+
+
 const userService = new UserService()
 
 export const Login = () => {
   const navigate  =useNavigate()
-  const toast =useToast()
+  
 
+  const [showAlert, setShowAlert] = useState(false)
   const [loading, setLoading] = useState()
   const [form, setForm] = useState([])
 
@@ -29,20 +41,14 @@ export const Login = () => {
             token: data.user.token,
             matricula: data.user.matricula,
           }
-          
+          setShowAlert(true)
           navigate('PaginaInicio');
 
           localStorage.setItem("session", JSON.stringify(session));
         }
       })
       .catch((err) => {
-        toast({
-          title: "Erro",
-          description: JSON.stringify(err.response.data.msg),
-          status: "error",
-          duration: 5000, // Duração em milissegundos
-          isClosable: true,
-        });
+    
         console.log(err)
       });
   }
@@ -62,7 +68,16 @@ export const Login = () => {
 
 
   return (
+    
     <div className='BackgroundLogin'>
+        {showAlert && (
+        <Alert status='error'>
+          <AlertIcon />
+          <AlertTitle>Error!</AlertTitle>
+          <AlertDescription>Email/ Password Did Not Matched.</AlertDescription>
+        </Alert>
+      )}
+
     <div className='wrapper'>
        <div className='Login'>
         <div className='logo-container'>
@@ -84,9 +99,7 @@ export const Login = () => {
             onChange={handleChange}required></input>
         </div>
 
-       {/*} <div className='remenber-forgot'>
-            <label><input type='checkbox'/>Lembre-me</label>
-             </div> */}
+       
         
         <button 
 
@@ -108,3 +121,4 @@ export const Login = () => {
 }
 
 export default Login;
+

@@ -1,6 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
+import App from './App';
+
 //import App from './App';
 import reportWebVitals from './reportWebVitals';
 
@@ -11,21 +13,27 @@ import{createBrowserRouter, RouterProvider} from 'react-router-dom';
 import Login from "./Pages/Login/Login.jsx";
 import PaginaInicio from "./Pages/PaginaInicio/PaginaInicio";
 
+import { ChakraProvider } from '@chakra-ui/react'
 
+/*
 const router = createBrowserRouter([
 {path:"/",element: <Login/>},
 {path:"/login",element: <Login/>},
 {path:"PaginaInicio",element: <PaginaInicio/>}
 ]);
+*/
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+
 
 //<App /> -- implementar no App.js e importar pra ca com o App
-
+const root = ReactDOM.createRoot(document.getElementById('root'));
+// <RouterProvider router={router}/>
 root.render(
-  <React.StrictMode>
-    <RouterProvider router={router}/>
-  </React.StrictMode>
+   
+      <React.StrictMode>
+           <App/>
+      </React.StrictMode>
+    
 );
 
 // If you want to start measuring performance in your app, pass a function

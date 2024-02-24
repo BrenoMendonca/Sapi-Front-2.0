@@ -1,33 +1,18 @@
+import { BrowserRouter, Route, Routes, createBrowserRouter, createRoutesFromElements } from 'react-router-dom';
+import {Login} from '../src/Pages/Login/Login'
+import {PaginaInicio} from '../src/Pages/PaginaInicio/PaginaInicio'
 import './App.css';
 
 function App() {
   return (
-    <div className="App">
-
-    </div>
+    <BrowserRouter>
+    <Routes>          
+     <Route path="/"element= {<Login/>} />
+     <Route path="/login"element= {<Login/>}/>
+     <Route path="PaginaInicio"element= {<PaginaInicio/>}/>
+   </Routes>
+    </BrowserRouter>
   );
 }
 
 export default App;
-
-
-/*
-const [alerta, setAlerta] = useState(null)
-  const logar = async () =>{
-    var params = {
-        "login":"login",
-        "senha":"senha"
-    }
-    //var autenticar = await Post('endpointLogin', params)
-    var autenticar = {
-      error:"Credenciais Inválidas"
-    } 
-    if(autenticar.hasOwnProperty('error')){
-      setTimeout(() => {
-        setAlerta(null)
-      }, 6000);
-      setAlerta(autenticar.error)
-      return
-    }
-  }
-*/
