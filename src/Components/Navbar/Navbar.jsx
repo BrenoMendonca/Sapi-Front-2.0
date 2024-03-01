@@ -20,7 +20,7 @@ export const Navbar = ()=>{
                 <img className='LogoUnifor' src={UniforIcon} alt="Logo Unifor" />
                 <h1>Projetos Unifor</h1>
             </div>
-                <h4>Bem vindo! {name}</h4>
+                <h4>Bem vindo! <span class="name">{name}</span></h4>
         </div>
     )
 }

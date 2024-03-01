@@ -50,6 +50,7 @@ export const  PaginaInicio = ()=>{
             <div className='BackgroundPaginaInicio'>
                 <div className="container">
                 <div className="header">
+                <h1>Editais</h1>
                 <button onClick={() => setIsOpen(true)}>Criar Edital</button>
                 </div>
             
@@ -57,12 +58,12 @@ export const  PaginaInicio = ()=>{
                 <table>
                     <thead>
                     <tr>
-                        <th>Num Edital</th>
-                        <th>Criador</th>
-                        <th>Titulo do Edital</th>
-                        <th>Prazo Submissão</th>
-                        <th className="action">Status</th>
-                        <th className="action">Ações</th>
+                        <th className='titulo-crud'>Num Edital</th>
+                        <th className='titulo-crud'>Criador</th>
+                        <th className='titulo-crud'>Titulo do Edital</th>
+                        <th className='titulo-crud'>Prazo Submissão</th>
+                        <th className="titulo-crud">Status</th>
+                        <th className="titulo-crud">Ações</th>
                     </tr>
                     </thead>
                     <tbody>

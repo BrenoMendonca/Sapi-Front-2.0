@@ -29,7 +29,8 @@ button {
     border-radius: 10px;
     background: white;
     border-color: #044CF4;
-
+    border: 2px solid #D4D4D4;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
 }
 
 .header {
@@ -37,9 +38,15 @@ button {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin: auto 12px;
+    margin: auto 30px;
+    margin-top: 10px;
+    margin-bottom: 10px ;
 }
-
+.titulo-crud{
+    background-color: #044CF4;
+    color: white;
+    padding: 20px;
+}
 .header span {
     font-weight: 900;
     font-size: 20px;
@@ -84,9 +91,9 @@ thead {
 }
 
 tr {
+    background-color: #044CF4!important;
     border-bottom: 1px solid rgb(238, 235, 235)!important;
 }
-
 tbody tr td {
     vertical-align: text-top;
     padding: 6px;
