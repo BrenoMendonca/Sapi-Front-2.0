@@ -4,13 +4,13 @@ import React, { useEffect, useState } from 'react';
 
 
 export const Navbar = ()=>{
-    const [matricula, setMatricula] = useState(null);
+    const [name, setName] = useState(null);
 
     useEffect(() => {
       const sessionData = localStorage.getItem('session');
       if (sessionData) {
         const session = JSON.parse(sessionData);
-        setMatricula(session.matricula);
+        setName(session.name);
       }
     }, []);
 
@@ -20,7 +20,7 @@ export const Navbar = ()=>{
                 <img className='LogoUnifor' src={UniforIcon} alt="Logo Unifor" />
                 <h1>Projetos Unifor</h1>
             </div>
-                <h4>Bem vindo! {matricula}</h4>
+                <h4>Bem vindo! {name}</h4>
         </div>
     )
 }

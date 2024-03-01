@@ -1,25 +1,56 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './../PaginaInicio/paginaInicio.css';
-import Sidebar from '../../Components/Sidebar/Sidebar';
 import Navbar from '../../Components/Navbar/Navbar';
 import UserService from '../../Services/Services';
 import { useLayoutEffect, useState } from "react";
-import { BrowserRouter, Routes, Link, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Link, Route, useNavigate, useLocation } from "react-router-dom";
 import axios from 'axios';
-import { useToast } from "@chakra-ui/react";
-
+import {ModalCadastro} from '../../Components/Modal/ModalCadastro';
+//import { Load } from '../../Components/Load/Load';
 
 export const  PaginaInicio = ()=>{
-    
-    
+    const navigate = useNavigate()
+    const [modalIsOpen, setIsOpen] = useState(false);
+    const [editais, setEditais] = useState(null)
+    const [load, setLoad] = useState(false)
+
+    // CAPTURAR DADOS DO PARAMETRO DA URL
+    //const {state} = useLocation()
+    //const [codigo, setCodigo] = useState(state.codigo)
+
+    useEffect(() =>{
+        const buscar = async () =>{
+            await buscarEdital()
+        }
+        buscar()
+    },[])
+
+    const buscarEdital = async () =>{
+        setLoad(true)
+        //buscar editais
+        // tratar caso nao tenha ou ter dado erro
+        // if(sem editais){
+        // setLoad(false)
+        // setEditais(null)
+        // setAlerta('sem editais')
+        // return 
+        //}
+        // setar os editais em um estado
+        // setEditais(editaisJson)
+        // setLoad(false)
+    }
+
     return(
-        <div className='PaginaInicio'>
-            <Navbar></Navbar>
+            <div className='PaginaInicio'>
+                <Navbar></Navbar>
+            {modalIsOpen &&(
+                <ModalCadastro setView={setIsOpen} />
+            )} 
+        
             <div className='BackgroundPaginaInicio'>
                 <div className="container">
                 <div className="header">
-                <span>Editais</span>
-                <button>Criar Edital</button>
+                <button onClick={() => setIsOpen(true)}>Criar Edital</button>
                 </div>
             
                 <div className="divTable">
@@ -35,40 +66,21 @@ export const  PaginaInicio = ()=>{
                     </tr>
                     </thead>
                     <tbody>
+                        {/*
+                        {load == true &&(
+                            <Load />
+                        )}*/}
+                        {editais != null &&(
+                            editais.map(item =>
+                            <div>
+                                <h1>{item.numero}</h1>
+                                <h1>{item.criador}</h1>
+                                <button onClick={() => navigate(`/paginaDetalhes`,{ state: { codigo:item.codigo} }) }>EDITAR</button>
+                            </div>
+                            )
+                        )}
                     </tbody>
                 </table>
-                </div>
-            
-                <div className="modal-container">
-                <div className="modal">
-                    <form>
-                    <div className='input-num'>
-                        <input 
-                        type='text' 
-                        name='num'
-                        placeholder='numero do edital' 
-                        required
-                        />
-                    </div>
-                    <div className='input-titulo'>
-                        <input 
-                        type='text' 
-                        name='titulo-edital'
-                        placeholder='Titulo Edital' 
-                        required
-                        />
-                    </div>
-                    <div className='input-PrazoSubmissão'>
-                        <input 
-                        type='date' 
-                        name='prazo submissão'
-                        placeholder='Prazo Submissão' 
-                        required
-                        />
-                    </div>
-                    <button>Salvar</button>
-                    </form>
-                </div>
                 </div>
             </div>
         </div>

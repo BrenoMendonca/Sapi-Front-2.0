@@ -231,6 +231,19 @@ td button i:first-child {
     margin-right: 10px;
 }
 
-
+.modal-content {
+    width: 90%;
+    max-width: 500px;
+    background-color: white;
+    padding: 10px;
+    border-radius: 5px;
+  }
+  
+  button {
+    padding: 5px;
+    font-size: large;
+    float: right;
+    cursor: pointer;
+  }
 
 
