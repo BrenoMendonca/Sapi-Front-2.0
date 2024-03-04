@@ -6,6 +6,9 @@ import { useLayoutEffect, useState } from "react";
 import { BrowserRouter, Routes, Link, Route, useNavigate, useLocation } from "react-router-dom";
 import axios from 'axios';
 import {ModalCadastro} from '../../Components/Modal/ModalCadastro';
+import Apresentacao from '../../Components/Apresentacao/Apresentacao';
+
+
 //import { Load } from '../../Components/Load/Load';
 
 export const  PaginaInicio = ()=>{
@@ -43,6 +46,7 @@ export const  PaginaInicio = ()=>{
     return(
             <div className='PaginaInicio'>
                 <Navbar></Navbar>
+                <Apresentacao></Apresentacao>
             {modalIsOpen &&(
                 <ModalCadastro setView={setIsOpen} />
             )} 
@@ -50,8 +54,8 @@ export const  PaginaInicio = ()=>{
             <div className='BackgroundPaginaInicio'>
                 <div className="container">
                 <div className="header">
-                <h1>Editais</h1>
-                <button onClick={() => setIsOpen(true)}>Criar Edital</button>
+                    <h1>Editais</h1>
+                    <button onClick={() => setIsOpen(true)}>Criar Edital</button>
                 </div>
             
                 <div className="divTable">

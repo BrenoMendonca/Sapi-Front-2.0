@@ -1,6 +1,7 @@
 import '../Navbar/Navbar.css'
 import UniforIcon from "../../Assets/icon-unifor.svg";
 import React, { useEffect, useState } from 'react';
+import Logout from "../../Assets/logout.png"
 
 
 export const Navbar = ()=>{
@@ -16,12 +17,17 @@ export const Navbar = ()=>{
 
     return(
         <div className="Navbar">
+          
             <div className='Apresentacao'>
                 <img className='LogoUnifor' src={UniforIcon} alt="Logo Unifor" />
                 <h1>Projetos Unifor</h1>
             </div>
-                <h4>Bem vindo! <span class="name">{name}</span></h4>
+            <div className='name-login'> 
+                <h4>Bem vindo! <span class="name">{name}</span><img className='Logout' src={Logout} alt="Logout Icon"></img></h4>
+                
+            </div>
         </div>
+        
     )
 }
 

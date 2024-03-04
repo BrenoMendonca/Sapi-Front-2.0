@@ -27,7 +27,7 @@ export const ModalCadastro = ({setView}) =>{
                 <h4 className='instrucao'>Informe o prazo para submissão dos projetos</h4>
                 <input type="date" placeholder='Prazo para submissão' class='input-modal' />
                 <h4 className='instrucao'>Descreva o objetivo do Edital</h4>
-                <input placeholder='Objetivo' className='input-modal'  />
+                <textarea placeholder='Objetivo' class='input-modal input-objetivo'></textarea>
                 <div className='box-botoes-modal'>
                 <button className='botao-avaliar-contrato'>Criar </button>
                 </div>

@@ -11,8 +11,16 @@ export default class UserService {
     })
   }
 
+
+  //Rota Autenticação de login
   async login (dados){
     return this.axios.post('http://localhost:3001/auth/login', dados);
+  }
+
+
+  //Rota criação editais
+  async criacaoedital(dados){
+    return this.axios.post('http://localhost:3001/criacao/edital', dados);
   }
 }
 

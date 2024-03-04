@@ -6,17 +6,17 @@
     background-color: white;
 }
 
-.Navbar{
+.Navbar {
     display: flex;
-    flex-direction:row;
+    flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    background-color:white;
-    display: flex;
+    background-color: white;
     height: 70px;
+    width: 100vw;
     border: 2px solid #D4D4D4;
     box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px!important;
-    
+    text-align: center;
 }
 
 .Apresentacao{
@@ -27,7 +27,7 @@
     background-color: white;
     align-items: center;
     display: flex;
-    height: 70px;
+    height: 60px;
 }
 .Navbar h1,
 .Navbar h4 {
@@ -43,4 +43,12 @@
   }
 .name {
     color: blue;
+}
+
+
+.Logout{  
+    width: 30px;
+    height: 15px;
+    padding-left: 15px;
+    cursor: pointer;
 }
