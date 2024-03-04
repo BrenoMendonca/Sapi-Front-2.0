@@ -56,7 +56,7 @@ export const Login = () => {
         }
       })
       .catch((err) => {
-    
+        alert(JSON.stringify(err.response.data.msg))
         console.log(err)
       });
   }
