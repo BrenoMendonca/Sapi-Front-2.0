@@ -9,22 +9,6 @@ import { useNavigate } from 'react-router-dom';
 
 
 
-import {
-  Box,
-  Center,
-  Text,
-  FormControl,
-  FormLabel,
-  Input,
-  Button,
-  Container,
-  Alert,
-  AlertIcon,
-  AlertTitle,
-  AlertDescription,
-} from '@chakra-ui/react'
-
-
 const userService = new UserService()
 
 export const Login = () => {
@@ -77,14 +61,7 @@ export const Login = () => {
   return (
     
     <div className='BackgroundLogin'>
-        {showAlert && (
-        <Alert status='error'>
-          <AlertIcon />
-          <AlertTitle>Error!</AlertTitle>
-          <AlertDescription>Email/ Password Did Not Matched.</AlertDescription>
-        </Alert>
-      )}
-
+      
     <div className='wrapper'>
        <div className='Login'>
         <div className='logo-container'>

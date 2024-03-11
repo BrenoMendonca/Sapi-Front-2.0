@@ -91,19 +91,30 @@ thead {
 }
 
 tr {
-    background-color: #044CF4!important;
+    background-color: whitesmoke;
     border-bottom: 1px solid rgb(238, 235, 235)!important;
 }
 tbody tr td {
     vertical-align: text-top;
     padding: 6px;
     max-width: 50px;
+    font-size: 16px;
 }
 
 thead tr th {
     padding: 5px;
     text-align: start;
     margin-bottom: 50px;
+}
+ .numEdital{
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.acaoEdital {
+    font-weight: bold; /* Deixa o texto em negrito */
+    text-decoration: none;
+    color: blue; /* Define a cor do texto como azul */
 }
 
 tbody tr {
@@ -118,6 +129,8 @@ thead tr th.acao {
 tbody tr td.acao {
     text-align: center;
 }
+
+
 
 @media (max-width: 700px) {
     body {

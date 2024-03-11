@@ -1,15 +1,15 @@
 import { useState } from 'react';
 import './ModalCadastro.css';
+import axios from 'axios';
 
 export const ModalCadastro = ({setView}) =>{
-    const [load,setLoad] = useState(false)
-    const [alerta, setAlerta] = useState(null)
-    const [viewAvaliacao, setViewAvaliacao] = useState(false)
-    const [formsAvaliacao, setFormsAvaliacao] = useState({
-        mensagem:'',
-        nota:''
-    })
+    //const navigate = useNavigate()
+
+    const [] = useState()
+    const [] = useState()
     
+
+   
     
     return(
         <section className="section-modal-card-edital">
@@ -29,9 +29,9 @@ export const ModalCadastro = ({setView}) =>{
                 <h4 className='instrucao'>Descreva o objetivo do Edital</h4>
                 <textarea placeholder='Objetivo' class='input-modal input-objetivo'></textarea>
                 <div className='box-botoes-modal'>
-                <button className='botao-avaliar-contrato'>Criar </button>
+                <button className='botao-avaliar-contrato' >Criar </button>
                 </div>
             </div>
         </section>
     )
-}
+    }

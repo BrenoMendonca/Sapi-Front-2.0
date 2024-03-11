@@ -22,6 +22,11 @@ export default class UserService {
   async criacaoedital(dados){
     return this.axios.post('http://localhost:3001/criacao/edital', dados);
   }
+  //Rota GetEditais
+  async getEditais (dados){
+    return this.axios.get('http://localhost:3001/getEdital/edital', dados)
+  } 
+
 }
 
 

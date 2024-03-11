@@ -1,8 +1,8 @@
-import React, { useEffect } from 'react';
+
 import './../PaginaInicio/paginaInicio.css';
 import Navbar from '../../Components/Navbar/Navbar';
 import UserService from '../../Services/Services';
-import { useLayoutEffect, useState } from "react";
+import React, { useLayoutEffect, useState, useEffect } from "react";
 import { BrowserRouter, Routes, Link, Route, useNavigate, useLocation } from "react-router-dom";
 import axios from 'axios';
 import {ModalCadastro} from '../../Components/Modal/ModalCadastro';
@@ -13,19 +13,35 @@ import Apresentacao from '../../Components/Apresentacao/Apresentacao';
 
 export const  PaginaInicio = ()=>{
     const navigate = useNavigate()
+
+    //Modal
     const [modalIsOpen, setIsOpen] = useState(false);
-    const [editais, setEditais] = useState(null)
+    //Crud Editais
+    const [editais, setEditais] = useState([])
     const [load, setLoad] = useState(false)
 
     // CAPTURAR DADOS DO PARAMETRO DA URL
     //const {state} = useLocation()
     //const [codigo, setCodigo] = useState(state.codigo)
+  
+    const getEditais = async () =>{
+        try{
+            const response = await axios.get("http://localhost:3001/getEdital/edital")
 
-    useEffect(() =>{
-        const buscar = async () =>{
-            await buscarEdital()
+            const data = response.data;
+
+            setEditais(data);
+
+            console.log(data)
+        }catch(error){
+            console.log(error)
+
         }
-        buscar()
+    }
+
+    useEffect(()=>{
+
+        getEditais()
     },[])
 
     const buscarEdital = async () =>{
@@ -71,19 +87,25 @@ export const  PaginaInicio = ()=>{
                     </tr>
                     </thead>
                     <tbody>
-                        {/*
-                        {load == true &&(
-                            <Load />
-                        )}*/}
-                        {editais != null &&(
-                            editais.map(item =>
-                            <div>
-                                <h1>{item.numero}</h1>
-                                <h1>{item.criador}</h1>
-                                <button onClick={() => navigate(`/paginaDetalhes`,{ state: { codigo:item.codigo} }) }>EDITAR</button>
-                            </div>
-                            )
-                        )}
+                    {/*
+                    {load == true &&(
+                        <Load />
+                    )}*/}
+                    {editais != null &&(
+                        editais.map((edital) => 
+                        <tr key={edital.codigo}>
+                            <td className='numEdital'>{edital.numeroEdital}</td>
+                            <td>{edital.objetivo}</td>
+                            <td>{edital.nameEdital}</td>
+                            <td>{edital.dataFinal}</td>
+                            <td>{edital.status}</td>
+                            <td className='acaoEdital'>
+                                <Link to={`/edital${edital.numeroEdital}`}>
+                                    <img src="" alt="Vizualizar" />
+                                </Link>
+                            </td>
+                        </tr>
+                    ))}
                     </tbody>
                 </table>
                 </div>
@@ -117,48 +139,3 @@ export default PaginaInicio;
 
 
 
-
-
-/*
-export const PaginaInicio = () =>{
-    const [user, setUser] = useState(null)
-    const [editais, setEdital] = useState([])
-    useLayoutEffect(() =>{
-        //chamar a função
-        setUser({
-            nome:"User Teste",
-            tipo:"prof"
-        })
-    },[])
-
-    return(
-        <div>
-            {user != null &&(
-                user.tipo == "prof"
-                ?
-                <h1>Olá professor</h1>
-                :
-                <h1>Olá Aluno</h1>
-            )}
-            {user != null && user.tipo == "prof" &&(
-                <h1>Formulario Edital</h1>
-            )}
-            {/* 
-            {editais != null &&(
-                editais.map(item =>
-                <ComponenteEdital item={item} />    
-                )
-            )}
-            }
-
-        </div>
-      </div>
-
-
-      </div>
-    </div>
-}
-
-export default PaginaInicio;
-
-*/
