@@ -7,7 +7,9 @@ import { BrowserRouter, Routes, Link, Route, useNavigate, useLocation } from "re
 import axios from 'axios';
 import {ModalCadastro} from '../../Components/Modal/ModalCadastro';
 import Apresentacao from '../../Components/Apresentacao/Apresentacao';
-
+// Importando imagens
+import vizualizar from '../../Assets/olho.png';
+import editar from '../../Assets/escrever.png';
 
 //import { Load } from '../../Components/Load/Load';
 
@@ -101,8 +103,9 @@ export const  PaginaInicio = ()=>{
                             <td>{edital.status}</td>
                             <td className='acaoEdital'>
                                 <Link to={`/edital${edital.numeroEdital}`}>
-                                    <img src="" alt="Vizualizar" />
+                                    <img className= 'vizualizar'src={vizualizar}></img>
                                 </Link>
+                                <img className='editar' src= {editar}></img>
                             </td>
                         </tr>
                     ))}
