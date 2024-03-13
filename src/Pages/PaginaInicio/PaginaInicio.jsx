@@ -11,6 +11,7 @@ import Apresentacao from '../../Components/Apresentacao/Apresentacao';
 // Importando imagens
 import vizualizar from '../../Assets/olho.png';
 import editar from '../../Assets/escrever.png';
+import { Status } from '../../Components/Status/Status';
 
 //import { Load } from '../../Components/Load/Load';
 
@@ -86,9 +87,9 @@ export const  PaginaInicio = ()=>{
                         <th className='titulo-crud'>Num Edital</th>
                         <th className='titulo-crud'>Criador</th>
                         <th className='titulo-crud'>Titulo do Edital</th>
-                        <th className='titulo-crud'>Prazo Submissão</th>
-                        <th className="titulo-crud">Status</th>
-                        <th className="titulo-crud">Ações</th>
+                        <th className='titulo-crud centralizar-elemento'>Prazo Submissão</th>
+                        <th className="titulo-crud centralizar-elemento">Status</th>
+                        <th className="titulo-crud centralizar-elemento">Ações</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -100,9 +101,9 @@ export const  PaginaInicio = ()=>{
                             <td className='numEdital'>{edital.numeroEdital}</td>
                             <td>{edital.objetivo}</td>
                             <td>{edital.nameEdital}</td>
-                            <td>{edital.dataFinal}</td>
-                            <td>{edital.status}</td>
-                            <td className='acaoEdital'>
+                            <td className='centralizar-elemento'>{edital.dataFinal}</td>
+                            <td className='centralizar-elemento'><Status status={edital.status}/></td>
+                            <td className='acaoEdital  centralizar-elemento'>
                                 <Link to={`/edital${edital.numeroEdital}`}>
                                     <img className= 'vizualizar'src={vizualizar}></img>
                                 </Link>

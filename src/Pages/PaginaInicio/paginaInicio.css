@@ -95,8 +95,7 @@ tr {
     border-bottom: 1px solid rgb(238, 235, 235)!important;
 }
 tbody tr td {
-    vertical-align: text-top;
-    padding: 6px;
+    padding: 8px 20px;
     max-width: 50px;
     font-size: 16px;
 }
@@ -115,6 +114,10 @@ thead tr th {
     font-weight: bold; /* Deixa o texto em negrito */
     text-decoration: none;
     color: blue; /* Define a cor do texto como azul */
+}
+
+.centralizar-elemento {
+    text-align: center;
 }
 
 tbody tr {

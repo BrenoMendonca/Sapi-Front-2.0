@@ -1,0 +1,33 @@
+.status-aberto {
+    color: #007bff;
+}
+
+.status-submissao {
+    color: #e6b400;
+}
+
+.status-analise {
+    color: #FFB302;
+}
+
+.status-aprovado {
+    color: #56F000;
+}
+
+.status-ball {
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 50%;
+}
+
+span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+p {
+    font-size: 1rem;
+    font-weight: 700;
+}
