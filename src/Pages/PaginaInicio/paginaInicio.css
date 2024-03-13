@@ -144,6 +144,15 @@ tbody tr td.acao {
     
     cursor: pointer;
 }
+
+.loading-cell {
+    text-align: center;
+}
+
+.loading-container {
+    display: inline-block;
+    margin-top: 20px; /* Ajuste conforme necessário */
+}
 @media (max-width: 700px) {
     body {
         font-size: 10px;

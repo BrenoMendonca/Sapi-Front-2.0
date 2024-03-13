@@ -6,6 +6,7 @@ import React, { useLayoutEffect, useState, useEffect } from "react";
 import { BrowserRouter, Routes, Link, Route, useNavigate, useLocation } from "react-router-dom";
 import axios from 'axios';
 import {ModalCadastro} from '../../Components/Modal/ModalCadastro';
+import {Load} from '../../Components/Load/Load'
 import Apresentacao from '../../Components/Apresentacao/Apresentacao';
 // Importando imagens
 import vizualizar from '../../Assets/olho.png';
@@ -27,6 +28,7 @@ export const  PaginaInicio = ()=>{
     //const [codigo, setCodigo] = useState(state.codigo)
   
     const getEditais = async () =>{
+        setLoad(true)
         try{
             const response = await axios.get("http://localhost:3001/getEdital/edital")
 
@@ -35,6 +37,7 @@ export const  PaginaInicio = ()=>{
             setEditais(data);
 
             console.log(data)
+            setLoad(false)
         }catch(error){
             console.log(error)
 
@@ -47,7 +50,7 @@ export const  PaginaInicio = ()=>{
     },[])
 
     const buscarEdital = async () =>{
-        setLoad(true)
+        
         //buscar editais
         // tratar caso nao tenha ou ter dado erro
         // if(sem editais){
@@ -89,10 +92,8 @@ export const  PaginaInicio = ()=>{
                     </tr>
                     </thead>
                     <tbody>
-                    {/*
-                    {load == true &&(
-                        <Load />
-                    )}*/}
+                    
+                   
                     {editais != null &&(
                         editais.map((edital) => 
                         <tr key={edital.codigo}>
@@ -109,6 +110,16 @@ export const  PaginaInicio = ()=>{
                             </td>
                         </tr>
                     ))}
+                    <tr>
+                        <td colSpan="6" className="loading-cell">
+                            <div className="loading-container">
+                                {load == true &&(
+                                    <Load />
+                                    )}
+                            </div>
+                        </td>
+                    </tr>
+                    
                     </tbody>
                 </table>
                 </div>

@@ -17,7 +17,11 @@ export const ModalCadastro = ({setView}) =>{
 
           const data = response.data; 
           console.log(data)
+         
+          const addEdital = await response.data;
           alert(JSON.stringify(response.data.msg))
+
+          setView(null)
         }catch (err){
             alert(JSON.stringify(err.response.data.msg))
 
@@ -41,18 +45,18 @@ export const ModalCadastro = ({setView}) =>{
                 </div>
                 <h4 className='instrucao'>Informe o número do edital</h4>
                 <input 
-                    placeholder='Número do edital' 
-                    className='input-modal' 
-                    name = 'numeroEdital' 
                     type = 'text' 
+                    placeholder='Número do edital' 
+                    name = 'numeroEdital' 
+                    className='input-modal' 
                     onChange={handleChange} 
                 />
                 <h4 className='instrucao'>Informe o titulo do edital</h4>
                 <input 
-                    placeholder='Titulo do Edital' 
-                    className='input-modal' 
-                    name = 'nameEdital' 
                     type = 'text' 
+                    placeholder='Titulo do Edital' 
+                    name = 'nameEdital' 
+                    className='input-modal' 
                     onChange={handleChange}  
                 />
                 <h4 className='instrucao'>Informe a data de inicio para submissão dos projetos</h4>
@@ -67,19 +71,23 @@ export const ModalCadastro = ({setView}) =>{
                 <input 
                     type="date" 
                     placeholder='Prazo para submissão' 
-                    class='input-modal' 
                     name = 'dataFinal' 
+                    class='input-modal' 
                     onChange={handleChange}
                 />
                 <h4 className='instrucao'>Descreva o objetivo do Edital</h4>
                 <textarea 
-                    placeholder='Objetivo' 
+                    placeholder='Objetivo'
+                    name = 'objetivo'  
                     class='input-modal input-objetivo' 
-                    name = 'objetivo' 
                     onChange={handleChange}>
                 </textarea>
-                <div className='box-botoes-modal'>
-                <button className='botao-avaliar-contrato'onClick={()=> {createEdital(); setView(null);}} >Criar </button>
+                <div 
+                    className='box-botoes-modal'>
+                        <button 
+                        className='botao-avaliar-contrato'
+                        onClick={()=> {createEdital();window.location.reload(false)}} >
+                        Criar </button>
                 </div>
             </div>
         </section>
