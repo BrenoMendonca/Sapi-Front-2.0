@@ -98,13 +98,17 @@ export const  PaginaInicio = ()=>{
                     {editais != null &&(
                         editais.map((edital) => 
                         <tr key={edital.codigo}>
-                            <td className='num-edital'>{edital.numeroEdital}</td>
+                            <td className='num-edital'>
+                                <Link to={`/edital/${edital.numeroEdital}`}>
+                                    {edital.numeroEdital}
+                                </Link>
+                            </td>
                             <td>{edital.objetivo}</td>
                             <td>{edital.nameEdital}</td>
                             <td className='centralizar-elemento'>{edital.dataFinal}</td>
                             <td className='centralizar-elemento'><Status status={edital.status}/></td>
                             <td className='centralizar-elemento'>
-                                <Link to={`/edital${edital.numeroEdital}`}>
+                                <Link to={`/edital/${edital.numeroEdital}`}>
                                     <img alt="" title="Ver mais informações" className= 'visualizar'src={vizualizar}></img>
                                 </Link>
 

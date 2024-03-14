@@ -105,15 +105,24 @@ thead tr th {
     text-align: start;
     margin-bottom: 50px;
 }
- .num-edital{
+ .num-edital a{
     font-weight: bold;
-    cursor: pointer;
     text-align: left;
+    color: black;
+    text-decoration: none;
+
+    background: transparent;
+
+    cursor: pointer;
 }
 
 .num-edital:hover {
-    text-decoration: underline;
     background: #ddd;
+
+}
+
+.num-edital a:hover {
+    text-decoration: underline;
 
     transition: .2s;
 }
