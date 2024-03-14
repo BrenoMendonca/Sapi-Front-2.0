@@ -1,0 +1,28 @@
+.sidebar-edital-wrapper {
+    width: 20vw;
+    height: 15vh;
+
+    background: #aaa;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-direction: column;
+}
+
+.sidebar-edital-wrapper li{
+    background: #aaa;
+
+    list-style: none;
+    
+    cursor: pointer;
+
+    
+}
+
+.sidebar-edital-wrapper span{
+    height: 1px;
+    width: 100%;
+
+    background: #ddd;
+}

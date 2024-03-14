@@ -1,6 +1,6 @@
 import '../Navbar/Navbar.css'
 import UniforIcon from "../../Assets/icon-unifor.svg";
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import Logout from "../../Assets/logout.png"
 
 
