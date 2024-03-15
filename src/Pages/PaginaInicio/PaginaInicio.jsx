@@ -31,7 +31,7 @@ export const  PaginaInicio = ()=>{
     const getEditais = async () =>{
         setLoad(true)
         try{
-            const response = await axios.get("http://localhost:3001/getEdital/edital")
+            const response = await axios.get("http://localhost:3001/getEdital/")
 
             const data = response.data;
 
@@ -98,16 +98,21 @@ export const  PaginaInicio = ()=>{
                     {editais != null &&(
                         editais.map((edital) => 
                         <tr key={edital.codigo}>
-                            <td className='numEdital'>{edital.numeroEdital}</td>
+                            <td className='num-edital'>
+                                <Link to={`/edital/${edital._id}`}>
+                                    {edital.numeroEdital}
+                                </Link>
+                            </td>
                             <td>{edital.objetivo}</td>
                             <td>{edital.nameEdital}</td>
                             <td className='centralizar-elemento'>{edital.dataFinal}</td>
                             <td className='centralizar-elemento'><Status status={edital.status}/></td>
-                            <td className='acaoEdital  centralizar-elemento'>
-                                <Link to={`/edital${edital.numeroEdital}`}>
-                                    <img className= 'vizualizar'src={vizualizar}></img>
+                            <td className='centralizar-elemento'>
+                                <Link to={`/edital/${edital.numeroEdital}`}>
+                                    <img alt="" title="Ver mais informações" className= 'visualizar'src={vizualizar}></img>
                                 </Link>
-                                <img className='editar' src= {editar}></img>
+
+                                <img alt="" title="Editar" className='editar' src= {editar}></img>
                             </td>
                         </tr>
                     ))}
