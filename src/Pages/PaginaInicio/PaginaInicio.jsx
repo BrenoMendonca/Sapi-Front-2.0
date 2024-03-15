@@ -31,7 +31,7 @@ export const  PaginaInicio = ()=>{
     const getEditais = async () =>{
         setLoad(true)
         try{
-            const response = await axios.get("http://localhost:3001/getEdital/edital")
+            const response = await axios.get("http://localhost:3001/getEdital/")
 
             const data = response.data;
 
@@ -99,7 +99,7 @@ export const  PaginaInicio = ()=>{
                         editais.map((edital) => 
                         <tr key={edital.codigo}>
                             <td className='num-edital'>
-                                <Link to={`/edital/${edital.numeroEdital}`}>
+                                <Link to={`/edital/${edital._id}`}>
                                     {edital.numeroEdital}
                                 </Link>
                             </td>

@@ -19,3 +19,20 @@
 .cabecalho-edital h1 {
     color: blue;
 }
+
+.info-edital p {
+    font-weight: 400;
+    font-size: 1.2rem;
+    color: #333;
+}
+
+.info-edital p b {
+    color: #000;
+}
+
+.info-edital {
+    display: flex;
+    flex-direction: column;
+
+    margin: 2rem 0 4rem 20vw;
+}
