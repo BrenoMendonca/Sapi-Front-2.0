@@ -6,7 +6,6 @@ import Logout from "../../Assets/logout.png"
 
 export const Navbar = ()=>{
     const [name, setName] = useState(null);
-
     useEffect(() => {
       const sessionData = localStorage.getItem('session');
       if (sessionData) {
@@ -14,6 +13,11 @@ export const Navbar = ()=>{
         setName(session.name);
       }
     }, []);
+
+    const fazerLogout = ()=>{
+        localStorage.clear()
+        window.location.href ='/login'
+    }
 
     return(
         <div className="Navbar">
@@ -23,7 +27,7 @@ export const Navbar = ()=>{
                 <h1>Projetos Unifor</h1>
             </div>
             <div className='name-login'> 
-                <h4>Bem vindo! <span class="name">{name}</span><img className='Logout' src={Logout} alt="Logout Icon"></img></h4>
+                <h4>Bem vindo! <span class="name">{name}</span><img className='Logout' src={Logout} alt="Logout Icon" onClick={fazerLogout}></img></h4>
                 
             </div>
         </div>
