@@ -34,7 +34,7 @@ export const Login = () => {
             matricula: data.user.matricula,
           }
           setShowAlert(true)
-          navigate('PaginaInicio');
+          navigate('/PaginaInicio');
 
           localStorage.setItem("session", JSON.stringify(session));
         }
