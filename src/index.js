@@ -5,15 +5,7 @@ import App from './App';
 
 //import App from './App';
 import reportWebVitals from './reportWebVitals';
-
-//Configurando o Router
-import{createBrowserRouter, RouterProvider} from 'react-router-dom';
-
-//Importando Rotas
-import Login from "./Pages/Login/Login.jsx";
-import PaginaInicio from "./Pages/PaginaInicio/PaginaInicio";
-
-import { ChakraProvider } from '@chakra-ui/react'
+import { Toaster } from 'sonner';
 
 /*
 const router = createBrowserRouter([
@@ -31,7 +23,8 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
    
       <React.StrictMode>
-           <App/>
+            <Toaster richColors />
+            <App/>
       </React.StrictMode>
     
 );

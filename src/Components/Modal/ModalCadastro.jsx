@@ -1,30 +1,32 @@
 import { useState } from 'react';
 import './ModalCadastro.css';
 import axios from 'axios';
+import { toast } from 'sonner';
 
-export const ModalCadastro = ({setView}) =>{
+
+export const ModalCadastro = ({ setView, atualizarListaEditais }) =>{
     //const navigate = useNavigate()
 
     const [edital, setEdital] = useState([])
     const [loading, setLoading] = useState()
 
     const createEdital = async (event) =>{
-       
-
-        
         try{
           const response = await axios.post ("http://localhost:3001/criacao/edital", edital)
 
           const data = response.data; 
           console.log(data)
          
-          const addEdital = await response.data;
-          alert(JSON.stringify(response.data.msg))
+          
+          //alert(JSON.stringify(response.data.msg))
+          atualizarListaEditais()
+          toast.success('Edital criado com sucesso!')
+
 
           setView(null)
+
         }catch (err){
             alert(JSON.stringify(err.response.data.msg))
-
         }
     }
     
@@ -32,6 +34,7 @@ export const ModalCadastro = ({setView}) =>{
         console.log('Digitando...', event.target.name, event.target.value);
         setEdital({ ...edital, [event.target.name]: event.target.value });
         console.log('Form', edital);
+
     }
    
    
@@ -86,7 +89,7 @@ export const ModalCadastro = ({setView}) =>{
                     className='box-botoes-modal'>
                         <button 
                         className='botao-avaliar-contrato'
-                        onClick={()=> {createEdital();window.location.reload(false)}} >
+                        onClick={()=> {createEdital()}} >
                         Criar </button>
                 </div>
             </div>

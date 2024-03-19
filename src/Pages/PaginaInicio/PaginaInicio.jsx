@@ -6,12 +6,13 @@ import React, { useLayoutEffect, useState, useEffect } from "react";
 import { BrowserRouter, Routes, Link, Route, useNavigate, useLocation } from "react-router-dom";
 import axios from 'axios';
 import {ModalCadastro} from '../../Components/Modal/ModalCadastro';
-import {Load} from '../../Components/Load/Load'
+import { Load } from '../../Components/Load/Load'
 import Apresentacao from '../../Components/Apresentacao/Apresentacao';
 // Importando imagens
 import vizualizar from '../../Assets/olho.png';
 import editar from '../../Assets/escrever.png';
 import { Status } from '../../Components/Status/Status';
+import { toast } from 'sonner';
 
 //import { Load } from '../../Components/Load/Load';
 
@@ -38,17 +39,20 @@ export const  PaginaInicio = ()=>{
             setEditais(data);
 
             console.log(data)
+        } catch(error){
+            console.error(error)
+        } finally {
             setLoad(false)
-        }catch(error){
-            console.log(error)
-
         }
     }
 
     useEffect(()=>{
-
         getEditais()
     },[])
+
+    const handleAtualizarListaEditais = async () => {
+        await getEditais(); // Aguarda um breve atraso antes de atualizar os editais
+    }
 
     const buscarEdital = async () =>{
         
@@ -64,13 +68,13 @@ export const  PaginaInicio = ()=>{
         // setEditais(editaisJson)
         // setLoad(false)
     }
-
+    console.log(editais.slice().reverse())
     return(
             <div className='PaginaInicio'>
                 <Navbar></Navbar>
                 <Apresentacao></Apresentacao>
             {modalIsOpen &&(
-                <ModalCadastro setView={setIsOpen} />
+                <ModalCadastro setView={setIsOpen} atualizarListaEditais={handleAtualizarListaEditais} />
             )} 
         
             <div className='BackgroundPaginaInicio'>
@@ -96,7 +100,7 @@ export const  PaginaInicio = ()=>{
                     
                    
                     {editais != null &&(
-                        editais.map((edital) => 
+                        editais.slice().reverse().map((edital) => 
                         <tr key={edital.codigo}>
                             <td className='num-edital'>
                                 <Link to={`/edital/${edital._id}`}>
@@ -116,12 +120,11 @@ export const  PaginaInicio = ()=>{
                             </td>
                         </tr>
                     ))}
+
                     <tr>
                         <td colSpan="6" className="loading-cell">
                             <div className="loading-container">
-                                {load == true &&(
-                                    <Load />
-                                    )}
+                                {load && <Load />}
                             </div>
                         </td>
                     </tr>
@@ -136,26 +139,3 @@ export const  PaginaInicio = ()=>{
 }
 
 export default PaginaInicio;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
