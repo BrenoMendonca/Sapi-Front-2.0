@@ -3,7 +3,7 @@ import UniforIcon from "../../Assets/icon-unifor.svg";
 import { useEffect, useState } from 'react';
 import Logout from "../../Assets/logout.png"
 
-
+//<img className='Logout' src={Logout} alt="Logout Icon" onClick={fazerLogout}></img>
 export const Navbar = ()=>{
     const [name, setName] = useState(null);
     useEffect(() => {
@@ -19,6 +19,16 @@ export const Navbar = ()=>{
         window.location.href ='/login'
     }
 
+    //DropDown Menu
+    const [isOpen, setIsOpen] = useState (false);
+
+    const handleMouse = () =>{
+        setIsOpen(true)
+    };
+
+    const handleMouseLeave = () =>{
+        setIsOpen(false)
+    }
     return(
         <div className="Navbar">
           
@@ -26,10 +36,24 @@ export const Navbar = ()=>{
                 <img className='LogoUnifor' src={UniforIcon} alt="Logo Unifor" />
                 <h1>Projetos Unifor</h1>
             </div>
-            <div className='name-login'> 
-                <h4>Bem vindo! <span class="name">{name}</span><img className='Logout' src={Logout} alt="Logout Icon" onClick={fazerLogout}></img></h4>
+
+            <div className='name-login'onMouseEnter={handleMouse} onMouseLeave={handleMouseLeave}> 
                 
+                <div className='botao'>
+                    <h4>Bem vindo! </h4>
+                    <span class="name">{name} </span>
+                </div>
+                {isOpen &&(
+                <ul className='Opcoes'>
+                    <li>Alterar senha</li>
+                    <hr></hr>
+                    <li className='logout'onClick={fazerLogout}>
+                        Logout 
+                    </li>
+                </ul>
+                 )}
             </div>
+            
         </div>
         
     )
