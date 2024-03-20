@@ -59,47 +59,52 @@ export const Login = () => {
   }
 
   return (
-    
+  
     <div className='BackgroundLogin'>
       
-    <div className='wrapper'>
-       <div className='Login'>
-        <div className='logo-container'>
-          <img className='LogoUnifor' src={UniforIcon} alt="Logo Unifor" />
-        </div>
-        <h1>Acesso ao Sistema de acompanhamento de Projetos de inovação</h1>
-        <div className='input-box'>
-            <input 
-            name='matricula'
-            type='text' 
-            placeholder='Matricula' 
-            onChange={handleChange} required></input>
-        </div>
-        <div className='input-box'>
-            <input 
-            name='password'
-            type='password' 
-            placeholder='senha' 
-            onChange={handleChange}required></input>
-        </div>
+      <div className='wrapper'>
+        <div className='Login'>
+          <div className='logo-container'>
+            <img className='LogoUnifor' src={UniforIcon} alt="Logo Unifor" />
+          </div>
+          <h1>Acesso ao Sistema de acompanhamento de Projetos de inovação</h1>
+          <div className='input-box'>
+              <input 
+              name='matricula'
+              type='text' 
+              placeholder='Matricula' 
+              onChange={handleChange} required></input>
+          </div>
+          <div className='input-box'>
+              <input 
+              name='password'
+              type='password' 
+              placeholder='senha' 
+              onChange={handleChange}required></input>
+          </div>
 
-       
         
-        <button 
+          
+          <button 
 
-        type='submit' 
-        onClick={handleSubmit}
-        disabled={loading === true || !validadorInput}
-        >Acessar</button>
-  
+          type='submit' 
+          onClick={handleSubmit}
+          disabled={loading === true || !validadorInput}
+          >Acessar</button>
 
-        <div className='Registre-se'>
-            <p>Não tem conta? <a href='#'>Cadastre-se</a></p>
+          <div className='forgot-my-password-wrapper'>
+            <a href='#'>Esqueci minha senha</a> {/* COLOCAR LINK DO REACT ROUTER DOM */}
+          </div>
+
+          <div className='Registre-se'>
+              <p>Não tem conta? <a href='#'>Cadastre-se</a></p>
+          </div>
+
+          
+          </div>
+              <img className='UniforImage' src={UniforImage} alt="Imagem CC"/>
+          
         </div>
-        </div>
-            <img className='UniforImage' src={UniforImage} alt="Imagem CC"/>
-        
-    </div>
     </div>
   )
 }

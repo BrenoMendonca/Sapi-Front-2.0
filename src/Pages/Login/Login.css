@@ -15,8 +15,10 @@
     background-color: white;
     justify-content: space-around;
     border-radius: 10px;
-    padding-left:20px ;
+    padding: 0 0 1.25rem 1.25rem;
+
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+
 }
 /*
 .wrapper .LogoUnifor {
@@ -85,6 +87,8 @@
     border: 2px solid #D4D4D4;
     border-radius: 40px;
     font-size: 18px;
+
+    margin-top: 10px;
   } 
 
   .wrapper .Registre-se{
@@ -94,6 +98,17 @@
     padding-bottom: 5px;
   }
 
+  .wrapper .Registre-se a {
+    color: #044CF4;
+    text-decoration: none;
+
+    transition: .2s;
+  }
+
+  .wrapper .Registre-se a:hover {
+    color: #4DA6FF;
+  }
+
   .UniforImage{
     width: 370px;
     height: 300px;
@@ -101,3 +116,19 @@
     padding-left: 15px;
   }
 
+.forgot-my-password-wrapper { 
+  margin: 0.75rem 0 1rem;
+}
+
+.forgot-my-password-wrapper a {
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: #02040F;
+  text-decoration: none;
+
+  transition: .2s;
+}
+
+.forgot-my-password-wrapper a:hover {
+  color: #044CF4;
+}
