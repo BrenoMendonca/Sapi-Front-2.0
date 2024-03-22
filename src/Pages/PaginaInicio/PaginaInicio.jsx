@@ -68,6 +68,7 @@ export const  PaginaInicio = ()=>{
         // setEditais(editaisJson)
         // setLoad(false)
     }
+    
     console.log(editais.slice().reverse())
     return(
             <div className='PaginaInicio'>

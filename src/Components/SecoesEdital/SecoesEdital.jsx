@@ -1,6 +1,28 @@
+import { useEffect, useState } from 'react';
 import './SecoesEdital.css'; 
+import axios from 'axios';
+import { useParams } from 'react-router-dom';
 
 export const SecoesEdital = () => {
+    const { id } = useParams()
+ 
+    const [requisitos, setRequisitos] = useState([])
+
+    useEffect(()=>{
+        const getRequisitos = async () => {
+            try {
+                const response = await axios.get(`http://localhost:3001/getEdital/${id}`)
+                const data = response.data.requisitosEdital;
+                setRequisitos(data);
+                console.log(data);
+            } catch(error) {
+                console.error(error);
+            }
+        }
+    
+        getRequisitos();
+    },[id])
+
     return (
         <ul className=''>
             <details>
@@ -11,9 +33,10 @@ export const SecoesEdital = () => {
             <details>
                 <summary>Requisitos</summary>
                 <ol>
-                    <li>Req 1</li>
-                    <li>Req 2</li>
-                    <li>Req 2</li>
+                    {requisitos !== null &&
+                        requisitos.map(requisito => {
+                            return <li>{requisito}</li>
+                        })}
                 </ol>
             </details>
 
