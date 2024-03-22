@@ -27,6 +27,9 @@
     background-color: white;
     align-items: center;
     height: 60px;
+    
+    text-decoration: none;
+    color: black;
 }
 
 .Navbar h1,

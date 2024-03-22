@@ -112,7 +112,7 @@ export const  PaginaInicio = ()=>{
                             <td className='centralizar-elemento'>{edital.dataFinal}</td>
                             <td className='centralizar-elemento'><Status status={edital.status}/></td>
                             <td className='centralizar-elemento'>
-                                <Link to={`/edital/${edital.numeroEdital}`}>
+                                <Link to={`/edital/${edital._id}`}>
                                     <img alt="" title="Ver mais informações" className= 'visualizar'src={vizualizar}></img>
                                 </Link>
 

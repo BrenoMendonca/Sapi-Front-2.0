@@ -1,0 +1,42 @@
+summary {
+    all: unset;
+    width: 100%;
+    padding: 2rem;
+    
+    text-align: center;
+    font-size: 1.25rem;
+    font-weight: 700;
+
+
+    cursor: pointer;
+}
+
+details {
+    background-color: #aaa;
+    border-bottom: 1px solid #ccc;
+}
+
+details ol {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+}
+
+details ol li {
+    width: 100%;
+    padding: 1.25rem 4rem;
+    list-style: none;
+    
+}
+
+details ol li:nth-child(odd) {
+    background-color: #ddd;
+
+}
+
+details ol li:nth-child(even) {
+    background-color: #fff;
+
+}

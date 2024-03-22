@@ -1,7 +1,7 @@
 import '../Navbar/Navbar.css'
 import UniforIcon from "../../Assets/icon-unifor.svg";
 import { useEffect, useState } from 'react';
-import Logout from "../../Assets/logout.png"
+import { Link } from 'react-router-dom';
 
 //<img className='Logout' src={Logout} alt="Logout Icon" onClick={fazerLogout}></img>
 export const Navbar = ()=>{
@@ -31,12 +31,11 @@ export const Navbar = ()=>{
     }
     return(
         <div className="Navbar">
-          
-            <div className='Apresentacao'>
+            <Link to='/PaginaInicio' className='Apresentacao'>
                 <img className='LogoUnifor' src={UniforIcon} alt="Logo Unifor" />
                 <h1>Projetos Unifor</h1>
-            </div>
-
+            </Link>
+            
             <div className='name-login'onMouseEnter={handleMouse} onMouseLeave={handleMouseLeave}> 
                 
                 <div className='botao'>

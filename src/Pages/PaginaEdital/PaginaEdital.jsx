@@ -1,9 +1,9 @@
 import './../PaginaEdital/PaginaEdital.css';
 import Navbar from '../../Components/Navbar/Navbar';
-import { SidebarEdital } from '../../Components/SidebarEdital/SidebarEdital';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
+import { SecoesEdital } from '../../Components/SecoesEdital/SecoesEdital';
 
 const statusMap = {
     '1':'Aberto',
@@ -43,7 +43,7 @@ export const PaginaEdital = () => {
                     </div>
                 )}
 
-                <SidebarEdital />
+                <SecoesEdital />
             </div>
 
         </div>

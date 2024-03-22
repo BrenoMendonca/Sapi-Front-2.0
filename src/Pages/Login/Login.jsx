@@ -6,6 +6,7 @@ import UniforImage from "../../Assets/UniforCC.png";
 import { validarSenha, validarMatricula} from '../../Utils/Validadores';
 import UserService from '../../Services/Services';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'sonner';
 
 
 
@@ -40,8 +41,13 @@ export const Login = () => {
         }
       })
       .catch((err) => {
-        alert(JSON.stringify(err.response.data.msg))
-        console.log(err)
+        //alert(JSON.stringify(err.response.data.msg))
+        toast.error(err.response.data.msg, {
+          style: {
+            fontSize: '1rem',
+          }
+        })
+        console.error(err)
       });
   }
 
@@ -86,11 +92,11 @@ export const Login = () => {
         
           
           <button 
-
-          type='submit' 
-          onClick={handleSubmit}
-          disabled={loading === true || !validadorInput}
-          >Acessar</button>
+            type='submit' 
+            onClick={handleSubmit}
+            disabled={loading === true || !validadorInput}>
+              Acessar
+            </button>
 
           <div className='forgot-my-password-wrapper'>
             <a href='#'>Esqueci minha senha</a> {/* COLOCAR LINK DO REACT ROUTER DOM */}

@@ -86,10 +86,16 @@
     outline: none;
     border: 2px solid #D4D4D4;
     border-radius: 40px;
-    font-size: 18px;
+    font-size: 1rem;
 
     margin-top: 10px;
+    
   } 
+
+  .wrapper button:hover {
+    background: #165aaa;
+    
+  }
 
   .wrapper .Registre-se{
     font-size: 12px;
@@ -106,7 +112,7 @@
   }
 
   .wrapper .Registre-se a:hover {
-    color: #4DA6FF;
+    color: #4379f7;
   }
 
   .UniforImage{
