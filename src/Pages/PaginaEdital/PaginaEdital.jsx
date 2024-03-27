@@ -25,7 +25,7 @@ export const PaginaEdital = () => {
     }, [id])
 
     return (
-        <div style={{background: '#DAE7EF', height: '100vh'}}>
+        <div style={{background: '#DAE7EF' }}>
             <Navbar />
 
             <div style={{marginLeft: '5%', marginRight: '5%'}}>

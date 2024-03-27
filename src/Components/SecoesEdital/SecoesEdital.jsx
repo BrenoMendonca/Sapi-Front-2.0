@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import './SecoesEdital.css'; 
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
+import { ValidacaoRequisitosEdital } from '../ValidacaoRequisitosEdital/ValidacaoRequisitosEdital';
 
 export const SecoesEdital = () => {
     const { id } = useParams()
@@ -14,7 +15,6 @@ export const SecoesEdital = () => {
                 const response = await axios.get(`http://localhost:3001/getEdital/${id}`)
                 const data = response.data.requisitosEdital;
                 setRequisitos(data);
-                console.log(data);
             } catch(error) {
                 console.error(error);
             }
@@ -27,7 +27,7 @@ export const SecoesEdital = () => {
         <ul className=''>
             <details>
                 <summary>Validação de requisitos</summary>
-                
+                <ValidacaoRequisitosEdital />
             </details>
             
             <details>

@@ -1,0 +1,72 @@
+.form-req-edital {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.form-req-edital div {
+    display: flex;
+    gap: 0.875rem;
+    width: 100%;
+    border-bottom: 1px solid transparent;
+    padding: 1.25rem 4rem;
+}
+
+.form-req-edital div input[type="checkbox"] {
+    accent-color:  #C70039;
+    width: 1rem;
+}
+
+.form-req-edital div label {
+    background: transparent;
+    font-size: 1rem;
+}
+
+.form-req-edital div:nth-child(odd) {
+    background-color: #ddd;
+}
+
+.form-req-edital div:nth-child(even) {
+    background-color: #fff;
+}
+
+.btn-validar-req {
+    margin: 1rem auto 1rem;
+    padding: 1rem 0.75rem;
+    border: 0;
+    border-radius: 8px;
+
+    background: #044CF4;
+    color: #fff;
+    
+    font-size: 1rem;
+    font-weight: 700;
+
+    cursor: pointer;
+}
+
+.btn-validar-req:hover {
+    background: #165aaa;
+}
+
+.checked {
+    background: #CEFFCE !important;
+    border-bottom: 1px solid #ddd !important; 
+}
+
+.confirmation-modal {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.confirmation-modal div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.disabled {
+    background: #888 !important;
+}
