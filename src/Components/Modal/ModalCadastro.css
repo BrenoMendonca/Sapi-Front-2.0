@@ -10,6 +10,7 @@
     padding-top: 10vh;
     align-items: flex-start;
     z-index: 1000;
+    overflow: scroll;
 }
 
 .box-modal-card-edital{
@@ -38,6 +39,11 @@
     border-radius: 10px;
     color: white;
     cursor: pointer;
+    transition: .2s;
+}
+
+.button-fechar-modal-edital:hover {
+    background: #165aaa;
 }
 
 .box-botoes-modal{
@@ -86,4 +92,52 @@
     color: white;
     cursor: pointer;
     box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+}
+
+.input-requisitos-wrapper {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+.input-requisitos-wrapper div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.25rem;
+
+    margin-bottom: 10px;
+}
+
+.input-requisitos-wrapper div button {
+    width: 2rem;
+    height: 2rem;
+    border-radius: 0;
+    border: none;
+    transition: .2s;
+}
+
+.input-requisitos-wrapper div button:hover {
+    background: #165aaa;
+}
+
+.input-requisitos-wrapper div span svg {
+    background: #ccc;
+    width: 2rem;
+    height: 2rem;
+    padding: 6px;
+    cursor: pointer;
+    transition: .2s;
+}
+
+.input-requisitos-wrapper div span svg:hover {
+    background: #FF3838;
+    
+}
+
+.delete-req-disabled {
+    opacity: 0.5; 
+    pointer-events: none; 
+    cursor: not-allowed;
 }

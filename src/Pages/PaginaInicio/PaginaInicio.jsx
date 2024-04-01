@@ -90,9 +90,9 @@ export const  PaginaInicio = ()=>{
                     <thead>
                     <tr>
                         <th className='titulo-crud'>Num Edital</th>
-                        <th className='titulo-crud'>Criador</th>
+                        <th className='titulo-crud'>Objetivo</th>
                         <th className='titulo-crud'>Titulo do Edital</th>
-                        <th className='titulo-crud centralizar-elemento'>Prazo Submissão</th>
+                        <th className='titulo-crud centralizar-elemento'>Prazo para envio</th>
                         <th className="titulo-crud centralizar-elemento">Status</th>
                         <th className="titulo-crud centralizar-elemento">Ações</th>
                     </tr>
