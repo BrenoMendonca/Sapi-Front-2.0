@@ -3,12 +3,16 @@ summary {
     width: 100%;
     padding: 2rem;
     
-    text-align: center;
     font-size: 1.25rem;
     font-weight: 700;
 
-
     cursor: pointer;
+
+    transition: .2s;
+}
+
+summary:hover {
+    background: #bbb;
 }
 
 details {
@@ -39,4 +43,8 @@ details ol li:nth-child(odd) {
 details ol li:nth-child(even) {
     background-color: #fff;
 
+}
+
+.confirmation-modal p {
+    background: transparent;
 }

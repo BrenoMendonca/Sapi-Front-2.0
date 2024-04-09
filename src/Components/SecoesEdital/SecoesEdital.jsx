@@ -24,7 +24,7 @@ export const SecoesEdital = () => {
     },[id])
 
     return (
-        <ul className=''>
+        <>
             <details>
                 <summary>Validação de requisitos</summary>
                 <ValidacaoRequisitosEdital />
@@ -42,7 +42,8 @@ export const SecoesEdital = () => {
 
             <details>
                 <summary>Avaliações</summary>
+                {/*}<AvaliacoesEdital />{*/}
             </details>
-        </ul>
+        </>
     )
 }
