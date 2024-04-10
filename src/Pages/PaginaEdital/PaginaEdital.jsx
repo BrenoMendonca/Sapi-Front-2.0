@@ -4,6 +4,7 @@ import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { SecoesEdital } from '../../Components/SecoesEdital/SecoesEdital';
+import { BuscaProfessor } from '../../Components/BuscaProfessor/BuscaProfessor';
 
 const statusMap = {
     '1':'Aberto',
@@ -16,8 +17,6 @@ export const PaginaEdital = () => {
     const { id } = useParams()
     const [editalData, setEditalData] = useState(null)
     const [users, setUsers] = useState({})
-    const [search, setSearch] = useState([])
-    const [searchTerm, setSearchTerm] = useState('')
 
     useEffect(() => {
         axios.get(`http://localhost:3001/getEdital/${id}`)
@@ -35,19 +34,7 @@ export const PaginaEdital = () => {
             .catch(error => console.error(error))
     }, [])
 
-    const handleSearch = async () => {
-        try {
-            const response = await axios.get("http://localhost:3001/user/search-users", {
-                params: {
-                    mat: searchTerm
-                }
-            })
-
-            setSearch(response.data)
-        } catch(e) {
-            console.error(e)
-        }
-    }
+    
 
     return (
         <div style={{ background: '#DAE7EF', height: '100%' }}>
@@ -75,34 +62,7 @@ export const PaginaEdital = () => {
                                         <li>Prof 2</li>
                                     </ul>
                                 ) : (
-                                    <div className='add-prof-inputs'>
-                                        <strong>Digite a matrícula do professor que deseja adicionar como avaliador:</strong>
-                                        <span>
-                                            <input 
-                                                type="search" 
-                                                incremental 
-                                                name="search-prof" 
-                                                id="search-prof" 
-                                                value={searchTerm} 
-                                                onChange={e => {setSearchTerm(e.target.value);console.log(e.target.value)}}
-                                            />
-                                            <input 
-                                                type="submit" 
-                                                value="Pesquisar" 
-                                                onClick={handleSearch} 
-                                            />
-                                        </span>
-
-                                        <div>
-                                            {search &&
-                                                search.map(term => {
-                                                    return (
-                                                        <p>{term.matricula}</p>
-                                                    )
-                                                })
-                                            }
-                                        </div>
-                                    </div>
+                                    <BuscaProfessor />
                                 )}
                         </div>
                     </div>
