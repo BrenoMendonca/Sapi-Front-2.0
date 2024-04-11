@@ -1,7 +1,7 @@
 .add-prof-inputs {
     display: flex;
     flex-direction: column;
-    align-items: start;
+    align-items: flex-start;
     gap: 1rem;
 
     width: calc(100% - 20vw);
@@ -39,29 +39,50 @@
     color: #fff;
 }
 
-.search-results-box {
+.search-results-form-box {
     background: #eee;
     width: 100%;
-    padding: 1rem;
+    padding-bottom: 1rem;
     
     display: flex;
     flex-direction: column;
-    gap: .5rem;
     align-items: left;
-
-
 }
 
-.search-results-box span {
+.search-results-form-box p {
     background: transparent;
-    width: 100%;
-    padding: .25rem;
-    font-size: 1.05rem;
-    cursor: pointer;
+}
 
+.search-results-form-box div {
     display: flex;
-    align-items: flex-start;
-    justify-content: start;
+    gap: 0.875rem;
+    width: 100%;
+    border-bottom: 1px solid transparent;
+    padding: 1.25rem 4rem;
+}
+
+.search-results-info {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.search-results-info label {
+    background: transparent;
+}
+
+.search-results-info:nth-child(odd) {
+    background: #ddd;
+}
+
+.search-results-info:nth-child(even) {
+    background: #fff;
+}
+
+
+
+.search-results-info input[type="checkbox"] {
+    accent-color:  #C70039;
 }
 
 .search-results-box span:hover {
@@ -75,4 +96,13 @@
 .search-results-box p {
     font-size: 1.05rem;
     background: transparent;
+}
+
+.btn-search-prof-by-mat {
+    width: 14rem;
+    margin: 1rem auto 0;
+}
+
+.btn-search-prof-by-mat:hover {
+    background: #165aaa;
 }

@@ -1,11 +1,16 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import axios from 'axios';
 import './../BuscaProfessor/BuscaProfessor.css';
 
 export const BuscaProfessor = () => {
     const [search, setSearch] = useState([]);
     const [searchTerm, setSearchTerm] = useState('');
+    const [hasSearched, setHasSearched] = useState(false)
     
+    useEffect(() => {
+        console.log(search)
+    }, [])
+
     const handleSearch = async () => {
         try {
             const response = await axios.get("http://localhost:3001/user/search-users", {
@@ -16,6 +21,7 @@ export const BuscaProfessor = () => {
 
             const searchData = response.data;
             setSearch(searchData);
+            setHasSearched(true)
             console.log(searchData)
 
         } catch(error) {
@@ -42,17 +48,34 @@ export const BuscaProfessor = () => {
                 />
             </span>
 
-            <div className="search-results-box">
-                {search.length !== 0 ? 
-                    search.map(term => {
-                        return (
-                            <span>{term.matricula}</span>
+            <form className="search-results-form-box">
+                {hasSearched === false ? 
+                    null
+                :
+                    (
+                        search.length !== 0 ? 
+                            search.map(term => {
+                                return (
+                                
+                                    <div className="search-results-info">
+                                        <input type="checkbox" name="" id="" />
+                                        <label>{term.matricula}</label>
+                                    </div>
+                                    
+                                )
+                            }
                         )
-                    })
-                    :
-                    <p>Professor não encontrado.</p>
+                        :
+                        <p>Professor não encontrado.</p>
+                    )
                 }
-            </div>
+
+                {hasSearched && search.length !== 0 && (
+                    <button className="btn-search-prof-by-mat">Selecionar</button>
+                )}
+                
+            </form>
+
         </div>
     );
 };

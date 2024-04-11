@@ -16,12 +16,14 @@ const statusMap = {
 export const PaginaEdital = () => {
     const { id } = useParams()
     const [editalData, setEditalData] = useState(null)
+    // eslint-disable-next-line no-unused-vars
     const [users, setUsers] = useState({})
 
     useEffect(() => {
         axios.get(`http://localhost:3001/getEdital/${id}`)
             .then((res) => {
                 setEditalData(res.data)
+                
             })
             .catch(error => console.error(error))
     }, [id])
@@ -33,7 +35,6 @@ export const PaginaEdital = () => {
             })
             .catch(error => console.error(error))
     }, [])
-
     
 
     return (
