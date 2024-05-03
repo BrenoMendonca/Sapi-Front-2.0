@@ -47,6 +47,8 @@
     display: flex;
     flex-direction: column;
     align-items: left;
+    
+    margin-bottom: 2rem;
 }
 
 .search-results-form-box p {
@@ -65,17 +67,18 @@
     display: flex;
     align-items: center;
     gap: 1rem;
+
 }
 
 .search-results-info label {
     background: transparent;
 }
 
-.search-results-info:nth-child(odd) {
+.search-results-info:nth-child(even) {
     background: #ddd;
 }
 
-.search-results-info:nth-child(even) {
+.search-results-info:nth-child(odd) {
     background: #fff;
 }
 

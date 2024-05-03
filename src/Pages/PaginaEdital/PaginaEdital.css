@@ -48,3 +48,45 @@
     margin-bottom: .75rem;
 }
 
+.list-prof-avaliador {
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+}
+
+.wrapper-show-matricula-prof-avaliador {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: .5rem;
+
+    border-radius: 8px;
+
+    width: 20%;
+    background: #ddd;
+}
+
+.wrapper-show-matricula-prof-avaliador p {
+    display: inline;
+    font-size: 1rem;
+    background: transparent;
+}
+
+.wrapper-show-matricula-prof-avaliador span {
+    background: transparent;
+    font-size: 1rem;
+    padding: 4px 6px;
+    border-radius: 8px;
+    background: #bbb;
+    transition: .2s;
+}
+
+.wrapper-show-matricula-prof-avaliador span:hover {
+    background: #888;
+    cursor: pointer;
+    color: #fff;
+}
+
+.wrapper-show-matricula-prof-avaliador span:active {
+    background: red;
+}
