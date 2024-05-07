@@ -1,7 +1,7 @@
 summary {
     all: unset;
-    width: 100%;
     padding: 2rem;
+    width: 100%;
     
     font-size: 1.25rem;
     font-weight: 700;
@@ -11,7 +11,7 @@ summary {
     transition: .2s;
 }
 
-summary:hover {
+details:hover {
     background: #bbb;
 }
 

@@ -52,9 +52,24 @@ export const ValidacaoRequisitosEdital = () => {
         setIsConfirmationOpen(true);
     };
 
-    const handleConfirmationOK = () => {
-        // Aqui você pode enviar os dados para o backend
-        setIsConfirmationOpen(false);
+    const handleConfirmationOK = async (event) => {
+        event.preventDefault()
+
+        try {
+            console.log('antes da chamada')
+            console.log(id)
+            await axios.patch(`http://localhost:3001/getEdital/validate-requisitos/${id}`)
+                .then((response) => {
+                    console.log(response.data)
+                });
+            console.log('dps da chamada')
+
+        } catch (error) {
+            console.error('Erro ao validar requisitos:', error);
+            if (error.response) {
+                console.error('Detalhes do erro:', error.response.data);
+            }        
+        }
     };
 
     const handleConfirmationCancel = () => {
@@ -91,7 +106,7 @@ export const ValidacaoRequisitosEdital = () => {
             {isConfirmationOpen && (
                 <div className="confirmation-modal">
                     <p>Deseja realmente validar os requisitos?</p>
-                    <button onClick={handleConfirmationOK}>OK</button>
+                    <button onClick={(event) => handleConfirmationOK(event)}>Sim</button>
                     <button style={{background: '#FF3838'}} onClick={handleConfirmationCancel}>Cancelar</button>
                 </div>
             )}
