@@ -22,6 +22,7 @@ export const PaginaEdital = () => {
     useEffect(() => {
         axios.get(`http://localhost:3001/getEdital/${id}`)
             .then((res) => {
+                console.log(res.data)
                 setEditalData(res.data)
             })
             .catch(error => console.error(error))

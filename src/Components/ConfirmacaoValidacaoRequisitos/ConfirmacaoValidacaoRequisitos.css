@@ -1,0 +1,12 @@
+.confirmation-modal {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.confirmation-modal div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

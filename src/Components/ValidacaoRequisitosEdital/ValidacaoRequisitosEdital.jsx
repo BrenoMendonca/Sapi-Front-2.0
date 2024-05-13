@@ -2,6 +2,8 @@ import './ValidacaoRequisitosEdital.css';
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { ConfirmacaoValidacaoRequisitos } from '../ConfirmacaoValidacaoRequisitos/ConfirmacaoValidacaoRequisitos';
+import { toast } from 'sonner';
 
 export const ValidacaoRequisitosEdital = () => {
     const { id } = useParams();
@@ -10,24 +12,27 @@ export const ValidacaoRequisitosEdital = () => {
     const [requisitos, setRequisitos] = useState([]);
     const [checkboxStatus, setCheckboxStatus] = useState({});
     const [isConfirmationOpen, setIsConfirmationOpen] = useState(false);
+    const [isReqsValidated, setIsReqsValidated] = useState(false)
 
     // Carrega os requisitos e o estado dos checkboxes do localStorage ao montar o componente
     useEffect(() => {
         const getRequisitos = async () => {
             try {
                 const response = await axios.get(`http://localhost:3001/getEdital/${id}`);
-                const data = response.data.requisitosEdital;
-                setRequisitos(data);
-
+                const { requisitosEdital, isValidated } = response.data;
+                setRequisitos(requisitosEdital);
+                setIsReqsValidated(isValidated)
+                console.log('reqs validated', isReqsValidated)
+                
                 const localStorageData = JSON.parse(localStorage.getItem(localStorageKey)) || {};
                 setCheckboxStatus(localStorageData);
             } catch(error) {
                 console.error(error);
             }
         };
-    
+
         getRequisitos();
-    }, [id, localStorageKey]); // Adicionamos 'localStorageKey' como dependência
+    }, [id, localStorageKey, isReqsValidated]); // Adicionamos 'localStorageKey' como dependência
 
     // Atualiza o estado dos checkboxes e o localStorage ao marcar/desmarcar um checkbox
     const handleCheckboxChange = (event) => {
@@ -52,17 +57,19 @@ export const ValidacaoRequisitosEdital = () => {
         setIsConfirmationOpen(true);
     };
 
-    const handleConfirmationOK = async (event) => {
-        event.preventDefault()
+    // Verifica se todos os requisitos foram atendidos
+    const isAllRequirementsMet = Object.values(checkboxStatus).every(status => status);
+
+    async function handleInvalidateReqs() {
 
         try {
-            console.log('antes da chamada')
-            console.log(id)
-            await axios.patch(`http://localhost:3001/getEdital/validate-requisitos/${id}`)
+            await axios.patch(`http://localhost:3001/getEdital/invalidate-requisitos/${id}`)
                 .then((response) => {
-                    console.log(response.data)
+                    toast.success(response.data.msg)
                 });
-            console.log('dps da chamada')
+            setCheckboxStatus({})
+            localStorage.removeItem(localStorageKey)
+            window.location.reload()
 
         } catch (error) {
             console.error('Erro ao validar requisitos:', error);
@@ -70,14 +77,7 @@ export const ValidacaoRequisitosEdital = () => {
                 console.error('Detalhes do erro:', error.response.data);
             }        
         }
-    };
-
-    const handleConfirmationCancel = () => {
-        setIsConfirmationOpen(false);
-    };
-
-    // Verifica se todos os requisitos foram atendidos
-    const isAllRequirementsMet = Object.values(checkboxStatus).every(status => status);
+    }
 
     return (
         <form action="" className='form-req-edital'>
@@ -95,6 +95,16 @@ export const ValidacaoRequisitosEdital = () => {
                 )
             })}
 
+            {isReqsValidated && (
+                <input 
+                type="button" 
+                value="Desvalidar requisitos" 
+                className={`btn-validar-req ${!isAllRequirementsMet ? 'disabled' : ''}`}
+                onClick={handleInvalidateReqs}
+                disabled={!isAllRequirementsMet}
+                style={{marginBottom: '0'}}
+            />
+            )}
             <input 
                 type="button" 
                 value="Validar requisitos" 
@@ -104,11 +114,7 @@ export const ValidacaoRequisitosEdital = () => {
             />
 
             {isConfirmationOpen && (
-                <div className="confirmation-modal">
-                    <p>Deseja realmente validar os requisitos?</p>
-                    <button onClick={(event) => handleConfirmationOK(event)}>Sim</button>
-                    <button style={{background: '#FF3838'}} onClick={handleConfirmationCancel}>Cancelar</button>
-                </div>
+                <ConfirmacaoValidacaoRequisitos setIsConfirmationOpen={setIsConfirmationOpen} />
             )}
         </form>
     );
