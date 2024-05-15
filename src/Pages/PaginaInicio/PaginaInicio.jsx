@@ -2,8 +2,8 @@
 import './../PaginaInicio/paginaInicio.css';
 import Navbar from '../../Components/Navbar/Navbar';
 import UserService from '../../Services/Services';
-import React, { useLayoutEffect, useState, useEffect } from "react";
-import { BrowserRouter, Routes, Link, Route, useNavigate, useLocation } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import axios from 'axios';
 import {ModalCadastro} from '../../Components/Modal/ModalCadastro';
 import { Load } from '../../Components/Load/Load'
@@ -12,7 +12,6 @@ import Apresentacao from '../../Components/Apresentacao/Apresentacao';
 import vizualizar from '../../Assets/olho.png';
 import editar from '../../Assets/escrever.png';
 import { Status } from '../../Components/Status/Status';
-import { toast } from 'sonner';
 
 //import { Load } from '../../Components/Load/Load';
 
@@ -86,52 +85,52 @@ export const  PaginaInicio = ()=>{
                 </div>
             
                 <div className="divTable">
-                <table>
-                    <thead>
-                    <tr>
-                        <th className='titulo-crud'>Num Edital</th>
-                        <th className='titulo-crud'>Objetivo</th>
-                        <th className='titulo-crud'>Titulo do Edital</th>
-                        <th className='titulo-crud centralizar-elemento'>Prazo para envio</th>
-                        <th className="titulo-crud centralizar-elemento">Status</th>
-                        <th className="titulo-crud centralizar-elemento">Ações</th>
-                    </tr>
-                    </thead>
-                    <tbody>
+                    <table>
+                        <thead>
+                        <tr>
+                            <th className='titulo-crud'>Num Edital</th>
+                            <th className='titulo-crud'>Objetivo</th>
+                            <th className='titulo-crud'>Titulo do Edital</th>
+                            <th className='titulo-crud centralizar-elemento'>Prazo para envio</th>
+                            <th className="titulo-crud centralizar-elemento">Status</th>
+                            <th className="titulo-crud centralizar-elemento">Ações</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        
                     
-                   
-                    {editais != null &&(
-                        editais.slice().reverse().map((edital) => 
-                        <tr key={edital.codigo}>
-                            <td className='num-edital'>
-                                <Link to={`/edital/${edital._id}`}>
-                                    {edital.numeroEdital}
-                                </Link>
-                            </td>
-                            <td>{edital.objetivo}</td>
-                            <td>{edital.nameEdital}</td>
-                            <td className='centralizar-elemento'>{edital.dataFinal}</td>
-                            <td className='centralizar-elemento'><Status status={edital.status}/></td>
-                            <td className='centralizar-elemento'>
-                                <Link to={`/edital/${edital._id}`}>
-                                    <img alt="" title="Ver mais informações" className= 'visualizar'src={vizualizar}></img>
-                                </Link>
+                        {editais != null &&(
+                            editais.slice().reverse().map((edital) => 
+                            <tr key={edital.codigo}>
+                                <td className='num-edital'>
+                                    <Link to={`/edital/${edital._id}`}>
+                                        {edital.numeroEdital}
+                                    </Link>
+                                </td>
+                                <td>{edital.objetivo}</td>
+                                <td>{edital.nameEdital}</td>
+                                <td className='centralizar-elemento'>{edital.dataFinal}</td>
+                                <td className='centralizar-elemento'><Status status={edital.status}/></td>
+                                <td className='centralizar-elemento'>
+                                    <Link to={`/edital/${edital._id}`}>
+                                        <img alt="" title="Ver mais informações" className= 'visualizar'src={vizualizar}></img>
+                                    </Link>
 
-                                <img alt="" title="Editar" className='editar' src= {editar}></img>
+                                    <img alt="" title="Editar" className='editar' src= {editar}></img>
+                                </td>
+                            </tr>
+                        ))}
+
+                        <tr>
+                            <td colSpan="6" className="loading-cell">
+                                <div className="loading-container">
+                                    {load && <Load />}
+                                </div>
                             </td>
                         </tr>
-                    ))}
-
-                    <tr>
-                        <td colSpan="6" className="loading-cell">
-                            <div className="loading-container">
-                                {load && <Load />}
-                            </div>
-                        </td>
-                    </tr>
-                    
-                    </tbody>
-                </table>
+                        
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>

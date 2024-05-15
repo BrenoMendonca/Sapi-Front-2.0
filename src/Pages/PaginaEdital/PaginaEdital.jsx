@@ -6,6 +6,7 @@ import { useEffect, useState } from 'react';
 import { SecoesEdital } from '../../Components/SecoesEdital/SecoesEdital';
 import { BuscaProfessor } from '../../Components/BuscaProfessor/BuscaProfessor';
 import { toast } from 'sonner';
+import { TableSubmissoes } from '../../Components/TableSubmissoes/TableSubmissoes';
 
 const statusMap = {
     '1': 'Aberto',
@@ -66,7 +67,7 @@ export const PaginaEdital = () => {
                 {editalData && (
                     <div className="info-edital">
                         <p><b>Número do edital: </b>{editalData.numeroEdital}</p>
-                        <p><b>Criador: </b>{editalData.objetivo}</p>
+                        <p><b>Objetivo: </b>{editalData.objetivo}</p>
                         <p><b>Prazo de submissão: </b>{editalData.dataFinal}</p>
                         <p><b>Status atual: </b>{statusMap[editalData.status]}</p>
 
@@ -91,6 +92,8 @@ export const PaginaEdital = () => {
                     </div>
                 )}
                 <SecoesEdital />
+
+                <TableSubmissoes />
             </div>
 
         </div>

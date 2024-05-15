@@ -22,7 +22,6 @@ export const ValidacaoRequisitosEdital = () => {
                 const { requisitosEdital, isValidated } = response.data;
                 setRequisitos(requisitosEdital);
                 setIsReqsValidated(isValidated)
-                console.log('reqs validated', isReqsValidated)
                 
                 const localStorageData = JSON.parse(localStorage.getItem(localStorageKey)) || {};
                 setCheckboxStatus(localStorageData);
