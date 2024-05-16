@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import './SecoesEdital.css'; 
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
-import { ValidacaoRequisitosEdital } from '../ValidacaoRequisitosEdital/ValidacaoRequisitosEdital';
+import { TableSubmissoes } from '../TableSubmissoes/TableSubmissoes';
 
 export const SecoesEdital = () => {
     const { id } = useParams()
@@ -24,12 +24,7 @@ export const SecoesEdital = () => {
     },[id])
 
     return (
-        <>
-            <details>
-                <summary>Validação de requisitos</summary>
-                <ValidacaoRequisitosEdital />
-            </details>
-            
+        <>  
             <details>
                 <summary>Requisitos</summary>
                 <ol>
@@ -40,10 +35,10 @@ export const SecoesEdital = () => {
                 </ol>
             </details>
 
-            <details>
-                <summary>Avaliações</summary>
-                {/*}<AvaliacoesEdital />{*/}
-            </details>
+            <h1>SUBMETER AO EDITAL</h1>
+
+            <TableSubmissoes />
+
         </>
     )
 }

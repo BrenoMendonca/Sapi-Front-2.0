@@ -19,12 +19,13 @@ export const PaginaEdital = () => {
     const { id } = useParams()
     const [editalData, setEditalData] = useState(null)
     const [profsAvaliadores, setProfsAvaliadores] = useState([])
-
+    const [requisitos, setRequisitos] = useState([])
+    
     useEffect(() => {
         axios.get(`http://localhost:3001/getEdital/${id}`)
             .then((res) => {
-                console.log(res.data)
                 setEditalData(res.data)
+                setRequisitos(res.data.requisitosEdital)
             })
             .catch(error => console.error(error))
     }, [id])
@@ -91,9 +92,9 @@ export const PaginaEdital = () => {
                         </div>
                     </div>
                 )}
+                
                 <SecoesEdital />
 
-                <TableSubmissoes />
             </div>
 
         </div>

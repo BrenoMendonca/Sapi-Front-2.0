@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import "./../TableSubmissoes/TableSubmissoes.css";
 import { useParams } from "react-router-dom";
 import axios from "axios";
+import { format } from 'date-fns'
 import { Load } from "../Load/Load";
 
 export function TableSubmissoes() {
@@ -20,7 +21,6 @@ export function TableSubmissoes() {
 
             setSubmissoes(data);
 
-            console.log(data);
         } catch (error) {
             console.error(error);
         } finally {
@@ -31,16 +31,16 @@ export function TableSubmissoes() {
         getSubmissoes();
     }, getSubmissoes);
 
+    function setDateFormat(date) {
+        return format(new Date(date), 'dd/MM/yyyy');
+    }
     return (
         <table>
             <thead>
                 <tr>
-                <th className="titulo-crud">Num Edital</th>
-                <th className="titulo-crud">Objetivo</th>
-                <th className="titulo-crud">Titulo do Edital</th>
-                <th className="titulo-crud centralizar-elemento">Prazo para envio</th>
-                <th className="titulo-crud centralizar-elemento">Status</th>
-                <th className="titulo-crud centralizar-elemento">Ações</th>
+                    <th className="titulo-crud">Número</th>
+                    <th className="titulo-crud">Título</th>
+                    <th className="titulo-crud">Data de submissão</th>
                 </tr>
             </thead>
             <tbody>
@@ -48,15 +48,19 @@ export function TableSubmissoes() {
                     submissoes
                         .slice()
                         .reverse()
-                        .map((submissao) => (
-                            <td>{submissao.title}</td>
+                        .map((submissao, index) => (
+                            <tr>
+                                <td>{index+1}</td>
+                                <td>{submissao.title}</td>
+                                <td>{setDateFormat(submissao.createdAt)}</td>
+                            </tr>
                         ))
                 }
 
                 <tr>
-                <td colSpan="6" className="loading-cell">
-                    <div className="loading-container">{load && <Load />}</div>
-                </td>
+                    <td colSpan="6" className="loading-cell">
+                        <div className="loading-container">{load && <Load />}</div>
+                    </td>
                 </tr>
             </tbody>
         </table>
