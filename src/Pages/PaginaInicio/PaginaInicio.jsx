@@ -5,7 +5,7 @@ import UserService from '../../Services/Services';
 import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from 'axios';
-import {ModalCadastro} from '../../Components/Modal/ModalCadastro';
+import {ModalCadastroEdital} from '../../Components/ModalCadastroEdital/ModalCadastroEdital';
 import { Load } from '../../Components/Load/Load'
 import Apresentacao from '../../Components/Apresentacao/Apresentacao';
 // Importando imagens
@@ -68,13 +68,12 @@ export const  PaginaInicio = ()=>{
         // setLoad(false)
     }
     
-    console.log(editais.slice().reverse())
     return(
             <div className='PaginaInicio'>
                 <Navbar></Navbar>
                 <Apresentacao></Apresentacao>
             {modalIsOpen &&(
-                <ModalCadastro setView={setIsOpen} atualizarListaEditais={handleAtualizarListaEditais} />
+                <ModalCadastroEdital setView={setIsOpen} atualizarListaEditais={handleAtualizarListaEditais} />
             )} 
         
             <div className='BackgroundPaginaInicio'>

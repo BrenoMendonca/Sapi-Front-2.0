@@ -1,10 +1,10 @@
 import { useState } from 'react';
-import './ModalCadastro.css';
+import './ModalCadastroEdital.css';
 import axios from 'axios';
 import { toast } from 'sonner';
 import { Trash } from '@phosphor-icons/react';
 
-export const ModalCadastro = ({ setView, atualizarListaEditais }) =>{
+export const ModalCadastroEdital = ({ setView, atualizarListaEditais }) =>{
     const [edital, setEdital] = useState({
         numeroEdital: '',
         nameEdital: '',
@@ -30,7 +30,6 @@ export const ModalCadastro = ({ setView, atualizarListaEditais }) =>{
             });
         }
 
-        console.log(edital)
     };
 
     const handleAddRequisito = () => {
@@ -58,7 +57,6 @@ export const ModalCadastro = ({ setView, atualizarListaEditais }) =>{
 
         try {
           const response = await axios.post("http://localhost:3001/criacao/edital", formattedEdital);
-          console.log(response)
           atualizarListaEditais();
           toast.success(response.data.msg);
           setView(null);

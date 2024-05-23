@@ -6,7 +6,6 @@ import { useEffect, useState } from 'react';
 import { SecoesEdital } from '../../Components/SecoesEdital/SecoesEdital';
 import { BuscaProfessor } from '../../Components/BuscaProfessor/BuscaProfessor';
 import { toast } from 'sonner';
-import { TableSubmissoes } from '../../Components/TableSubmissoes/TableSubmissoes';
 
 const statusMap = {
     '1': 'Aberto',
@@ -19,13 +18,11 @@ export const PaginaEdital = () => {
     const { id } = useParams()
     const [editalData, setEditalData] = useState(null)
     const [profsAvaliadores, setProfsAvaliadores] = useState([])
-    const [requisitos, setRequisitos] = useState([])
     
     useEffect(() => {
         axios.get(`http://localhost:3001/getEdital/${id}`)
             .then((res) => {
                 setEditalData(res.data)
-                setRequisitos(res.data.requisitosEdital)
             })
             .catch(error => console.error(error))
     }, [id])
@@ -56,7 +53,7 @@ export const PaginaEdital = () => {
     }
 
     return (
-        <div style={{ background: '#DAE7EF', height: '100%' }}>
+        <div style={{ background: '#DAE7EF', height: '100%' , paddingBottom: '4rem'}}>
             <Navbar />
 
             <div style={{ marginLeft: '5%', marginRight: '5%' }}>
@@ -92,7 +89,7 @@ export const PaginaEdital = () => {
                         </div>
                     </div>
                 )}
-                
+
                 <SecoesEdital />
 
             </div>

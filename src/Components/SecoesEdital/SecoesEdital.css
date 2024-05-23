@@ -1,0 +1,73 @@
+summary {
+    all: unset;
+    padding: 2rem;
+    width: 100%;
+    
+    font-size: 1.25rem;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition: .2s;
+}
+
+details:hover {
+    background: #bbb;
+}
+
+details {
+    background-color: #aaa;
+    border-bottom: 1px solid #ccc;
+}
+
+details ol {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+}
+
+details ol li {
+    width: 100%;
+    padding: 1.25rem 4rem;
+    list-style: none;
+    
+}
+
+details ol li:nth-child(odd) {
+    background-color: #ddd;
+
+}
+
+details ol li:nth-child(even) {
+    background-color: #fff;
+
+}
+
+.header-table-submissions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+}
+
+.header-table-submissions button {
+    border-radius: 8px;
+    border: none;
+    
+    padding: .5rem 1rem;
+    width: auto;
+
+    background: green;
+
+    -webkit-box-shadow: 2px 2px 29px 0px rgba(221,221,221,1);
+    -moz-box-shadow: 2px 2px 29px 0px rgba(221,221,221,1);
+    box-shadow: 2px 2px 29px 0px rgba(221,221,221,1);
+
+}
+
+.header-table-submissions button:hover {
+    background: SeaGreen;
+}
+

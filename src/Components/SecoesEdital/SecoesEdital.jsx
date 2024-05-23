@@ -35,8 +35,10 @@ export const SecoesEdital = () => {
                 </ol>
             </details>
 
-            <h1>SUBMETER AO EDITAL</h1>
-
+            <div class="header-table-submissions">
+                <h1>Submissões realizadas:</h1> 
+                <button>Submeter ao edital</button>
+            </div>
             <TableSubmissoes />
 
         </>

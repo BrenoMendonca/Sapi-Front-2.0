@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import "./../TableSubmissoes/TableSubmissoes.css";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import axios from "axios";
 import { format } from 'date-fns'
 import { Load } from "../Load/Load";
@@ -27,32 +27,37 @@ export function TableSubmissoes() {
             setLoad(false);
         }
     }
+    
     useEffect(() => {
         getSubmissoes();
-    }, getSubmissoes);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
     function setDateFormat(date) {
         return format(new Date(date), 'dd/MM/yyyy');
     }
     return (
-        <table>
+        <table className="table-submissoes-wrapper">
             <thead>
                 <tr>
-                    <th className="titulo-crud">Número</th>
-                    <th className="titulo-crud">Título</th>
-                    <th className="titulo-crud">Data de submissão</th>
+                    <th className="titulo-crud col-sub-num">Número</th>
+                    <th className="titulo-crud col-sub-date">Data de submissão</th>
+                    <th className="titulo-crud col-sub-title">Título</th>
                 </tr>
             </thead>
             <tbody>
                 {submissoes !== null &&
                     submissoes
                         .slice()
-                        .reverse()
                         .map((submissao, index) => (
                             <tr>
-                                <td>{index+1}</td>
-                                <td>{submissao.title}</td>
+                                    <td className="select-submission">
+                                        <Link to={`/edital/${submissao.edital}/submissao/${submissao._id}`}>
+                                            {index+1}
+                                        </Link> 
+                                    </td>
                                 <td>{setDateFormat(submissao.createdAt)}</td>
+                                <td>{submissao.title}</td>
                             </tr>
                         ))
                 }
