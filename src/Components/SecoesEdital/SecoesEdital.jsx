@@ -3,11 +3,12 @@ import './SecoesEdital.css';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import { TableSubmissoes } from '../TableSubmissoes/TableSubmissoes';
+import { ModalSubmissao } from '../ModalSubmissao/ModalSubmissao';
 
 export const SecoesEdital = () => {
     const { id } = useParams()
- 
     const [requisitos, setRequisitos] = useState([])
+    const [isModalOpen, setIsModalOpen] = useState(false)
 
     useEffect(()=>{
         const getRequisitos = async () => {
@@ -23,6 +24,14 @@ export const SecoesEdital = () => {
         getRequisitos();
     },[id])
 
+    function openModal() {
+        setIsModalOpen(true)
+    }
+
+    function closeModal() {
+        setIsModalOpen(false)
+    }
+
     return (
         <>  
             <details>
@@ -37,10 +46,11 @@ export const SecoesEdital = () => {
 
             <div class="header-table-submissions">
                 <h1>Submissões realizadas:</h1> 
-                <button>Submeter ao edital</button>
+                <button onClick={openModal}>Submeter ao edital</button>
             </div>
             <TableSubmissoes />
 
+            {isModalOpen && <ModalSubmissao closeModal={closeModal}/>}
         </>
     )
 }

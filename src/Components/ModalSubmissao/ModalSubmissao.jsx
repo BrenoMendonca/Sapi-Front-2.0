@@ -1,12 +1,17 @@
     import axios from "axios";
-import { useState } from "react";
+    import { useState } from "react";
+    import './ModalSubmissao.css'
+    import { useParams } from "react-router-dom";
 
-    export function ModalSubmissao(/*{ setViewModalOfSubmissions, updateSubmissions }*/) {
+    export function ModalSubmissao({ closeModal }) {
+        const { id } = useParams()
         const [submissao, setSubmissao] = useState({
+            edital: id,
             matricula: '',
             title: '',
             description: '',
         });
+        console.log(id)
 
         const handleChange = (event) => {
             const { id, value } = event.target;
@@ -20,7 +25,7 @@ import { useState } from "react";
             event.preventDefault();
             
             try {
-                const response = await axios.post("http://localhost:3001/criacao/edital", submissao);
+                const response = await axios.post("http://localhost:3001/submissao", submissao);
                 console.log(response.data);
             } catch (err) {
                 console.log(JSON.stringify(err.response.data.msg));
@@ -28,38 +33,57 @@ import { useState } from "react";
         };
         console.log(submissao)
         return (
-            <form action="." method="post" onSubmit={createSubmission}>
-                <label htmlFor="matricula">Matrícula do professor</label>
-                <input 
-                    type="text" 
-                    id="matricula"
-                    value={submissao.matricula}
-                    onChange={handleChange}
-                />
 
-                <label htmlFor="title">Título do projeto</label>
-                <input 
-                    type="text" 
-                    value={submissao.title}
-                    onChange={handleChange}
-                    id="title" 
-                />
+            <div className="modal-backdrop" onClick={closeModal}>
+                <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+                    <div className="submit-to-edital-header">
+                        <h1>Submeter ao Edital</h1>
+                        <button className="modal-close" onClick={closeModal}>x</button>
+                    </div>
 
-                <label htmlFor="description">Descrição</label>
-                <textarea 
-                    name="description" 
-                    value={submissao.description}
-                    onChange={handleChange}
-                    id="description"
-                ></textarea>
+                    <form className="submission-model-form" action="." method="post" onSubmit={createSubmission}>
+                        <div>
+                            <label htmlFor="matricula">Matrícula do professor</label>
+                            <input 
+                                type="text" 
+                                id="matricula"
+                                value={submissao.matricula}
+                                className="submission-input"
+                                onChange={handleChange}
+                            />
+                        </div>
 
-                {/*<label htmlFor="">Projeto de pesquisa (PDF)</label>
-                <input type="file" name="" id="" />
+                        <div>    
+                            <label htmlFor="title">Título do projeto</label>
+                            <input 
+                                type="text" 
+                                value={submissao.title}
+                                className="submission-input"
+                                onChange={handleChange}
+                                id="title" 
+                            />
+                        </div>
 
-                <label htmlFor="">Comprovante Comitê de Ética (se aplicável)</label>
-                <input type="file" name="" id="" />*/}
+                        <div>
+                            <label htmlFor="description">Descrição</label>
+                            <textarea 
+                                name="description" 
+                                value={submissao.description}
+                                onChange={handleChange}
+                                id="description"
+                                className="submission-input"
+                            ></textarea>
+                        </div>
 
-                <button type="submit">Submeter</button>
-            </form>
+                        {/*<label htmlFor="">Projeto de pesquisa (PDF)</label>
+                        <input type="file" name="" id="" />
+
+                        <label htmlFor="">Comprovante Comitê de Ética (se aplicável)</label>
+                        <input type="file" name="" id="" />*/}
+
+                        <button type="submit">Submeter</button>
+                    </form>
+                </div>
+            </div>
         )
     }
