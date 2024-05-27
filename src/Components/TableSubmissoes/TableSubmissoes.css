@@ -6,6 +6,10 @@
     width: 60%;
 }
 
+.select-submission {
+    height: 3rem;
+}
+
 .select-submission a {
     
     background: transparent;

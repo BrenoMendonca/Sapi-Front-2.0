@@ -1,38 +1,8 @@
-import { useEffect, useState } from "react";
 import "./../TableSubmissoes/TableSubmissoes.css";
-import { Link, useParams } from "react-router-dom";
-import axios from "axios";
+import { Link } from "react-router-dom";
 import { format } from 'date-fns'
-import { Load } from "../Load/Load";
 
-export function TableSubmissoes() {
-    const { id } = useParams();
-    const [submissoes, setSubmissoes] = useState([]);
-    const [load, setLoad] = useState(false);
-
-    async function getSubmissoes() {
-        setLoad(true);
-        try {
-            const response = await axios.get(
-                `http://localhost:3001/getEdital/${id}/submissoes/`
-            );
-
-            const data = response.data;
-
-            setSubmissoes(data);
-
-        } catch (error) {
-            console.error(error);
-        } finally {
-            setLoad(false);
-        }
-    }
-    
-    useEffect(() => {
-        getSubmissoes();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
-
+export function TableSubmissoes({ submissoes }) {
     function setDateFormat(date) {
         return format(new Date(date), 'dd/MM/yyyy');
     }
@@ -61,12 +31,6 @@ export function TableSubmissoes() {
                             </tr>
                         ))
                 }
-
-                <tr>
-                    <td colSpan="6" className="loading-cell">
-                        <div className="loading-container">{load && <Load />}</div>
-                    </td>
-                </tr>
             </tbody>
         </table>
     );

@@ -9,6 +9,7 @@ export const SecoesEdital = () => {
     const { id } = useParams()
     const [requisitos, setRequisitos] = useState([])
     const [isModalOpen, setIsModalOpen] = useState(false)
+    const [submissoes, setSubmissoes] = useState([]);
 
     useEffect(()=>{
         const getRequisitos = async () => {
@@ -23,6 +24,26 @@ export const SecoesEdital = () => {
     
         getRequisitos();
     },[id])
+
+    async function getSubmissoes() {
+        try {
+            const response = await axios.get(
+                `http://localhost:3001/getEdital/${id}/submissoes/`
+            );
+
+            const data = response.data;
+
+            setSubmissoes(data);
+
+        } catch (error) {
+            console.error(error);
+        }
+    }
+    
+    useEffect(() => {
+        getSubmissoes();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
     function openModal() {
         setIsModalOpen(true)
@@ -48,9 +69,9 @@ export const SecoesEdital = () => {
                 <h1>Submissões realizadas:</h1> 
                 <button onClick={openModal}>Submeter ao edital</button>
             </div>
-            <TableSubmissoes />
+            <TableSubmissoes submissoes={submissoes} />
 
-            {isModalOpen && <ModalSubmissao closeModal={closeModal}/>}
+            {isModalOpen && <ModalSubmissao closeModal={closeModal} atualizarListaSubmissoes={getSubmissoes} />}
         </>
     )
 }

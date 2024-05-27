@@ -2,8 +2,9 @@
     import { useState } from "react";
     import './ModalSubmissao.css'
     import { useParams } from "react-router-dom";
+import { toast } from "sonner";
 
-    export function ModalSubmissao({ closeModal }) {
+    export function ModalSubmissao({ closeModal, atualizarListaSubmissoes }) {
         const { id } = useParams()
         const [submissao, setSubmissao] = useState({
             edital: id,
@@ -11,7 +12,6 @@
             title: '',
             description: '',
         });
-        console.log(id)
 
         const handleChange = (event) => {
             const { id, value } = event.target;
@@ -26,12 +26,15 @@
             
             try {
                 const response = await axios.post("http://localhost:3001/submissao", submissao);
-                console.log(response.data);
+                toast.success(response.data.msg);
+                atualizarListaSubmissoes()
+                closeModal()
+                console.log(response.data)
             } catch (err) {
-                console.log(JSON.stringify(err.response.data.msg));
+                toast.error(JSON.stringify(err.response.data.msg));
             }
         };
-        console.log(submissao)
+
         return (
 
             <div className="modal-backdrop" onClick={closeModal}>
