@@ -12,6 +12,7 @@ import Apresentacao from '../../Components/Apresentacao/Apresentacao';
 import vizualizar from '../../Assets/olho.png';
 import editar from '../../Assets/escrever.png';
 import { Status } from '../../Components/Status/Status';
+import Sidebar from '../../Components/Sidebar/Sidebar';
 
 //import { Load } from '../../Components/Load/Load';
 
@@ -70,6 +71,7 @@ export const  PaginaInicio = ()=>{
     
     return(
             <div className='PaginaInicio'>
+                <Sidebar></Sidebar>
                 <Navbar></Navbar>
                 <Apresentacao></Apresentacao>
             {modalIsOpen &&(
