@@ -1,2 +1,50 @@
-h1 {
+.header-submission {
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    justify-content: center;
+
+    margin-bottom: 5rem;
+}
+
+.header-submission h1 {
+    display: flex;
+    font-size: 2rem;
+    color: #777;
+}
+
+.header-submission h1 span{
+    color: black;
+    font-weigth: bold;
+    font-size: 2rem;
+}
+
+.header-submission strong {
+    font-size: 1.65rem;
+    color: #044CF4;
+}
+
+.wrapper-submission-page {
+    padding: 2rem;
+}
+
+.wrapper-submission-page h2 {
+    margin-bottom: 2.5rem;
+}
+
+.submission-info {
+    margin-top: 2rem;
+    display: flex;
+    gap: 1rem;
+    flex-direction: column;
+    margin-bottom: 3rem;
+}
+
+.submission-info span {
+    justify-content: flex-start;
+}
+
+.submission-info span strong{
+    width: 15rem;
+    color: #777;
 }

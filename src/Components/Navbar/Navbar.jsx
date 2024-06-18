@@ -40,7 +40,7 @@ export const Navbar = ()=>{
                 
                 <div className='botao'>
                     <h4>Bem vindo! </h4>
-                    <span class="name">{name} </span>
+                    <span className="name">{name} </span>
                 </div>
                 {isOpen &&(
                 <ul className='Opcoes'>

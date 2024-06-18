@@ -4,7 +4,10 @@ import { format } from 'date-fns'
 
 export function TableSubmissoes({ submissoes }) {
     function setDateFormat(date) {
-        return format(new Date(date), 'dd/MM/yyyy');
+        if (!date) return 'Data não disponível';
+        const parsedDate = new Date(date);
+        if (isNaN(parsedDate)) return 'Data inválida';
+        return format(parsedDate, 'dd/MM/yyyy');   
     }
     return (
         <table className="table-submissoes-wrapper">

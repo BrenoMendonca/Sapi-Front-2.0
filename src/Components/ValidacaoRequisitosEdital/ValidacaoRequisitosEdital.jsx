@@ -6,8 +6,8 @@ import { ConfirmacaoValidacaoRequisitos } from '../ConfirmacaoValidacaoRequisito
 import { toast } from 'sonner';
 
 export const ValidacaoRequisitosEdital = () => {
-    const { id } = useParams();
-    const localStorageKey = `checkboxStatus_${id}`; // Chave única para o localStorage
+    const { idEdital } = useParams();
+    const localStorageKey = `checkboxStatus_${idEdital}`; // Chave única para o localStorage
  
     const [requisitos, setRequisitos] = useState([]);
     const [checkboxStatus, setCheckboxStatus] = useState({});
@@ -18,7 +18,7 @@ export const ValidacaoRequisitosEdital = () => {
     useEffect(() => {
         const getRequisitos = async () => {
             try {
-                const response = await axios.get(`http://localhost:3001/getEdital/${id}`);
+                const response = await axios.get(`http://localhost:3001/getEdital/${idEdital}`);
                 const { requisitosEdital, isValidated } = response.data;
                 setRequisitos(requisitosEdital);
                 setIsReqsValidated(isValidated)
@@ -26,12 +26,12 @@ export const ValidacaoRequisitosEdital = () => {
                 const localStorageData = JSON.parse(localStorage.getItem(localStorageKey)) || {};
                 setCheckboxStatus(localStorageData);
             } catch(error) {
-                console.error(error);
+                console.error("Erro ao pegar req edital: "+error);
             }
         };
 
         getRequisitos();
-    }, [id, localStorageKey, isReqsValidated]); // Adicionamos 'localStorageKey' como dependência
+    }, [idEdital, localStorageKey, isReqsValidated]); // Adicionamos 'localStorageKey' como dependência
 
     // Atualiza o estado dos checkboxes e o localStorage ao marcar/desmarcar um checkbox
     const handleCheckboxChange = (event) => {
@@ -53,6 +53,7 @@ export const ValidacaoRequisitosEdital = () => {
     };
 
     const handleValidateButtonClick = () => {
+        if (isAllRequirementsMet) 
         setIsConfirmationOpen(true);
     };
 
@@ -62,7 +63,7 @@ export const ValidacaoRequisitosEdital = () => {
     async function handleInvalidateReqs() {
 
         try {
-            await axios.patch(`http://localhost:3001/getEdital/invalidate-requisitos/${id}`)
+            await axios.patch(`http://localhost:3001/getEdital/invalidate-requisitos/${idEdital}`)
                 .then((response) => {
                     toast.success(response.data.msg)
                 });
