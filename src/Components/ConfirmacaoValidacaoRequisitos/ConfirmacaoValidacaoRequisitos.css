@@ -10,3 +10,32 @@
     align-items: center;
     justify-content: center;
 }
+
+.confirmation-modal p {
+    background: transparent;
+}
+
+.btn-confirm-req {
+    border-radius: 8px;
+    width: 12rem;
+}
+
+#positive:hover {
+    background: #165aaa;
+}
+
+#negative {
+    background: #FF2929;
+}
+
+#negative:hover {
+    background: #ff0202;
+}
+
+#back {
+    background: #7e7e7e;
+}
+
+#back:hover {
+    background: #5e5e5e;
+}

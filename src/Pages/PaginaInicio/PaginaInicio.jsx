@@ -71,7 +71,7 @@ export const  PaginaInicio = ()=>{
     
     return(
             <div className='PaginaInicio'>
-                <Sidebar></Sidebar>
+                {/* <Sidebar></Sidebar> */}
                 <Navbar></Navbar>
                 <Apresentacao></Apresentacao>
             {modalIsOpen &&(
@@ -102,7 +102,7 @@ export const  PaginaInicio = ()=>{
                     
                         {editais != null &&(
                             editais.slice().reverse().map((edital) => 
-                            <tr key={edital.codigo}>
+                            <tr key={edital._id}>
                                 <td className='num-edital'>
                                     <Link to={`/edital/${edital._id}`}>
                                         {edital.numeroEdital}

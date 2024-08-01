@@ -23,7 +23,7 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
    
       <React.StrictMode>
-            <Toaster richColors />
+            <Toaster richColors toastOptions={{ className: 'toast-class' }} />
             <App/>
       </React.StrictMode>
     

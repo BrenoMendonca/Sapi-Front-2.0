@@ -59,13 +59,13 @@ export const SecoesEdital = () => {
                 <summary>Requisitos</summary>
                 <ol>
                     {requisitos !== null &&
-                        requisitos.map(requisito => {
-                            return <li>{requisito}</li>
+                        requisitos.map((requisito, i) => {
+                            return <li key={i}>{requisito}</li>
                         })}
                 </ol>
             </details>
 
-            <div class="header-table-submissions">
+            <div className="header-table-submissions">
                 <h1>Submissões realizadas:</h1> 
                 <button onClick={openModal}>Submeter ao edital</button>
             </div>

@@ -74,7 +74,7 @@ export const BuscaProfessor = ({ onAddAvaliador }) => {
             <span>
                 <input 
                     type="search" 
-                    incremental 
+                    incremental="true"
                     name="search-prof" 
                     id="search-prof" 
                     value={searchTerm} 
@@ -93,10 +93,9 @@ export const BuscaProfessor = ({ onAddAvaliador }) => {
                 :
                     (
                         search.length !== 0 ? 
-                            search.map(term => {
+                            search.map((term) => {
                                 return (
-                                    
-                                    <div className="search-results-info">
+                                    <div key={term.matricula} className="search-results-info">
                                         <input 
                                             key={term.id}
                                             type="checkbox" 

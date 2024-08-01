@@ -36,3 +36,12 @@
     transform: rotate(360deg);
   }
 }
+
+.toast-class {
+  height: 4rem;
+  padding-left: 1rem;
+}
+
+.toast-class div {
+  background: transparent;
+}

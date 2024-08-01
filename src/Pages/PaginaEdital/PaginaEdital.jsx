@@ -48,7 +48,6 @@ export const PaginaEdital = () => {
 
         } catch (error) {
             console.error('Erro ao remover professor avaliador:', error);
-            // Aqui você pode exibir um toast ou outra mensagem de erro
         }
     }
 

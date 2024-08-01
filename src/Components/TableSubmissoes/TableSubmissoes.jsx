@@ -23,7 +23,7 @@ export function TableSubmissoes({ submissoes }) {
                     submissoes
                         .slice()
                         .map((submissao, index) => (
-                            <tr>
+                            <tr key={submissao._id}>
                                     <td className="select-submission">
                                         <Link to={`/edital/${submissao.edital}/submissao/${submissao._id}`}>
                                             {index+1}
