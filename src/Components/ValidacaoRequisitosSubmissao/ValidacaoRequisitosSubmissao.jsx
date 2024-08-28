@@ -1,13 +1,13 @@
-import './ValidacaoRequisitosEdital.css';
+import './ValidacaoRequisitosSubmissao.css';
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { ConfirmacaoValidacaoRequisitos } from '../ConfirmacaoValidacaoRequisitos/ConfirmacaoValidacaoRequisitos';
 import { toast } from 'sonner';
 
-export const ValidacaoRequisitosEdital = () => {
-    const { idEdital } = useParams();
-    const localStorageKey = `checkboxStatus_${idEdital}`; // Chave única para o localStorage
+export const ValidacaoRequisitosSubmissao = () => {
+    const { idEdital, idSubmissao } = useParams();
+    const localStorageKey = `checkboxStatus_${idSubmissao}`; // Chave única para o localStorage
  
     const [requisitos, setRequisitos] = useState([]);
     const [checkboxStatus, setCheckboxStatus] = useState({});
@@ -54,7 +54,7 @@ export const ValidacaoRequisitosEdital = () => {
 
     const handleValidateButtonClick = () => {
         if (isAllRequirementsMet) 
-        setIsConfirmationOpen(true);
+            setIsConfirmationOpen(true);
     };
 
     // Verifica se todos os requisitos foram atendidos

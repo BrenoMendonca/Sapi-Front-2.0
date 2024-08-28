@@ -53,17 +53,15 @@ export const BuscaProfessor = ({ onAddAvaliador }) => {
     };
 
     const handleSearch = async () => {
+        const cleanedSearchTerm = searchTerm.trim();
         try {
             const response = await axios.get("http://localhost:3001/user/search-users", {
-                params: {
-                    mat: searchTerm
-                }
+            params: { mat: cleanedSearchTerm }
             });
-
             const searchData = response.data;
             setSearch(searchData);
-            setHasSearched(true)
-        } catch(error) {
+            setHasSearched(true);
+        } catch (error) {
             console.error(error);
         }
     };

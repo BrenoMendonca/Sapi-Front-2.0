@@ -16,22 +16,41 @@ const statusMap = {
 
 export const PaginaEdital = () => {
     const { id } = useParams()
+    const [typeOfUser, setTypeOfUser] = useState(null)
     const [editalData, setEditalData] = useState(null)
     const [profsAvaliadores, setProfsAvaliadores] = useState([])
     
+    const getTypeOfUser = async () => {
+        const lsSession = JSON.parse(localStorage.getItem('session'));
+        if (!lsSession || !lsSession.matricula) {
+            console.error("Sessão inválida ou sem matrícula");
+            return;
+        }
+        try {
+            const response = await axios.get(`http://localhost:3001/user/search-users?mat=${lsSession.matricula}`);
+            if (response.data && response.data.length > 0) {
+                setTypeOfUser(response.data[0].typeOfUser);
+            } else {
+                console.error("Usuário não encontrado ou resposta inesperada da API");
+            }
+        } catch (error) {
+            console.error("Erro ao buscar o tipo de usuário", error);
+        }   
+    }
+
     useEffect(() => {
         axios.get(`http://localhost:3001/getEdital/${id}`)
             .then((res) => {
                 setEditalData(res.data)
             })
             .catch(error => console.error(error))
+    
+        getTypeOfUser()
     }, [id])
 
     const handleAddAvaliador = (avaliador) => {
         setProfsAvaliadores([...profsAvaliadores, ...avaliador]);
-        console.log(avaliador)
     };
-
     async function handleRemoveProfAvaliador(matricula) {
         try {
             const response = await axios.delete(`http://localhost:3001/getEdital/remove-prof-avaliador/${id}`, {
@@ -66,19 +85,24 @@ export const PaginaEdital = () => {
                         <p><b>Número do edital: </b>{editalData.numeroEdital}</p>
                         <p><b>Objetivo: </b>{editalData.objetivo}</p>
                         <p><b>Prazo de submissão: </b>{editalData.dataFinal}</p>
+                        <p><b>Acesse o edital completo: </b><a target="_blank" href={editalData.linkEdital} rel="noreferrer">{editalData.nameEdital}</a></p>
                         <p><b>Status atual: </b>{statusMap[editalData.status]}</p>
 
                         <div className='prof-avaliadores-wrapper'>
                             <h2>Professores avaliadores:</h2>
-                            <BuscaProfessor onAddAvaliador={handleAddAvaliador} onRemoveAvaliador={handleRemoveProfAvaliador} />
 
+                    {typeOfUser >= 1 && ( 
+                        <BuscaProfessor onAddAvaliador={handleAddAvaliador} onRemoveAvaliador={handleRemoveProfAvaliador} />
+                    )}
                             <ul className='list-prof-avaliador'>
                                 {editalData.profsAvaliadores.map(prof => {
                                     return (
                                         <li key={prof.matricula}>
                                             <div className='wrapper-show-matricula-prof-avaliador'>
                                                 <p>{prof.matricula}</p>
-                                                <span onClick={() => handleRemoveProfAvaliador(prof.matricula)}>x</span>
+                                                {typeOfUser >= 1 && ( 
+                                                    <span onClick={() => handleRemoveProfAvaliador(prof.matricula)}>x</span>
+                                                )}
                                             </div>
                                         </li>
                                     )

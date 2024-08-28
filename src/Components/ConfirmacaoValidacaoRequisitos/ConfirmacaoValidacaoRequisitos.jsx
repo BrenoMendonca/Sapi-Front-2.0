@@ -16,6 +16,7 @@ export const ConfirmacaoValidacaoRequisitos = ({ setIsConfirmationOpen }) => {
             }
             if (response.status === 202) {toast.info(response.data.msg);}
             setIsConfirmationOpen(false)
+            window.location.reload()
 
         } catch (error) {
             console.error('Erro ao validar requisitos:', error);
@@ -34,7 +35,11 @@ export const ConfirmacaoValidacaoRequisitos = ({ setIsConfirmationOpen }) => {
             const response = await axios.patch(`http://localhost:3001/submissoes/invalidate/${idSubmissao}`);
             if (response.status === 200) {toast.warning(response.data.msg);}
             if (response.status === 202) {toast.info(response.data.msg);}
+             // Limpa o localStorage após a invalidação dos requisitos
+            localStorage.removeItem(`checkboxStatus_${idSubmissao}`);
             setIsConfirmationOpen(false)
+            window.location.reload()
+
 
         } catch (error) {
             console.error('Erro ao invalidar requisitos:', error);

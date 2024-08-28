@@ -11,7 +11,8 @@ export const ModalCadastroEdital = ({ setView, atualizarListaEditais }) =>{
         dataInicio: '',
         dataFinal: '',
         objetivo: '',
-        requisitosEdital: [''] // Inicializa com um campo vazio
+        requisitosEdital: [''],
+        linkEdital: '' 
     });
 
     const handleChange = (event, index) => {
@@ -114,6 +115,15 @@ export const ModalCadastroEdital = ({ setView, atualizarListaEditais }) =>{
                     placeholder='Objetivo'
                     name='objetivo'  
                     className='input-modal input-objetivo' 
+                    onChange={handleChange}
+                />
+
+                <h4 className='instrucao'>Informe o link do edital completo</h4>
+                <input 
+                    type="text" 
+                    placeholder='Link para o edital completo' 
+                    name='linkEdital' 
+                    className='input-modal' 
                     onChange={handleChange}
                 />
 

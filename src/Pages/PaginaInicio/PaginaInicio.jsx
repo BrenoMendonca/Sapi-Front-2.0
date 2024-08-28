@@ -12,12 +12,11 @@ import Apresentacao from '../../Components/Apresentacao/Apresentacao';
 import vizualizar from '../../Assets/olho.png';
 import editar from '../../Assets/escrever.png';
 import { Status } from '../../Components/Status/Status';
-import Sidebar from '../../Components/Sidebar/Sidebar';
 
 //import { Load } from '../../Components/Load/Load';
 
 export const  PaginaInicio = ()=>{
-    const navigate = useNavigate()
+    const [typeOfUser, setTypeOfUser] = useState(null)
 
     //Modal
     const [modalIsOpen, setIsOpen] = useState(false);
@@ -38,7 +37,6 @@ export const  PaginaInicio = ()=>{
 
             setEditais(data);
 
-            console.log(data)
         } catch(error){
             console.error(error)
         } finally {
@@ -46,8 +44,28 @@ export const  PaginaInicio = ()=>{
         }
     }
 
+    const getTypeOfUser = async () => {
+        const lsSession = JSON.parse(localStorage.getItem('session'));
+        if (!lsSession || !lsSession.matricula) {
+            console.error("Sessão inválida ou sem matrícula");
+            return;
+        }
+        try {
+            const response = await axios.get(`http://localhost:3001/user/search-users?mat=${lsSession.matricula}`);
+            if (response.data && response.data.length > 0) {
+                setTypeOfUser(response.data[0].typeOfUser);
+            } else {
+                console.error("Usuário não encontrado ou resposta inesperada da API");
+            }
+        } catch (error) {
+            console.error("Erro ao buscar o tipo de usuário", error);
+        }   
+    }
+
+
     useEffect(()=>{
         getEditais()
+        getTypeOfUser()
     },[])
 
     const handleAtualizarListaEditais = async () => {
@@ -82,7 +100,11 @@ export const  PaginaInicio = ()=>{
                 <div className="container">
                 <div className="header">
                     <h1>Editais</h1>
-                    <button onClick={() => setIsOpen(true)}>Criar Edital</button>
+                    
+                    {typeOfUser > 2 && ( 
+                        <button onClick={() => setIsOpen(true)}>Criar Edital</button>
+                    )}
+                    
                 </div>
             
                 <div className="divTable">
@@ -102,14 +124,14 @@ export const  PaginaInicio = ()=>{
                     
                         {editais != null &&(
                             editais.slice().reverse().map((edital) => 
-                            <tr key={edital._id}>
+                            <tr style={{maxHeight: '5rem'}} key={edital._id}>
                                 <td className='num-edital'>
                                     <Link to={`/edital/${edital._id}`}>
                                         {edital.numeroEdital}
                                     </Link>
                                 </td>
-                                <td>{edital.objetivo}</td>
-                                <td>{edital.nameEdital}</td>
+                                <td className='limit-size objetivo'>{edital.objetivo}</td>
+                                <td className='limit-size'>{edital.nameEdital}</td>
                                 <td className='centralizar-elemento'>{edital.dataFinal}</td>
                                 <td className='centralizar-elemento'><Status status={edital.status}/></td>
                                 <td className='centralizar-elemento'>

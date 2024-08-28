@@ -88,6 +88,13 @@
     outline: 1px solid #000;
 }
 
+.matricula-input:focus {
+    outline: none !important;
+}
+.matricula-input:hover {
+    cursor: not-allowed;
+}
+
 /* Ajuste a largura do modal em telas menores */
 @media (max-width: 768px) {
     .modal-content {

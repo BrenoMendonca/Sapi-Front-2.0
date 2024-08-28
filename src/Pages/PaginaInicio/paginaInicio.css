@@ -224,5 +224,8 @@ tbody tr td.acao {
     }
 }
 
-
-
+.limit-size {
+    white-space: nowrap;
+    overflow: hidden; 
+    text-overflow: ellipsis; 
+}

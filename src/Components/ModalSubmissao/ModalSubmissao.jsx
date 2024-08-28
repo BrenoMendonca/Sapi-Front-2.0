@@ -1,8 +1,8 @@
     import axios from "axios";
-    import { useState } from "react";
+    import { useEffect, useState } from "react";
     import './ModalSubmissao.css'
     import { useParams } from "react-router-dom";
-import { toast } from "sonner";
+    import { toast } from "sonner";
 
     export function ModalSubmissao({ closeModal, atualizarListaSubmissoes }) {
         const { id } = useParams()
@@ -12,6 +12,7 @@ import { toast } from "sonner";
             title: '',
             description: '',
         });
+        const [matricula, setMatricula] = useState('');
 
         const handleChange = (event) => {
             const { id, value } = event.target;
@@ -29,11 +30,19 @@ import { toast } from "sonner";
                 toast.success(response.data.msg);
                 atualizarListaSubmissoes()
                 closeModal()
-                console.log(response.data)
             } catch (err) {
                 toast.error(JSON.stringify(err.response.data.msg));
             }
         };
+
+        useEffect(() => {
+            const sessionData = JSON.parse(localStorage.getItem('session'));
+        
+            // Se houver dados e a matrícula estiver presente, armazena na variável de estado
+            if (sessionData && sessionData.matricula) {
+                setMatricula(sessionData.matricula);
+        }
+        }, [])
 
         return (
 
@@ -46,13 +55,15 @@ import { toast } from "sonner";
 
                     <form className="submission-model-form" action="." method="post" onSubmit={createSubmission}>
                         <div>
-                            <label htmlFor="matricula">Matrícula do professor</label>
+                            <label htmlFor="matricula">Matrícula</label>
                             <input 
                                 type="text" 
                                 id="matricula"
-                                value={submissao.matricula}
-                                className="submission-input"
+                                value={matricula} 
+                                readonly="true"
+                                className="submission-input matricula-input"
                                 onChange={handleChange}
+                                style={{backgroundColor: '', color: '#777'}}
                             />
                         </div>
 
@@ -78,11 +89,11 @@ import { toast } from "sonner";
                             ></textarea>
                         </div>
 
-                        {/*<label htmlFor="">Projeto de pesquisa (PDF)</label>
+                        <label htmlFor="">Projeto de pesquisa (PDF)</label>
                         <input type="file" name="" id="" />
 
                         <label htmlFor="">Comprovante Comitê de Ética (se aplicável)</label>
-                        <input type="file" name="" id="" />*/}
+                        <input type="file" name="" id="" />
 
                         <button type="submit">Submeter</button>
                     </form>

@@ -52,12 +52,19 @@ details ol li:nth-child(even) {
     padding: 1rem 2rem;
 }
 
+.header-table-submissions div {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    width: 25%;
+    gap: 1rem;
+}
 .header-table-submissions button {
     border-radius: 8px;
     border: none;
     
     padding: .5rem 1rem;
-    width: auto;
+    width: 100%;
 
     background: green;
 

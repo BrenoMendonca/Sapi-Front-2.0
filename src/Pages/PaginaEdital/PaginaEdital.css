@@ -32,9 +32,10 @@
 
 .info-edital {
     display: flex;
+    gap: 1rem;
     flex-direction: column;
 
-    margin: 2rem 0 4rem 20vw;
+    margin: 2rem 4rem 4rem 20vw;
 }
 
 .prof-avaliadores-wrapper {

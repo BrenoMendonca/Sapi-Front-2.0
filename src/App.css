@@ -45,3 +45,6 @@
 .toast-class div {
   background: transparent;
 }
+.toast-class div svg {
+  background: transparent;
+}
