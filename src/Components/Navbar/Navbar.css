@@ -6,17 +6,51 @@
     background-color: white;
 }
 
+.LogoUnifor {
+    background-color: transparent;
+}
+
 .Navbar {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    background-color: white;
+    background-color: #044cf4!important;
     height: 70px;
     width: 100vw;
-    border: 2px solid #D4D4D4;
+    border: 2px solid #044cf4!important;
     box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px!important;
     text-align: center;
+    position: relative;
+}
+
+.Navbar h1, 
+.Navbar .name {
+    margin: 0 10px;
+    background-color: transparent;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.Navbar h4 {
+    margin-right: 5px; /* Ajuste o valor conforme necessário */
+    height: 100%;
+    background-color: transparent; /* Mantém o fundo transparente */
+    color: white; /* Mantém a cor branca */
+}
+
+.Navbar span {
+    margin-left: 0; /* Ajuste o valor conforme necessário */
+    transition: background-color 0.3s ease, border-bottom 0.3s ease;
+}
+
+.Navbar span:hover {
+    background-color: #C7D6F9!important;
+    border-bottom: 3px solid white;
+    border-radius: 2px;
+    color: #044cf4;
 }
 
 .Apresentacao {
@@ -24,17 +58,25 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    background-color: white;
+    background-color: #044cf4!important;
     align-items: center;
     height: 60px;
-    
     text-decoration: none;
-    color: black;
 }
 
-.Navbar h1,
-.Navbar h4 {
-    margin: 0 10px;
+.Apresentacao h3 {
+    margin: 0 2px;
+    padding: 20px;
+    transition: background-color 0.3s ease, border-bottom 0.3s ease;
+    background-color: transparent; 
+    color: white; 
+}
+
+.Apresentacao h3:hover {
+    background-color: #C7D6F9!important;
+    border-bottom: 3px solid white;
+    border-radius: 2px;
+    color: #044cf4; 
 }
 
 .Navbar .LogoUnifor {
@@ -43,39 +85,34 @@
     margin: 0 10px;
 }
 
-.name {
-    color: blue;
-}
-
 ul {
     list-style: none;
 }
 
-
-
-.name-login, .botao {
+.name-login, 
+.botao, 
+.Opcoes {
     display: flex;
     flex-direction: row;
-    align-self: center;
-    text-align: center;
-    margin-bottom: 20px;
-    margin-right: 30px;
+    align-items: center;
     background-color: transparent;
     font-weight: bold;
     cursor: pointer;
 }
 
-.name-login, .Opcoes {
-    position: relative;
+.name-login {
+    align-self: center;
+    text-align: center;
+    margin-bottom: 20px;
+    margin-right: 30px;
     padding-top: 30px;
     border-radius: 8px;
-    display: flex;
     flex-direction: column;
-    margin-right: 30px;
+    position: relative;
 }
 
 .Opcoes {
-    box-shadow: 0 0 3px rgba(0,0,0,0.1);
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.1);
     position: absolute;
     top: 100%;
     right: 0;
@@ -89,21 +126,12 @@ ul {
 }
 
 .Opcoes li {
-    display: flex;
     margin-bottom: 10px;
-    align-items: center;
-    cursor: pointer;
-    font-weight: bold;
-    width: 100%;
     padding: 5px;
+    cursor: pointer;
+    width: 100%;
 }
 
 .Opcoes li:hover {
     background: #f2f2f2;
-}
-
-.Opcoes, .LogoUnifor {
-    display: flex;
-    cursor: pointer;
-    align-items: center;
 }

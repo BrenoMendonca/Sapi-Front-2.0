@@ -1,5 +1,5 @@
 import '../Navbar/Navbar.css'
-import UniforIcon from "../../Assets/icon-unifor.svg";
+import UniforIcon from "../../Assets/logo-unifor2.svg";
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
@@ -33,7 +33,9 @@ export const Navbar = ()=>{
         <div className="Navbar">
             <Link to='/PaginaInicio' className='Apresentacao'>
                 <img className='LogoUnifor' src={UniforIcon} alt="Logo Unifor" />
-                <h1>Projetos Unifor</h1>
+                <h3>Projetos Unifor</h3>
+                <h3>Requisitos</h3>
+                <h3>Professores cadastrados</h3>
             </Link>
             
             <div className='name-login'onMouseEnter={handleMouse} onMouseLeave={handleMouseLeave}> 
