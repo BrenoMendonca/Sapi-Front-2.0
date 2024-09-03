@@ -1,0 +1,263 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    background-color: white;
+}
+
+.BackgroundPaginaProfessores {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #DAE7EF;
+}
+
+.container {
+    width: 90%;
+    height: 80%;
+    border-radius: 10px;
+    background: white;
+    border-color: #044CF4;
+    border: 2px solid #D4D4D4;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+}
+
+.header {
+    min-height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: auto 30px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.titulo-crud {
+    background-color: #044CF4;
+    color: white;
+    padding: 20px;
+}
+
+.header span {
+    font-weight: 900;
+    font-size: 20px;
+    word-break: break-all;
+}
+
+#new {
+    font-size: 16px;
+    padding: 8px;
+    border-radius: 5px;
+    border: none;
+    color: white;
+    background-color: rgb(57, 57, 226);
+}
+
+.divTable {
+    padding: 10px;
+    width: auto;
+    height: inherit;
+    overflow: auto;
+}
+
+.divTable::-webkit-scrollbar {
+    width: 12px;
+    background-color: whitesmoke;
+}
+
+.divTable::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background-color: darkgray;
+}
+
+table {
+    width: 100%;
+    border-spacing: 10px;
+    word-break: break-all;
+    border-collapse: collapse;
+}
+
+thead {
+    background-color: whitesmoke;
+}
+
+/* Estilo para fixar o título ao rolar */
+thead th {
+    position: sticky;
+    top: 0;
+    background-color: whitesmoke;
+    z-index: 1;
+    border-bottom: 2px solid #044CF4; /* Borda inferior para destacar */
+}
+
+tr {
+    background-color: whitesmoke;
+    border-bottom: 1px solid rgb(238, 235, 235) !important;
+}
+
+tbody tr td {
+    padding: 8px 20px;
+    max-width: 50px;
+    font-size: 16px;
+}
+
+thead tr th {
+    padding: 5px;
+    text-align: start;
+    margin-bottom: 50px;
+}
+
+.num-edital a {
+    font-weight: bold;
+    text-align: left;
+    color: black;
+    text-decoration: none;
+    background: transparent;
+    cursor: pointer;
+}
+
+.num-edital:hover {
+    background: #ddd;
+}
+
+.num-edital a:hover {
+    text-decoration: underline;
+    transition: .2s;
+}
+
+.centralizar-elemento {
+    text-align: center;
+}
+
+tbody tr {
+    margin-bottom: 50px;
+}
+
+.editar {
+    height: 2.25rem;
+    width: 2.25rem;
+    margin-left: 0.25rem;
+    padding: 6px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.editar:hover {
+    background: #ddd;
+    transition: .2s;
+}
+
+.visualizar {
+    height: 2.25rem;
+    width: 2.25rem;
+    margin-right: 0.25rem;
+    padding: 6px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.visualizar:hover {
+    background: #ddd;
+    transition: .2s;
+}
+
+.loading-cell {
+    text-align: center;
+}
+
+.loading-container {
+    display: inline-block;
+    margin-top: 20px; /* Ajuste conforme necessário */
+}
+
+/* Estilo para links de paginação */
+.pagination-link {
+    font-size: 14px;
+    padding: 8px 16px;
+    border-radius: 5px;
+    color: #044CF4;
+    cursor: pointer;
+    transition: color 0.3s ease;
+    margin: 0 5px; /* Espaçamento entre links */
+    text-align: center;
+    display: inline-block;
+}
+
+/* Hover e foco */
+.pagination-link:hover,
+.pagination-link:focus {
+    color: #0336b5; /* Cor mais escura para hover/foco */
+}
+
+/* Link desabilitado */
+.pagination-link[disabled] {
+    color: #cccccc;
+    cursor: not-allowed;
+}
+
+/* Estilo para a informação de paginação */
+.pagination-info {
+    font-size: 14px;
+    padding: 8px 16px;
+    color: #044CF4;
+    text-align: center;
+}
+
+/* Estilo para o contêiner de paginação */
+.pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 20px 0 10px 0; /* Posicionado abaixo da tabela */
+}
+
+/* Responsividade */
+@media (max-width: 700px) {
+    body {
+        font-size: 10px;
+    }
+
+    .header span {
+        font-size: 15px;
+    }
+
+    #new {
+        padding: 5px;
+        font-size: 10px;
+    }
+
+    thead tr th.acao {
+        width: auto !important;
+    }
+
+    td button i {
+        font-size: 20px !important;
+    }
+
+    td button i:first-child {
+        margin-right: 0;
+    }
+
+    .modal {
+        width: 90% !important;
+    }
+
+    .modal label {
+        font-size: 12px !important;
+    }
+
+    .pagination-link,
+    .pagination-info {
+        font-size: 12px;
+        padding: 6px 12px;
+    }
+}
+
+.limit-size {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

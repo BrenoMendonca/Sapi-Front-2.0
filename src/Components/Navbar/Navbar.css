@@ -35,14 +35,14 @@
 }
 
 .Navbar h4 {
-    margin-right: 5px; /* Ajuste o valor conforme necessário */
+    margin-right: 5px; 
     height: 100%;
-    background-color: transparent; /* Mantém o fundo transparente */
-    color: white; /* Mantém a cor branca */
+    background-color: transparent; 
+    color: white; 
 }
 
 .Navbar span {
-    margin-left: 0; /* Ajuste o valor conforme necessário */
+    margin-left: 0; 
     transition: background-color 0.3s ease, border-bottom 0.3s ease;
 }
 
