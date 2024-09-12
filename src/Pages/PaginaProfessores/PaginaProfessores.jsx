@@ -4,11 +4,11 @@ import UserService from '../../Services/Services';
 import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from 'axios';
-import {ModalCadastroEdital} from '../../Components/ModalCadastroEdital/ModalCadastroEdital';
 import { Load } from '../../Components/Load/Load'
 import Apresentacao from '../../Components/Apresentacao/Apresentacao';
 // Importando imagens
 import editar from '../../Assets/escrever.png';
+import {ModalProfessores} from '../../Components/ModalProfessores/ModalProfessores'
 
 
 export const  PaginaProfessores = ()=>{
@@ -70,7 +70,7 @@ export const  PaginaProfessores = ()=>{
                 <Navbar></Navbar>
                 <Apresentacao></Apresentacao>
             {modalIsOpen &&(
-                <ModalCadastroEdital setView={setIsOpen} atualizarListaEditais={handleAtualizarListaProfessores} />
+                <ModalProfessores setView={setIsOpen} atualizarListaEditais={handleAtualizarListaProfessores} />
             )} 
         
             <div className='BackgroundPaginaInicio'>
@@ -78,8 +78,8 @@ export const  PaginaProfessores = ()=>{
                 <div className="header">
                     <h1>Professores</h1>
                     <h2>Filtros</h2>
-                    {typeOfUser > 2 && ( 
-                        <button onClick={() => setIsOpen(true)}>Criar Edital</button>
+                    {typeOfUser < 2 && ( 
+                        <button onClick={() => setIsOpen(true)}>Criar Professor</button>
                     )}
                     
                 </div>
@@ -106,7 +106,7 @@ export const  PaginaProfessores = ()=>{
                                 <td className='limit-size'>{professor.curso}</td>
                                 <td className='centralizar-elemento'>{professor.email}</td>
                                 <td className='centralizar-elemento'>
-                                    <img alt="" title="Editar" className='editar' src= {editar}></img>
+                                    <img alt="" title="Editar" className='editar' src= {editar} onClick={() => setIsOpen(true)} ></img>
                                 </td>
                             </tr>
                         ))}
