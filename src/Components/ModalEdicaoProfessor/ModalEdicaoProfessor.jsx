@@ -1,10 +1,9 @@
 import { useState } from 'react';
-import './ModalProfessores.css';
+import './ModalEdicaoProfessor.css';
 import axios from 'axios';
 import { toast } from 'sonner';
-import { Trash } from '@phosphor-icons/react';
 
-export const ModalProfessores = ({ onClose, atualizarListaProfessores }) => {
+export const ModalEdicaoProfessor = ({ onClose, atualizarListaProfessores }) => {
     const [professor, setProfessor] = useState({
         name: '',
         cpf: '',
@@ -47,7 +46,7 @@ export const ModalProfessores = ({ onClose, atualizarListaProfessores }) => {
         <section className="section-modal-card-edital">
             <div className="box-modal-card-edital">
                 <div className="box-header-modal-edital">
-                    <h1 className="titulo-modal-card-edital">Cadastro docente doutor</h1>
+                    <h1 className="titulo-modal-card-edital">Edição de usuário</h1>
                     <button className="button-fechar-modal-edital" onClick={onClose}>x</button>
                 </div>
 
@@ -164,7 +163,7 @@ export const ModalProfessores = ({ onClose, atualizarListaProfessores }) => {
                         onClick={createProfessor}
                         disabled={!professor.name || !professor.matricula || !professor.cpf || !professor.curso || !professor.email || !professor.password || !professor.confirmpassword}
                     >
-                        Criar
+                        Editar
                     </button>
                 </div>
             </div>
@@ -172,4 +171,4 @@ export const ModalProfessores = ({ onClose, atualizarListaProfessores }) => {
     );
 };
 
-export default ModalProfessores;
+export default ModalEdicaoProfessor;

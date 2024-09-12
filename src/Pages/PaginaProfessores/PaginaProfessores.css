@@ -261,3 +261,32 @@ tbody tr {
     overflow: hidden;
     text-overflow: ellipsis;
 }
+
+.header-filtros {
+    display: flex;
+    align-items: center;
+    gap: 15px; /* Espaçamento entre os filtros */
+  }
+  
+  .search-filter input,
+  .curso-filter select {
+    min-height: 4vh;
+    width: 200px; /* Ajuste a largura conforme necessário */
+    border-radius: 10px;
+    font-weight: 400;
+    padding-left: .4vw;
+    padding-bottom: .2vw;
+    border: 2px solid #D4D4D4;
+    padding: 10px 40px;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+    margin-bottom: 10px;
+    overflow-wrap: break-word;
+    resize: horizontal;
+    outline: none;
+  }
+  
+  .search-filter input:focus,
+  .curso-filter select:focus {
+    border-color: #007bff; /* Cor da borda ao focar */
+  }
+  

@@ -1,0 +1,155 @@
+.section-modal-card-edital {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    background-color: rgba(0, 0, 0, 0);
+    display: flex;
+    justify-content: center;
+    padding-top: 10vh;
+    align-items: flex-start;
+    z-index: 1000;
+    overflow: scroll;
+}
+
+.box-modal-card-edital{
+    width: 40%;
+    padding: 4vh;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.box-header-modal-edital{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 5vw;
+    margin-bottom: 10px;
+}
+.button-fechar-modal-edital{
+    background-color: #044CF4;
+    border-radius: 10px;
+    color: white;
+    cursor: pointer;
+    transition: .2s;
+}
+
+.button-fechar-modal-edital:hover {
+    background: #165aaa;
+}
+
+.box-botoes-modal{
+    margin-top: 3vh;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+}
+
+
+.input-modal {
+    min-height: 4vh;
+    width: 100%;
+    border-radius: 10px;
+    font-weight: 400;
+    padding-left: .4vw;
+    padding-bottom: .2vw; 
+    outline: none;
+    border: 2px solid #D4D4D4;
+    padding: 10px 40px; 
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+    margin-bottom: 10px; 
+    overflow-wrap: break-word;
+    resize: horizontal;
+}
+
+.input-objetivo {
+    min-height: 8vh; /* ou qualquer altura que desejar */
+    resize: vertical; /* Permitir redimensionamento apenas verticalmente */
+    word-wrap: break-word; /* Quebra de linha */
+}
+.instrucao{
+    margin-left: 10px;
+    padding-bottom: 10px;
+}
+
+.botao-avaliar-contrato{
+    width: 100%;
+    border-radius: 10px;
+    padding: 1vh;
+    font-weight: 400;
+    font-family: 'Barlow', sans-serif;
+    background-color: rgb(20, 172, 53);
+    color: white;
+    cursor: pointer;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+}
+
+.input-requisitos-wrapper {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+.input-requisitos-wrapper div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.25rem;
+
+    margin-bottom: 10px;
+}
+
+.input-requisitos-wrapper div button {
+    width: 2rem;
+    height: 2rem;
+    border-radius: 0;
+    border: none;
+    transition: .2s;
+}
+
+.input-requisitos-wrapper div button:hover {
+    background: #165aaa;
+}
+
+.input-requisitos-wrapper div span svg {
+    background: #ccc;
+    width: 2rem;
+    height: 2rem;
+    padding: 6px;
+    cursor: pointer;
+    transition: .2s;
+}
+
+.input-requisitos-wrapper div span svg:hover {
+    background: #FF3838;
+    
+}
+
+.delete-req-disabled {
+    opacity: 0.5; 
+    pointer-events: none; 
+    cursor: not-allowed;
+}
+
+.form-row {
+    display: flex;
+    gap: 20px; /* Espaçamento entre os elementos */
+    align-items: flex-start;
+    justify-content: space-between;
+  }
+  
+  .form-column {
+    flex: 1; /* Faz com que os elementos ocupem o mesmo espaço */
+  }
+ 
