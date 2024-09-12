@@ -73,11 +73,16 @@ export const PaginaProfessores = () => {
   useEffect(() => {
     // Filtra professores com base no termo de pesquisa e no curso selecionado
     setFilteredProfessores(professores.filter(p => 
-      (p.name && p.name.toLowerCase().includes(searchTerm.toLowerCase()) || 
-      p.curso && p.curso.toLowerCase().includes(searchTerm.toLowerCase())) &&
+      (
+        (p.name && p.name.toLowerCase().includes(searchTerm.toLowerCase())) || 
+        (p.curso && p.curso.toLowerCase().includes(searchTerm.toLowerCase())) ||
+        (p.email && p.email.toLowerCase().includes(searchTerm.toLowerCase())) ||
+        (p.matricula && p.matricula.toLowerCase().includes(searchTerm.toLowerCase())) // Pesquisa por matrícula
+      ) &&
       (selectedCurso ? p.curso === selectedCurso : true)
     ));
   }, [searchTerm, selectedCurso, professores]);
+  
 
   const handleAtualizarListaProfessores = async () => {
     await getProfessores();
