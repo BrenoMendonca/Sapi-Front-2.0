@@ -23,9 +23,8 @@ export const PaginaProfessores = () => {
   const [typeOfUser, setTypeOfUser] = useState(null);
   const [selectedCurso, setSelectedCurso] = useState('');
   const [searchTerm, setSearchTerm] = useState('');
-
-  // Para armazenar cursos únicos
   const [cursos, setCursos] = useState([]);
+  const [selectedProfessor, setSelectedProfessor] = useState(null);
 
   const getProfessores = async () => {
     setLoad(true);
@@ -65,6 +64,16 @@ export const PaginaProfessores = () => {
     }
   };
 
+  const getProfessorByMatricula = async (matricula) => {
+    try {
+      const response = await axios.get(`http://localhost:3001/user/matricula/${matricula}`);
+      setSelectedProfessor(response.data); // Atualiza o estado com os dados do professor
+      setModalEdicaoIsOpen(true); // Abre o modal de edição
+    } catch (error) {
+      console.error("Erro ao buscar professor:", error);
+    }
+  };
+
   useEffect(() => {
     getProfessores();
     getTypeOfUser();
@@ -82,7 +91,6 @@ export const PaginaProfessores = () => {
       (selectedCurso ? p.curso === selectedCurso : true)
     ));
   }, [searchTerm, selectedCurso, professores]);
-  
 
   const handleAtualizarListaProfessores = async () => {
     await getProfessores();
@@ -104,7 +112,9 @@ export const PaginaProfessores = () => {
       {/* Renderiza o ModalEdicaoProfessor se o estado ModalEdicaoIsOpen for true */}
       {ModalEdicaoIsOpen && (
         <ModalEdicaoProfessor 
+          professor={selectedProfessor} // Passa os dados do professor para o modal
           onClose={() => setModalEdicaoIsOpen(false)} 
+          atualizarListaProfessores={handleAtualizarListaProfessores} 
         />
       )}
 
@@ -168,7 +178,7 @@ export const PaginaProfessores = () => {
                         title="Editar" 
                         className='editar' 
                         src={editar} 
-                        onClick={() => setModalEdicaoIsOpen(true)} 
+                        onClick={() => getProfessorByMatricula(professor.matricula)} // Passa a matrícula para a função
                       />
                     </td>
                   </tr>

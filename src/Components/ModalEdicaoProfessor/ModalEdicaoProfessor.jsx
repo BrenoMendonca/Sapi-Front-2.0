@@ -1,10 +1,10 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import './ModalEdicaoProfessor.css';
 import axios from 'axios';
 import { toast } from 'sonner';
 
-export const ModalEdicaoProfessor = ({ onClose, atualizarListaProfessores }) => {
-    const [professor, setProfessor] = useState({
+export const ModalEdicaoProfessor = ({ professor, onClose, atualizarListaProfessores }) => {
+    const [professorData, setProfessorData] = useState({
         name: '',
         cpf: '',
         matricula: '', 
@@ -15,30 +15,46 @@ export const ModalEdicaoProfessor = ({ onClose, atualizarListaProfessores }) => 
         typeofuser: '1'
     });
 
-    // Definindo a função handleChange com log adicional
+    useEffect(() => {
+        if (professor) {
+            setProfessorData({
+                name: professor.name || '',
+                cpf: professor.cpf || '',
+                matricula: professor.matricula || '', 
+                curso: professor.curso || '',
+                email: professor.email || '',
+                password: '',
+                confirmpassword: '',
+                typeofuser: professor.typeofuser || '1'
+            });
+        }
+    }, [professor]);
+
     const handleChange = (event) => {
         const { name, value } = event.target;
-        console.log(`Campo: ${name}, Valor: ${value}`); // Verifica se o valor está sendo capturado corretamente
-        setProfessor({
-            ...professor,
+        setProfessorData({
+            ...professorData,
             [name]: value
         });
     };
 
-    const createProfessor = async () => {
-        const formattedProfessor = {
-            ...professor,
-        };
-        console.log('Dados enviados para a API:', formattedProfessor);
+    const updateProfessor = async () => {
+        const { password, confirmpassword, ...dataToUpdate } = professorData;
+
+        // Verificação de senha
+        if (password !== confirmpassword) {
+            toast.error("As senhas não correspondem");
+            return;
+        }
 
         try {
-            const response = await axios.post("http://localhost:3001/auth/register", formattedProfessor);
+            const response = await axios.put(`http://localhost:3001/user/matricula/${professorData.matricula}`, dataToUpdate);
+            toast.success("Professor atualizado com sucesso");
+            onClose();
             atualizarListaProfessores();
-            toast.success(response.data.msg);
-            onClose(); // Altere para onClose para fechar o modal
-        } catch (err) {
-            toast.error(JSON.stringify(err.response.data.msg));
-            console.log(err);
+        } catch (error) {
+            console.error("Erro ao atualizar professor:", error);
+            toast.error("Erro ao atualizar professor");
         }
     };
 
@@ -56,6 +72,7 @@ export const ModalEdicaoProfessor = ({ onClose, atualizarListaProfessores }) => 
                     placeholder='Clique para preencher'
                     name='name'
                     className='input-modal'
+                    value={professorData.name}
                     onChange={handleChange}
                 />
 
@@ -63,65 +80,53 @@ export const ModalEdicaoProfessor = ({ onClose, atualizarListaProfessores }) => 
                     <div className="form-column">
                         <h4 className='instrucao'>MATRICULA</h4>
                         <input
-                        type='text'
-                        placeholder='Clique para preencher'
-                        name='matricula'
-                        className='input-modal'
-                        onChange={handleChange}
+                            type='text'
+                            placeholder='Clique para preencher'
+                            name='matricula'
+                            className='input-modal'
+                            value={professorData.matricula}
+                            readOnly
                         />
                     </div>
 
                     <div className="form-column">
                         <h4 className='instrucao'>Tipo de usuário</h4>
                         <select
-                        name='role'
-                        className='input-modal'
-                        onChange={(e) => {
-                            handleChange(e);  // Atualiza o valor do campo 'role'
-                            const selectedValue = e.target.value;
-                            let userType;
-
-                            if (selectedValue === 'coordenador') {
-                            userType = 100; // Coordenador
-                            } else if (selectedValue === 'professor_doutor') {
-                            userType = 2;  // Professor Doutor
-                            }
-                            
-                            // Atualiza o valor de typeofuser com o número correto
-                            handleChange({
-                            target: { name: 'typeofuser', value: userType }
-                            });
-                        }}
+                            name='typeofuser'
+                            className='input-modal'
+                            value={professorData.typeofuser}
+                            onChange={handleChange}
                         >
-                        <option value="">Selecione uma opção</option>
-                        <option value="coordenador">Coordenador</option>
-                        <option value="professor_doutor">Professor Doutor</option>
+                            <option value="1">Professor Doutor</option>
+                            <option value="2">Coordenador</option>
                         </select>
                     </div>
                 </div>
 
                 <div className="form-row">
-                <div className="form-column">
-                    <h4 className='instrucao'>CPF</h4>
-                    <input
-                    type='text'
-                    placeholder='Clique para preencher'
-                    name='cpf'
-                    className='input-modal'
-                    onChange={handleChange}
-                    />
-                </div>
+                    <div className="form-column">
+                        <h4 className='instrucao'>CPF</h4>
+                        <input
+                            type='text'
+                            placeholder='Clique para preencher'
+                            name='cpf'
+                            className='input-modal'
+                            value={professorData.cpf}
+                            onChange={handleChange}
+                        />
+                    </div>
 
-                <div className="form-column">
-                    <h4 className='instrucao'>CURSO</h4>
-                    <input
-                    type='text'
-                    placeholder='Clique para preencher'
-                    name='curso'
-                    className='input-modal'
-                    onChange={handleChange}
-                    />
-                </div>
+                    <div className="form-column">
+                        <h4 className='instrucao'>CURSO</h4>
+                        <input
+                            type='text'
+                            placeholder='Clique para preencher'
+                            name='curso'
+                            className='input-modal'
+                            value={professorData.curso}
+                            onChange={handleChange}
+                        />
+                    </div>
                 </div>
 
                 <h4 className='instrucao'>E-mail</h4>
@@ -130,38 +135,41 @@ export const ModalEdicaoProfessor = ({ onClose, atualizarListaProfessores }) => 
                     placeholder='Clique para preencher'
                     name='email'
                     className='input-modal'
+                    value={professorData.email}
                     onChange={handleChange}
                 />
 
                 <div className="form-row">
-                <div className="form-column">
-                    <h4 className='instrucao'>Senha</h4>
-                    <input
-                    type="password"
-                    placeholder='Clique para preencher'
-                    name='password'
-                    className='input-modal'
-                    onChange={handleChange}
-                    />
-                </div>
+                    <div className="form-column">
+                        <h4 className='instrucao'>Senha</h4>
+                        <input
+                            type="password"
+                            placeholder='Clique para preencher'
+                            name='password'
+                            className='input-modal'
+                            value={professorData.password}
+                            onChange={handleChange}
+                        />
+                    </div>
 
-                <div className="form-column">
-                    <h4 className='instrucao'>Confirmar Senha</h4>
-                    <input
-                    type="password"
-                    placeholder='Clique para preencher'
-                    name='confirmpassword'
-                    className='input-modal'
-                    onChange={handleChange}
-                    />
-                </div>
+                    <div className="form-column">
+                        <h4 className='instrucao'>Confirmar Senha</h4>
+                        <input
+                            type="password"
+                            placeholder='Clique para preencher'
+                            name='confirmpassword'
+                            className='input-modal'
+                            value={professorData.confirmpassword}
+                            onChange={handleChange}
+                        />
+                    </div>
                 </div>
 
                 <div className='box-botoes-modal'>
                     <button
                         className='botao-avaliar-contrato'
-                        onClick={createProfessor}
-                        disabled={!professor.name || !professor.matricula || !professor.cpf || !professor.curso || !professor.email || !professor.password || !professor.confirmpassword}
+                        onClick={updateProfessor}
+                        disabled={!professorData.name || !professorData.matricula || !professorData.cpf || !professorData.curso || !professorData.email || !professorData.password || !professorData.confirmpassword}
                     >
                         Editar
                     </button>
