@@ -1,8 +1,6 @@
-import './../PaginaInicio/paginaInicio.css';
+import './../PaginaProfessores/PaginaProfessores.css';
 import Navbar from '../../Components/Navbar/Navbar';
-import UserService from '../../Services/Services';
 import { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
 import axios from 'axios';
 import { Load } from '../../Components/Load/Load'
 import Apresentacao from '../../Components/Apresentacao/Apresentacao';
@@ -120,33 +118,34 @@ export const PaginaProfessores = () => {
 
       <div className='BackgroundPaginaInicio'>
         <div className="container">
-          <div className="header">
+          <div className="header-prof-page">
             <h1>Professores</h1>
             <div className="header-filtros">
               <h2>Filtros</h2>
+              <div className='filter-wrapper'>
+                {/* Filtro de Termo */}
+                <div className="search-filter">
+                  <input 
+                    type="text" 
+                    placeholder="Pesquisar..." 
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                  />
+                </div>
 
-              {/* Filtro de Termo */}
-              <div className="search-filter">
-                <input 
-                  type="text" 
-                  placeholder="Pesquisar..." 
-                  value={searchTerm}
-                  onChange={(e) => setSearchTerm(e.target.value)}
-                />
-              </div>
-
-              {/* Filtro de Cursos */}
-              <div className="curso-filter">
-                <select 
-                  value={selectedCurso} 
-                  onChange={(e) => setSelectedCurso(e.target.value)}
-                  className="curso-dropdown"
-                >
-                  <option value="">Todos os Cursos</option>
-                  {cursos.map((curso, index) => (
-                    <option key={index} value={curso}>{curso}</option>
-                  ))}
-                </select>
+                {/* Filtro de Cursos */}
+                <div className="curso-filter">
+                  <select 
+                    value={selectedCurso} 
+                    onChange={(e) => setSelectedCurso(e.target.value)}
+                    className="curso-dropdown"
+                  >
+                    <option value="">Todos os Cursos</option>
+                    {cursos.map((curso, index) => (
+                      <option key={index} value={curso}>{curso}</option>
+                    ))}
+                  </select>
+                </div>
               </div>
             </div>
             {typeOfUser < 2 && (
@@ -154,7 +153,7 @@ export const PaginaProfessores = () => {
             )}
           </div>
 
-          <div className="divTable">
+          <div className="divTable-profs">
             <table>
               <thead>
                 <tr>
@@ -166,13 +165,17 @@ export const PaginaProfessores = () => {
                 </tr>
               </thead>
               <tbody>
-                {filteredProfessores.length > 0 && filteredProfessores.slice().reverse().map((professor) => (
+                {filteredProfessores.length > 0 && filteredProfessores.slice().reverse().map((professor) => {
+                  const lsSession = JSON.parse(localStorage.getItem('session'));
+                  const isCurrentUser = lsSession && lsSession.matricula === professor.matricula;
+                  return (
                   <tr style={{ maxHeight: '5rem' }} key={professor._id}>
                     <td className='num-edital'>{professor.name}</td>
                     <td className='limit-size objetivo'>{professor.matricula}</td>
                     <td className='limit-size'>{professor.curso}</td>
                     <td className='centralizar-elemento'>{professor.email}</td>
                     <td className='centralizar-elemento'>
+                        {isCurrentUser && (
                       <img 
                         alt="" 
                         title="Editar" 
@@ -180,9 +183,11 @@ export const PaginaProfessores = () => {
                         src={editar} 
                         onClick={() => getProfessorByMatricula(professor.matricula)} // Passa a matrícula para a função
                       />
+                        )}
                     </td>
                   </tr>
-                ))}
+                  );
+                })}
 
                 <tr>
                   <td colSpan="6" className="loading-cell">
