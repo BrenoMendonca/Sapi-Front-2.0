@@ -41,6 +41,20 @@
   padding: 20px;
 }
 
+.button-criarprofessor{
+  width: 10%;
+  height: 50px;
+  background-color: #044CF4;
+  color: white;
+  border: none;
+  outline: none;
+  border: 2px solid #D4D4D4;
+  border-radius: 40px;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
 .header span {
   font-weight: 900;
   font-size: 20px;

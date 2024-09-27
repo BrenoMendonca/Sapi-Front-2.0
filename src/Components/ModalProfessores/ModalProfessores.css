@@ -37,9 +37,12 @@
 .button-fechar-modal-edital{
     background-color: #044CF4;
     border-radius: 10px;
+    padding: 8px 10px;
     color: white;
     cursor: pointer;
     transition: .2s;
+    border: 2px solid #D4D4D4; /* Adiciona uma borda suave consistente com os inputs */
+
 }
 
 .button-fechar-modal-edital:hover {
@@ -86,12 +89,12 @@
     width: 100%;
     border-radius: 10px;
     padding: 1vh;
-    font-weight: 400;
+    font-weight: bold; 
     font-family: 'Barlow', sans-serif;
     background-color: rgb(20, 172, 53);
     color: white;
     cursor: pointer;
-    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 2px;
 }
 
 .input-requisitos-wrapper {

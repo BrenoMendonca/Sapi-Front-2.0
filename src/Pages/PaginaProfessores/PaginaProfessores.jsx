@@ -149,7 +149,7 @@ export const PaginaProfessores = () => {
               </div>
             </div>
             {typeOfUser < 2 && (
-              <button onClick={() => setModaCriacaolIsOpen(true)}>Criar Professor</button>
+              <button className = "button-criarprofessor"onClick={() => setModaCriacaolIsOpen(true)}>Criar Professor</button>
             )}
           </div>
 

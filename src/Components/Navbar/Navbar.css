@@ -119,6 +119,8 @@ ul {
     padding-top: 10px;
     border-radius: 8px;
     display: none;
+    flex-direction: column;
+    background-color: white;
 }
 
 .name-login:hover .Opcoes {

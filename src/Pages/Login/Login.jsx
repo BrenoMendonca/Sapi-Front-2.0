@@ -93,6 +93,7 @@ export const Login = () => {
           
           <button 
             type='submit' 
+            className='button-login'
             onClick={handleSubmit}
             disabled={loading === true || !validadorInput}>
               Acessar
@@ -114,4 +115,3 @@ export const Login = () => {
     </div>
   )
 }
-

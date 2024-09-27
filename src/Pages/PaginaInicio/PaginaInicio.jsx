@@ -102,7 +102,7 @@ export const  PaginaInicio = ()=>{
                     <h1>Editais</h1>
                     
                     {typeOfUser > 2 && ( 
-                        <button onClick={() => setIsOpen(true)}>Criar Edital</button>
+                        <button className='button-criaredital' onClick={() => setIsOpen(true)}>Criar Edital</button>
                     )}
                     
                 </div>
