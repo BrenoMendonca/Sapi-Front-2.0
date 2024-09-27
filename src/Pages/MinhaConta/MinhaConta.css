@@ -1,0 +1,56 @@
+.BackGroundAlterarSenha {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: flex-start; 
+    justify-content: center; 
+    background-color: #DAE7EF;
+    padding-top: 40px; 
+}
+.titulo{
+    margin: 20px;
+}
+.wrapper-alterarsenha{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 400px;
+    background-color: white;
+    justify-content: space-around;
+    border-radius: 10px;
+    padding: 0 0 1.25rem 1.25rem;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    flex-direction: column;
+}
+
+.input-password {
+    min-height: 4vh;
+    width: 100%;
+    border-radius: 10px;
+    font-weight: 400;
+    padding-left: .4vw;
+    padding-bottom: .2vw; 
+    outline: none;
+    border: 2px solid #D4D4D4;
+    padding: 7px 40px; 
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+    margin-bottom: 10px; 
+    overflow-wrap: break-word;
+    resize: horizontal;
+}
+
+.button-password {
+    width: 100%;
+    border-radius: 10px; 
+    padding: 7px 40px; 
+    font-weight: 400;
+    font-family: 'Barlow', sans-serif;
+    background-color: rgb(20, 172, 53);
+    color: white;
+    cursor: pointer;
+    border: 2px solid #D4D4D4; 
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+    outline: none; 
+    margin-bottom: 10px; 
+}
+
