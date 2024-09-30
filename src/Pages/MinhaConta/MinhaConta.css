@@ -1,14 +1,38 @@
-.BackGroundAlterarSenha {
+.BackGroundMinhaConta {
     width: 100vw;
     height: 100vh;
     display: flex;
-    align-items: flex-start; 
-    justify-content: center; 
+    flex-direction: column;
+    align-items: center; 
+    justify-content: flex-start; 
     background-color: #DAE7EF;
-    padding-top: 40px; 
+    padding-top: 30px; 
 }
+.wrapper-container {
+    display: flex;             
+    gap: 20px;      
+    background-color: #DAE7EF; 
+}
+
+.lapin-logo {
+    width: 120px; 
+    height: 120px;
+    border-radius: 100%; 
+    
+    background-color: #DAE7EF; 
+    border: 2px solid #D4D4D4;
+}
+
+
+
 .titulo{
-    margin: 20px;
+    padding-bottom: 20px;
+    background-color: #DAE7EF;
+}
+
+h6{
+    padding-left: 5px;
+    padding-bottom: 2px;
 }
 .wrapper-alterarsenha{
     display: flex;
@@ -21,6 +45,35 @@
     padding: 0 0 1.25rem 1.25rem;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     flex-direction: column;
+}
+
+.wrapper-dadousuario{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 400px;
+    background-color: white;
+    justify-content: space-around;
+    border-radius: 10px;
+    padding: 0 0 1.25rem 1.25rem;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    flex-direction: column;
+}
+
+.input-userdata {
+    min-height: 4vh;
+    width: 100%;
+    border-radius: 10px;
+    font-weight: 400;
+    padding-left: .4vw;
+    padding-bottom: .2vw; 
+    outline: none;
+    border: 2px solid #D4D4D4;
+    padding: 7px 40px; 
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+    margin-bottom: 10px; 
+    overflow-wrap: break-word;
+    resize: horizontal;
 }
 
 .input-password {
