@@ -12,28 +12,29 @@ export const MinhaConta = () =>{
     const [userData, setUserData] = useState(null);
 
     const getDataUser = async () => {
+        console.log(localStorage);
+
         const lsSession = JSON.parse(localStorage.getItem('session'));
 
-        if (!lsSession || !lsSession.matricula) {
-            console.error("Sessão inválida ou sem matrícula");
-            return;
-        }
-
-        try {
-            const response = await axios.get(`http://localhost:3001/user/search-users?mat=${lsSession.matricula}`);
-            
-            if (response.data && response.data.length > 0) {
-                const userData = response.data[0]; 
-                setTypeOfUser(userData.typeOfUser); 
-                setUserData(userData); 
-            } else {
-                console.error("Usuário não encontrado ou resposta inesperada da API");
+            if (!lsSession || !lsSession._id) {
+                console.error("Sessão inválida ou sem ID");
+                return;
             }
-        } catch (error) {
-            console.error("Erro ao buscar o tipo de usuário", error);
-        }   
-    };
-
+            try {
+                const response = await axios.get(`http://localhost:3001/user/${lsSession._id}`);
+                
+                if (response.data) {
+                    const userData = response.data; 
+                    setTypeOfUser(userData.typeOfUser); 
+                    setUserData(userData); 
+                } else {
+                    console.error("Usuário não encontrado ou resposta inesperada da API");
+                }
+            } catch (error) {
+                console.error("Erro ao buscar o tipo de usuário", error);
+            }
+    }
+    
     useEffect(() => {
         getDataUser();
     }, []);

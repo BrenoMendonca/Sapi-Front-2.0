@@ -33,6 +33,7 @@ export const Login = () => {
             name: data.user.name,
             token: data.user.token,
             matricula: data.user.matricula,
+            _id: data.user._id, 
           }
           setShowAlert(true)
           navigate('/PaginaInicio');
