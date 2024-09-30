@@ -38,12 +38,20 @@ export const Navbar = () => {
 
     return (
         <div className="Navbar">
-            <Link to='/PaginaInicio' className='Apresentacao'>
-                <img className='LogoUnifor' src={UniforIcon} alt="Logo Unifor" />
-                <h3>Projetos Unifor</h3>
-                <h3>Requisitos</h3>
-                <h3>Professores cadastrados</h3>
-            </Link>
+            <div to='/PaginaInicio' className='Apresentacao'>
+                <Link to='/PaginaInicio'>
+                    <img className='LogoUnifor' src={UniforIcon} alt="Logo Unifor" />
+                </Link>
+                <Link className="navigate-to-page" to='/PaginaInicio'>
+                    <h3>Projetos Unifor</h3>
+                </Link>
+                <Link className="navigate-to-page" to='/requisitos-padrao'>
+                    <h3>Requisitos</h3>
+                </Link>
+                <Link className="navigate-to-page" to='/Paginaprofessores'>
+                    <h3>Professores cadastrados</h3>
+                </Link>
+            </div>
 
             <div className='name-login' onMouseEnter={handleMouse} onMouseLeave={handleMouseLeave}>
                 <div className='botao'>
