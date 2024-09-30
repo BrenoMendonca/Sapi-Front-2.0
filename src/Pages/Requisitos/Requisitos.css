@@ -1,0 +1,148 @@
+/* Requisitos.css */
+
+/* Container principal */
+.container-reqs-padrao {
+  padding: 2rem 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  background-color: #f9f9f9;
+  color: #333;
+}
+
+/* Informações */
+.reqs-padrao-info {
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #555;
+  text-align: center;
+  border: 1px solid #ddd;
+  padding: 1rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: fit-content;
+  margin: 0 auto 3rem auto;
+}
+
+/* Requisitos padrão */
+.reqs-padrao {
+  width: 100%;
+  max-width: 600px;
+}
+
+/* Botão de alterar requisitos */
+.alterar-reqs-padrao {
+  background-color: #3498db;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.alterar-reqs-padrao:hover {
+  background-color: #2980b9;
+}
+
+/* Input de novo requisito */
+.req-padrao-input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 1rem;
+}
+
+/* Botão de adicionar requisito */
+.add-req-padrao {
+  background-color: #3498db;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.add-req-padrao:hover {
+  background-color: #2980b9;
+}
+
+/* Lista de requisitos padrão */
+.req-padrao-list {
+  margin-top: 2rem;
+  list-style-type: none;
+  padding: 0;
+  width: 100%;
+  gap: 0.5rem;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Item da lista de requisitos padrão */
+.req-padrao-item {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 15px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Botão de remover requisito */
+.remove-req-padrao {
+  background-color: #e74c3c;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 5px 10px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin-left: 10px;
+}
+
+.remove-req-padrao:hover {
+  background-color: #c0392b;
+}
+
+/* Botão de salvar requisitos */
+.save-reqs-padrao {
+  background-color: #2ecc71;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin-top: 10px;
+}
+
+.save-reqs-padrao:hover {
+  background-color: #27ae60;
+}
+
+/* Botão de cancelar edição */
+.cancelar-reqs-padrao {
+  background-color: #e74c3c;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin-top: 10px;
+  margin-left: 10px;
+}
+
+.cancelar-reqs-padrao:hover {
+  background-color: #c0392b;
+}
