@@ -3,53 +3,78 @@ import "../MinhaConta/MinhaConta.css"
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import LapinLogo from "../../Assets/Lapinlogo.jpeg"
+import { toast } from 'sonner';
 
-
-export const MinhaConta = () =>{
-
+export const MinhaConta = () => {
     const [matricula, setMatricula] = useState(null);
     const [typeOfUser, setTypeOfUser] = useState(null);
     const [userData, setUserData] = useState(null);
+    const [senhaAtual, setSenhaAtual] = useState(''); // Estado para senha atual
+    const [senhaNova, setSenhaNova] = useState(''); // Estado para nova senha
+    const [confirmarSenha, setConfirmarSenha] = useState(''); // Estado para confirmar nova senha
 
     const getDataUser = async () => {
-        console.log(localStorage);
-
         const lsSession = JSON.parse(localStorage.getItem('session'));
-
-            if (!lsSession || !lsSession._id) {
-                console.error("Sessão inválida ou sem ID");
-                return;
+        if (!lsSession || !lsSession._id) {
+            console.error("Sessão inválida ou sem ID");
+            return;
+        }
+        try {
+            const response = await axios.get(`http://localhost:3001/user/${lsSession._id}`);
+            if (response.data) {
+                const userData = response.data; 
+                setTypeOfUser(userData.typeOfUser); 
+                setUserData(userData); 
+            } else {
+                console.error("Usuário não encontrado ou resposta inesperada da API");
             }
-            try {
-                const response = await axios.get(`http://localhost:3001/user/${lsSession._id}`);
-                
-                if (response.data) {
-                    const userData = response.data; 
-                    setTypeOfUser(userData.typeOfUser); 
-                    setUserData(userData); 
-                } else {
-                    console.error("Usuário não encontrado ou resposta inesperada da API");
-                }
-            } catch (error) {
-                console.error("Erro ao buscar o tipo de usuário", error);
-            }
-    }
+        } catch (error) {
+            console.error("Erro ao buscar o tipo de usuário", error);
+        }
+    };
     
     useEffect(() => {
         getDataUser();
     }, []);
 
+    const handleChangePassword = async () => {
+        // Verifica se as novas senhas correspondem
+        if (senhaNova !== confirmarSenha) {
+            toast.error("As senhas não coincidem.");
+            return;
+        }
+
+        const lsSession = JSON.parse(localStorage.getItem('session'));
+        if (!lsSession || !lsSession._id) {
+            console.error("Sessão inválida ou sem ID");
+            return;
+        }
+
+        try {
+            const response = await axios.patch(`http://localhost:3001/user/change-password/${lsSession._id}`, {
+                currentPassword: senhaAtual,
+                newPassword: senhaNova,
+                confirmPassword: confirmarSenha,
+            });
+            toast.success(response.data.msg);
+                setSenhaAtual('');
+                setSenhaNova('');
+                setConfirmarSenha('');
+          } catch (err) {
+              toast.error(JSON.stringify(err.response.data.msg));
+          }
+    };
+
     return (
         <div className="MinhaConta">
             <Navbar />
             <div className="BackGroundMinhaConta">
-                <img className="lapin-logo" src={LapinLogo}></img>
+                <img className="lapin-logo" src={LapinLogo} alt="Lapin Logo" />
                 <div className="titulo-container">
                     <h2 className="titulo">Bem vindo {userData ? userData.name : ''}</h2>
                 </div>
 
                 <div className="wrapper-container"> 
-    
                     <div className="wrapper-dadousuario">
                         <h2 className="titulo-wrapper">Dados do Usuário</h2>
 
@@ -65,7 +90,7 @@ export const MinhaConta = () =>{
                         </div>
 
                         <div className='input-box-userdata'>
-                        <h6>Matricula</h6>
+                            <h6>Matrícula</h6>
                             <input 
                                 name='matricula'
                                 className="input-userdata"
@@ -76,15 +101,15 @@ export const MinhaConta = () =>{
                         </div>
 
                         <div className='input-box-userdata'>
-                        <h6>Tipo de usuário</h6>
+                            <h6>Tipo de usuário</h6>
                             <input 
                                 name='typeOfUser'
                                 className="input-userdata"
                                 type='text' 
                                 placeholder={
-                                    typeOfUser == 1  // Compara com número
+                                    typeOfUser === 1 
                                     ? 'Coordenador' 
-                                    : typeOfUser == 2  // Compara com número
+                                    : typeOfUser === 2 
                                     ? 'Professor Doutor' 
                                     : 'Tipo de usuário'
                                 } 
@@ -93,7 +118,7 @@ export const MinhaConta = () =>{
                         </div>
 
                         <div className='input-box-userdata'>
-                        <h6>curso</h6>
+                            <h6>Curso</h6>
                             <input 
                                 name='curso'
                                 className="input-userdata"
@@ -102,7 +127,6 @@ export const MinhaConta = () =>{
                                 readOnly
                             />
                         </div>
-
                     </div>
 
                     <div className="wrapper-alterarsenha">
@@ -114,6 +138,8 @@ export const MinhaConta = () =>{
                                 className="input-password"
                                 type='password' 
                                 placeholder='Senha atual' 
+                                value={senhaAtual}
+                                onChange={(e) => setSenhaAtual(e.target.value)}
                             />
                         </div>
 
@@ -122,7 +148,9 @@ export const MinhaConta = () =>{
                                 name='senhaNova'
                                 className="input-password"
                                 type='password' 
-                                placeholder='Senha' 
+                                placeholder='Nova senha' 
+                                value={senhaNova}
+                                onChange={(e) => setSenhaNova(e.target.value)}
                             />
                         </div>
 
@@ -131,7 +159,9 @@ export const MinhaConta = () =>{
                                 name='confirmarSenha'
                                 className="input-password"
                                 type='password' 
-                                placeholder='Confirmar senha' 
+                                placeholder='Confirmar nova senha' 
+                                value={confirmarSenha}
+                                onChange={(e) => setConfirmarSenha(e.target.value)}
                             />
                         </div>
 
@@ -140,6 +170,7 @@ export const MinhaConta = () =>{
                                 name='buttonpassword'
                                 className="button-password"
                                 type='button' 
+                                onClick={handleChangePassword}
                             >
                                 Redefinir senha
                             </button>
@@ -150,4 +181,5 @@ export const MinhaConta = () =>{
         </div>
     );
 };
+
 export default MinhaConta;
