@@ -166,12 +166,13 @@ export const MinhaConta = () => {
                         </div>
 
                         <div className='button-box-password'>
-                            <button 
-                                name='buttonpassword'
-                                className="button-password"
-                                type='button' 
-                                onClick={handleChangePassword}
-                            >
+                        <button 
+                            name='buttonpassword'
+                            className="button-password"
+                            type='button' 
+                            onClick={handleChangePassword}
+                            disabled={!senhaAtual || !senhaNova || !confirmarSenha} 
+                        >
                                 Redefinir senha
                             </button>
                         </div>
