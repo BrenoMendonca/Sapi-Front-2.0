@@ -66,6 +66,11 @@
 
 .Apresentacao a {
   background: transparent;
+  margin: 0 2px;
+  padding: 20px;
+  transition: background-color 0.3s ease, border-bottom 0.3s ease;
+  background-color: transparent; 
+  color: white; 
 }
 
 .navigate-to-page h3 {
@@ -96,7 +101,9 @@
 ul {
   list-style: none;
 }
-
+.opcoes-usuario {
+  background-color: transparent;
+}
 .name-login,
 .botao,
 .Opcoes {
@@ -111,9 +118,7 @@ ul {
 .name-login {
   align-self: center;
   text-align: center;
-  margin-bottom: 20px;
   margin-right: 30px;
-  padding-top: 30px;
   border-radius: 8px;
   flex-direction: column;
   position: relative;

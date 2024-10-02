@@ -52,19 +52,20 @@ export const Navbar = () => {
                     <h3>Professores cadastrados</h3>
                 </Link>
             </div>
-
-            <div className='name-login' onMouseEnter={handleMouse} onMouseLeave={handleMouseLeave}>
-                <div className='botao'>
-                    <h4>Bem vindo! </h4>
-                    <span className="name">{name} </span>
+            <div className='opcoes-usuario'>
+                <div className='name-login' onMouseEnter={handleMouse} onMouseLeave={handleMouseLeave}>
+                    <div className='botao'>
+                        <h4>Bem vindo! </h4>
+                        <span className="name">{name} </span>
+                    </div>
+                    {isOpen && (
+                        <ul className='Opcoes'>
+                            <li onClick={irParaMinhaConta}>Minha conta</li>  {/* Adiciona o redirecionamento */}
+                            <hr />
+                            <li className='logout' onClick={fazerLogout}>Logout</li>
+                        </ul>
+                    )}
                 </div>
-                {isOpen && (
-                    <ul className='Opcoes'>
-                        <li onClick={irParaMinhaConta}>Minha conta</li>  {/* Adiciona o redirecionamento */}
-                        <hr />
-                        <li className='logout' onClick={fazerLogout}>Logout</li>
-                    </ul>
-                )}
             </div>
         </div>
     );
