@@ -119,3 +119,17 @@ h6{
     border-color: #28a745;               
     box-shadow: rgba(0, 0, 0, 0.2) 0px 3px 8px;
 }
+
+.aviso-cadastro{
+    padding-top: 10px;
+    text-align: center;
+    width: 260px;
+    background-color: #044cf4;
+    color: white;
+    justify-content: space-around;
+    border-radius: 10px;
+    padding-bottom: 10px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    flex-direction: column;
+    font-weight: bold; 
+}

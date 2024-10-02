@@ -71,7 +71,7 @@ export const MinhaConta = () => {
             <div className="BackGroundMinhaConta">
                 <img className="lapin-logo" src={LapinLogo} alt="Lapin Logo" />
                 <div className="titulo-container">
-                    <h2 className="titulo">Bem vindo {userData ? userData.name : ''}</h2>
+                    <h2 className="titulo">Olá, {userData ? userData.name : ''} 👋</h2>
                 </div>
 
                 <div className="wrapper-container"> 
@@ -127,6 +127,7 @@ export const MinhaConta = () => {
                                 readOnly
                             />
                         </div>
+                        <h5 className="aviso-cadastro">Caso seja necessário alterar seus dados entre em contato com a Vice Reitoria de Pesquisa</h5>
                     </div>
 
                     <div className="wrapper-alterarsenha">
