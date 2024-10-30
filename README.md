@@ -31,4 +31,20 @@ SAPI é um sistema web construido para ser um repositório de Editais e projetos
 ## Instalação
 - Execute o comando `npm install` para baixar as dependencias do projeto
 
+## Estrutura de pastas
+-  /src
+-    /Assets       # Imagens utilizadas no projeto
+-   /Components    # Componentes utilizados dentro das páginas (NavBar, Apresentação, Modais)
+-   /Pages         # Páginas do projeto 
+-   /Services      # Serviços de configuração de acesso a API
+-   /Utils         # Validações construidas dentro do sistema
+- /App.js          # Construção das rotas das páginas com o React Router DOM
+
 ## 💾 Funcionalidades
+- `Funcionalidade 1` Validações de segurança referente ao login e acesso as páginas
+- `Funcionalidade 2` CRUD de criação de editais 
+- `Funcionalidade 3` CRUD de criação de professores
+- `Funcionalidade 4` CRUD de atualização de professores
+- `Funcionalidade 5` GRID de editais e professores
+- `Funcionalidade 6` CRUD de atualização de senha
+- `Funcionalidade 7` Criação de requisitos para editais
