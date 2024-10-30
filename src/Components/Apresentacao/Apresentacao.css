@@ -19,14 +19,16 @@
     display: flex;
     height: 150px;
     width: 90%;
-    background-color: white;
+    background-color: transparent;
     align-items: center;
-    justify-content: center; 
     margin: 0 auto; 
 }
 
+
+
 .apresentacao {
     text-align: center;
+    background-color: transparent;
     color: blue;
     width: 50%;
 }
