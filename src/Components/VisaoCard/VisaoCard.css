@@ -1,0 +1,166 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* Para garantir que o padding e a borda não aumentem a largura/altura do elemento */
+  }
+  
+  .Background-editais {
+    background-color: white; /* Cor de fundo suave aplicada somente à área específica */
+    padding: 20px;
+    width: 100%;
+    overflow: hidden; /* Garante que o conteúdo respeite o border-radius */
+  }
+  
+  .edital-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Três colunas para os cards */
+    gap: 20px; /* Espaçamento entre os cards */
+    margin-top: 20px; /* Espaço entre o conteúdo acima e os cards */
+    background-color: white;
+  }
+  
+  .edital-card { 
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 16px;
+    background-color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 250px; /* Altura mínima */
+    max-height: 250px; /* Altura máxima para manter o tamanho fixo */
+    width: 100%;
+    box-sizing: border-box;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .container {
+        grid-template-columns: 1fr; /* Cards empilhados em uma única coluna */
+    }
+
+    .edital-card {
+        min-width: 100%; /* Largura total do contêiner */
+        max-width: 100%;
+    }
+}
+  
+  .edital-title {
+    font-size: 18px;
+    font-weight: bold;
+    text-align: left; /* Alinhar à esquerda */
+    margin-bottom: 10px; /* Espaçamento abaixo do título */
+  }
+  
+  .edital-number {
+    font-size: 16px;
+    text-align: left; /* Alinhar à esquerda */
+    margin-bottom: 10px; /* Espaçamento abaixo do número */
+  }
+  
+  .options-menu {
+    position: absolute;
+    bottom: 10px;
+    right: 10px; /* Posicionar os três pontos no canto inferior direito */
+  }
+  
+  .options-button {
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+  }
+  
+  .options-dropdown {
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.1);
+    position: absolute;
+    top: 100%;
+    right: 0;
+    padding: 10px;
+    border-radius: 8px;
+    display: none;
+    flex-direction: column;
+    flex-grow: 5;
+    background-color: white;
+    z-index: 1;
+  }
+  
+  .options-button:hover + .options-dropdown,
+  .options-dropdown:hover {
+    display: block; /* Mostrar o dropdown ao passar o mouse */
+  }
+
+
+.options-dropdown li {
+    margin-bottom: 5px;
+    padding: 1px;
+    cursor: pointer;
+    width: 100%;
+}
+
+.options-dropdown li:hover {
+    background: #f2f2f2;
+}
+
+  .pagination {
+    display: flex;
+    justify-content: center; /* Centralizar a navegação */
+    margin-top: 20px; /* Espaçamento acima da paginação */
+    background-color: #DAE7EF; /* Cor de fundo igual à da Background-editais */
+    padding: 10px; /* Adiciona um pouco de espaçamento interno */
+    border-radius: 8px; /* Cantos arredondados para a área de paginação */
+  }
+  
+  .pagination-button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    margin: 0 5px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .pagination-button:hover {
+    background-color: #0056b3; /* Cor ao passar o mouse */
+  }
+  
+  .pagination-button.active {
+    background-color: #0056b3; /* Cor do botão ativo */
+  }
+  
+  .pagination button:disabled {
+    background-color: #ddd; /* Cor para botões desativados */
+    color: #999;
+    cursor: not-allowed;
+  }
+  
+  .pagination .pagination-arrow {
+    background-color: blue;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    margin: 0 5px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+  }
+  
+  .pagination .pagination-arrow:hover {
+    background-color: #0056b3; /* Cor ao passar o mouse */
+  }
+  
+  .pagination .pagination-arrow:disabled {
+    background-color: #ddd; /* Cor para setas desativadas */
+    color: #999;
+    cursor: not-allowed;
+  }
+  
+
+.edital-title{
+    padding-bottom: 5px;
+    border-bottom: 2px #999;
+}
