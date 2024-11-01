@@ -155,7 +155,8 @@ ul {
 }
 
 .Opcoes {
-  box-shadow: 0 0 3px rgba(0, 0, 0, 0.1);
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  border: 0.5px ridge grey;
   width: 300px;
   position: absolute;
   top: 100%;
