@@ -11,19 +11,23 @@
 }
 
 .Navbar {
+  width: 100%; 
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
   background-color: #044cf4 !important;
   height: 70px;
-  width: 100vw;
   border: 2px solid #044cf4 !important;
   box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px !important;
   text-align: center;
   position: relative;
+  /* Estilo que fixa a navbar no topo */
+  position: fixed; 
+  top: 0; 
+  left: 0; 
+  z-index: 1000; 
 }
-
 .Navbar h1,
 .Navbar .name {
   margin: 0 10px;
