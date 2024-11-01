@@ -60,7 +60,7 @@ export const VisaoGrid = ({ editais = [] }) => {
     <div className='BackgroundPaginaInicio'>
       <div className="container">
         <div className="divTable">
-          <table>
+          <table className='table-itens'>
             <thead>
               <tr>
                 <th className='titulo-crud'>Num edital</th>

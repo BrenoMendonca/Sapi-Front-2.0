@@ -38,7 +38,7 @@
   justify-content: center;
 }
 
-.Navbar h4 {
+.bem-vindo {
   margin-right: 5px;
   height: 100%;
   background-color: transparent;
@@ -128,8 +128,35 @@ ul {
   position: relative;
 }
 
+.avatar-circle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #ffffff;
+  color: #044cf4; /* Escolha a cor do texto */
+  font-weight: bold;
+  font-size: 1.2rem;
+  margin-left: 10px;
+}
+
+.apresentacao-opcoes{
+  padding-left: 10px;
+  width: 100%;
+  text-align:left;
+  border-bottom: 1px solid #d4d4d4;
+  padding-bottom: 10px;
+}
+
+.li-opcoes{
+  padding-top:20px ;
+}
+
 .Opcoes {
   box-shadow: 0 0 3px rgba(0, 0, 0, 0.1);
+  width: 300px;
   position: absolute;
   top: 100%;
   right: 0;
