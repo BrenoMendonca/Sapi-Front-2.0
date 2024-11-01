@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import Apresentacao from '../../Components/Apresentacao/Apresentacao';
 import { Status } from '../../Components/Status/Status';
-
+import uniforbanner from '../../Assets/unifor-banner.jpg'
 
 
 export const VisaoCard = ({ editais = [] }) => {
@@ -29,8 +29,12 @@ export const VisaoCard = ({ editais = [] }) => {
           ) : (
             currentEditais.map((edital) => (
               <div key={edital._id} className="edital-card">
-                <h3 className="edital-title">{edital.nameEdital}</h3>
-                <p className="edital-number">Num edital: {edital.numeroEdital}</p>
+              <div className="image-card-container">
+                <img src={uniforbanner} alt="Banner Unifor" className="banner-unifor" />
+              </div>
+                <h3 className="edital-title-card">{edital.nameEdital}</h3>
+                <p className="edital-number-card">Num edital: {edital.numeroEdital}</p>
+                <p className='edital-prazo-card'>Prazo: {edital.dataFinal}</p>
                 <p><Status status={edital.status}/></p>
                 {/* Botão de mais opções posicionado no canto inferior direito */}
                 <div className="options-menu">
