@@ -4,14 +4,15 @@
     box-sizing: border-box; /* Para garantir que o padding e a borda não aumentem a largura/altura do elemento */
   }
   
-  .Background-editais {
+  .Background-editais-card {
     background-color: white; /* Cor de fundo suave aplicada somente à área específica */
     padding: 20px;
     width: 100%;
+    height: 100%;
     overflow: hidden; /* Garante que o conteúdo respeite o border-radius */
   }
   
-  .edital-grid {
+  .edital-grid-card {
     display: grid;
     grid-template-columns: repeat(3, 1fr); /* Três colunas para os cards */
     gap: 20px; /* Espaçamento entre os cards */

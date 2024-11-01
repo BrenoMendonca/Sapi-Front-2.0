@@ -9,6 +9,7 @@ import { ModalProfessores } from '../../Components/ModalProfessores/ModalProfess
 import {ModalCadastroEdital} from '../../Components/ModalCadastroEdital/ModalCadastroEdital'
 import { VisaoGrid } from '../../Components/VisaoGrid/VisaoGrid'; // Importando o VisaoGrid
 import { VisaoCard } from '../../Components/VisaoCard/VisaoCard'; // Importando o VisaoCard
+import { Footer } from '../../Components/Footer/Footer';
 
 export const PaginaInicio = () => {
     const [typeOfUser, setTypeOfUser] = useState(null);
@@ -144,6 +145,7 @@ export const PaginaInicio = () => {
                     {visao === 'card' && <VisaoCard editais={editais} />}
                 </div>
             </div>
+            <Footer></Footer>
         </div>
     );
 };

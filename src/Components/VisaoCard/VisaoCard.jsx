@@ -21,9 +21,9 @@ export const VisaoCard = ({ editais = [] }) => {
     const paginate = (pageNumber) => setCurrentPage(pageNumber);
   
     return (
-      <div className='Background-editais'>
+      <div className='Background-editais-card'>
         
-        <div className="edital-grid">
+        <div className="edital-grid-card">
           {load ? (
             <p>Carregando...</p>
           ) : (
