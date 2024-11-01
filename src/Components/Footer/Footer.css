@@ -1,0 +1,96 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; 
+}
+
+.footer {
+    width: 100%; 
+    margin-top: 10px;
+    padding: 30px; 
+    display: flex;
+    flex-direction: row;
+    border-top: 2px solid rgba(128, 128, 128, 0.7);
+    
+}
+
+.background-footer {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.redes-sociais, .ul-footer-icons {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    gap: 20px;
+    color: blue;
+    width: 100%;
+}
+
+.footer-informacoes {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;  
+    align-items: center; 
+    justify-content: center;
+}
+
+.footer-icon {
+    font-size: 1.5rem; 
+    cursor: pointer; 
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.footer-icon:hover {
+    transform: scale(1.2); 
+}
+
+/* Novo estilo para evitar que os links mudem de cor */
+.footer-icon a {
+    color: inherit; /* Herda a cor do pai */
+    text-decoration: none; /* Remove o sublinhado */
+}
+
+.footer-icon a:visited {
+    color: inherit; /* Mantém a mesma cor após visitar o link */
+}
+
+.footer-icon a:focus,
+.footer-icon a:active {
+    color: inherit; /* Mantém a mesma cor quando o link é focado ou ativo */
+    outline: none; /* Remove o contorno padrão ao focar */
+}
+
+.footer-icon.facebook-icon a:hover {
+    color: #3b5998; 
+}
+
+.footer-icon.instagram-icon a:hover {
+    color: #E1306C; 
+}
+
+.footer-icon.linkedin-icon a:hover {
+    color: #0077b5; 
+}
+
+.footer-icon.youtube-icon a:hover {
+    color: #FF0000; 
+}
+
+
+.container-img {
+    display: flex;
+    width: 100%;
+    align-items: center; 
+    justify-content: center; 
+}
+
+.logo-unifor-footer {
+    width: 120px;
+    height: 50px;
+}
