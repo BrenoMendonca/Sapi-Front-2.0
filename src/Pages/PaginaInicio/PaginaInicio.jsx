@@ -69,13 +69,17 @@ export const PaginaInicio = () => {
     };
 
     useEffect(() => {
-        const normalize = (str) => (str ? str.toLowerCase() : '');
+        const normalize = (str) => {
+            return typeof str === 'string' ? str.toLowerCase() : ''; // Verificação de tipo
+        };
         
         // Filtragem dos editais com base nos critérios fornecidos
         const filtered = editais.filter((edital) => {
+            //Filtra por termo
             const nomeMatch = normalize(edital.nameEdital).includes(normalize(searchTerm));
             const numeroMatch = normalize(edital.numeroEdital).includes(normalize(searchTerm));
-            const statusMatch = selectedStatus ? normalize(edital.status) === normalize(selectedStatus) : true;
+            //Filtra status por tipo number (se deixar qualquer tipo retorna erro)
+            const statusMatch = selectedStatus ? edital.status === Number(selectedStatus) : true;
     
             // Retorna apenas editais que correspondem ao searchTerm e ao status selecionado
             return (nomeMatch || numeroMatch) && statusMatch;
@@ -83,6 +87,17 @@ export const PaginaInicio = () => {
     
         setFilteredEditais(filtered);
     }, [searchTerm, selectedStatus, editais]);
+
+    const statusOptions = {
+        '1': { text: 'Aberto'},
+        '2': { text: 'Submissão'},
+        '3': { text: 'Em análise'},
+        '4': { text: 'Aprovado'},
+    };
+
+    const handleStatusChange = (event) => {
+        setSelectedStatus(event.target.value);
+    };
 
     useEffect(() => {
         getEditais();
@@ -132,17 +147,25 @@ export const PaginaInicio = () => {
                             </select>
                         </div>
                         */}
-                        <div className="filtro-select-status">
-                            <select className='filtro-selecao-status-select'>
-                                <option value="" disabled selected>Selecione o status</option>
+                         <div className="filtro-select-status">
+                            <select
+                                className='filtro-selecao-status-select'
+                                value={selectedStatus}
+                                onChange={handleStatusChange}
+                            >
+                                {/* Opção para limpar o filtro */}
+                                <option value="">Todos os Status</option>
+                                {Object.entries(statusOptions).map(([key, value]) => (
+                                <option key={key} value={key}>{value.text}</option>
+                                ))}
                             </select>
                         </div>
                     </div>
                 </div>
     
                 <div className="container-grid">
-                    {visao === 'grid' && <VisaoGrid editais={editais} />}
-                    {visao === 'card' && <VisaoCard editais={editais} />}
+                    {visao === 'grid' && <VisaoGrid editais={filteredEditais} />}
+                    {visao === 'card' && <VisaoCard editais={filteredEditais} />}
                 </div>
             </div>
             <Footer></Footer>
