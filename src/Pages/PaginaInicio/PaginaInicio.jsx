@@ -15,7 +15,7 @@ export const PaginaInicio = () => {
     const [typeOfUser, setTypeOfUser] = useState(null);
 
     // Modal
-    const [modalIsOpen, setIsOpen] = useState(false);
+    const [modalEditalIsOpen, setModalEditalIsOpen] = useState(false);
     // Crud Editais
     const [editais, setEditais] = useState([]);
     const [load, setLoad] = useState(false);
@@ -27,6 +27,8 @@ export const PaginaInicio = () => {
     const [searchTerm, setSearchTerm] = useState(''); 
     const [selectedStatus, setSelectedStatus] = useState('');
 
+
+    //Função consulta de editais
     const getEditais = async () => {
         setLoad(true);
         try {
@@ -42,6 +44,7 @@ export const PaginaInicio = () => {
         }
     }
 
+    // Função Para pegar o tipo de usuário
     const getTypeOfUser = async () => {
         const lsSession = JSON.parse(localStorage.getItem('session'));
         if (!lsSession || !lsSession.matricula) {
@@ -60,6 +63,8 @@ export const PaginaInicio = () => {
         }   
     }
 
+
+    //Função Filtros
     const handleFiltroChange = (event) => {
         setSearchTerm(event.target.value); 
     };
@@ -88,6 +93,8 @@ export const PaginaInicio = () => {
         setFilteredEditais(filtered);
     }, [searchTerm, selectedStatus, editais]);
 
+
+    //Função Status
     const statusOptions = {
         '1': { text: 'Aberto'},
         '2': { text: 'Submissão'},
@@ -99,6 +106,7 @@ export const PaginaInicio = () => {
         setSelectedStatus(event.target.value);
     };
 
+    //Função atualização de tipo e de lista de editais
     useEffect(() => {
         getEditais();
         getTypeOfUser();
@@ -111,8 +119,8 @@ export const PaginaInicio = () => {
     return (
         <div className='PaginaInicio'>
             <Navbar />
-            {modalIsOpen && (
-                <ModalCadastroEdital setView={setIsOpen} atualizarListaEditais={handleAtualizarListaEditais} />
+            {modalEditalIsOpen && (
+                <ModalCadastroEdital setView={setModalEditalIsOpen} atualizarListaEditais={handleAtualizarListaEditais} />
             )}
     
             <div className='BackgroundPaginaInicio'>
@@ -129,37 +137,48 @@ export const PaginaInicio = () => {
                             </select>
                         </div>
                     </div>
-    
-                    <div className='header-filtros-edital'>
-                        <div className="filtro-pesquisa-edital">
-                            <input 
-                                className='filtro-pesquisa-edital-input' 
-                                type="text" 
-                                placeholder="Pesquisar..." 
-                                value={searchTerm} 
-                                onChange={handleFiltroChange} 
-                            />
+                    
+                    <div className='header-filtro-btn'>
+                        <div className='header-filtros-edital'>
+                            <div className="filtro-pesquisa-edital">
+                                <input 
+                                    className='filtro-pesquisa-edital-input' 
+                                    type="text" 
+                                    placeholder="Pesquisar..." 
+                                    value={searchTerm} 
+                                    onChange={handleFiltroChange} 
+                                />
+                            </div>
+                            {/*
+                            <div className="filtro-pesquisa-curso">
+                                <select className='filtro-pesquisa-curso-select'>
+                                    <option value="" disabled selected>Selecione o curso</option>
+                                </select>
+                            </div>
+                            */}
+                            <div className="filtro-select-status">
+                                <select
+                                    className='filtro-selecao-status-select'
+                                    value={selectedStatus}
+                                    onChange={handleStatusChange}
+                                >
+                                    {/* Opção para limpar o filtro */}
+                                    <option value="">Todos os Status</option>
+                                    {Object.entries(statusOptions).map(([key, value]) => (
+                                    <option key={key} value={key}>{value.text}</option>
+                                    ))}
+                                </select>
+                            </div>
+
+                           
                         </div>
-                        {/*
-                        <div className="filtro-pesquisa-curso">
-                            <select className='filtro-pesquisa-curso-select'>
-                                <option value="" disabled selected>Selecione o curso</option>
-                            </select>
-                        </div>
-                        */}
-                         <div className="filtro-select-status">
-                            <select
-                                className='filtro-selecao-status-select'
-                                value={selectedStatus}
-                                onChange={handleStatusChange}
-                            >
-                                {/* Opção para limpar o filtro */}
-                                <option value="">Todos os Status</option>
-                                {Object.entries(statusOptions).map(([key, value]) => (
-                                <option key={key} value={key}>{value.text}</option>
-                                ))}
-                            </select>
-                        </div>
+
+                        <div className='btn-header-paginainicio'>
+                                <button className='btn-criacao-edital' onClick={() => setModalEditalIsOpen(true)}>
+                                    Criar Edital
+
+                                </button>
+                            </div>
                     </div>
                 </div>
     
