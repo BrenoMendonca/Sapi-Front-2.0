@@ -1,147 +1,94 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box; /* Para garantir que o padding e a borda não aumentem a largura/altura do elemento */
-  }
+.cabecalho-edital {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
   
-  .Background-editais {
-    background-color: #DAE7EF; /* Cor de fundo suave aplicada somente à área específica */
-    padding: 20px;
-  }
+  margin: 1.25rem auto 0;
   
-  .edital-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr); /* Três colunas para os cards */
-    gap: 20px; /* Espaçamento entre os cards */
-    margin-top: 20px; /* Espaço entre o conteúdo acima e os cards */
-    background-color: #DAE7EF;
-  }
-  
-  .edital-card {
-    border: 1px solid #ccc; /* Borda ao redor dos cards */
-    border-radius: 8px; /* Cantos arredondados */
-    padding: 16px;
-    background-color: white; /* Fundo branco para os cards */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave */
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between; /* Espaçar o conteúdo verticalmente */
-    position: relative; /* Necessário para posicionar o botão de opções */
-  }
-  
-  .edital-title {
-    font-size: 18px;
-    font-weight: bold;
-    text-align: left; /* Alinhar à esquerda */
-    margin-bottom: 10px; /* Espaçamento abaixo do título */
-  }
-  
-  .edital-number {
-    font-size: 16px;
-    text-align: left; /* Alinhar à esquerda */
-    margin-bottom: 10px; /* Espaçamento abaixo do número */
-  }
-  
-  .options-menu {
-    position: absolute;
-    bottom: 10px;
-    right: 10px; /* Posicionar os três pontos no canto inferior direito */
-  }
-  
-  .options-button {
-    background: none;
-    border: none;
-    font-size: 20px;
-    cursor: pointer;
-  }
-  
-  .options-dropdown {
-    box-shadow: 0 0 3px rgba(0, 0, 0, 0.1);
-    position: absolute;
-    top: 100%;
-    right: 0;
-    padding: 10px;
-    border-radius: 8px;
-    display: none;
-    flex-direction: column;
-    flex-grow: 5;
-    background-color: white;
-    z-index: 1;
-  }
-  
-  .options-button:hover + .options-dropdown,
-  .options-dropdown:hover {
-    display: block; /* Mostrar o dropdown ao passar o mouse */
-  }
+  height: 150px;
+  width: 90%;
 
-
-.options-dropdown li {
-    margin-bottom: 5px;
-    padding: 1px;
-    cursor: pointer;
-    width: 100%;
+  background-color: #fff;
 }
 
-.options-dropdown li:hover {
-    background: #f2f2f2;
+.cabecalho-edital strong {
+  color: #aaa;
 }
 
-  .pagination {
-    display: flex;
-    justify-content: center; /* Centralizar a navegação */
-    margin-top: 20px; /* Espaçamento acima da paginação */
-    background-color: #DAE7EF; /* Cor de fundo igual à da Background-editais */
-    padding: 10px; /* Adiciona um pouco de espaçamento interno */
-    border-radius: 8px; /* Cantos arredondados para a área de paginação */
-  }
-  
-  .pagination-button {
-    background-color: #007bff;
-    color: white;
-    border: none;
-    padding: 10px 15px;
-    margin: 0 5px;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-  
-  .pagination-button:hover {
-    background-color: #0056b3; /* Cor ao passar o mouse */
-  }
-  
-  .pagination-button.active {
-    background-color: #0056b3; /* Cor do botão ativo */
-  }
-  
-  .pagination button:disabled {
-    background-color: #ddd; /* Cor para botões desativados */
-    color: #999;
-    cursor: not-allowed;
-  }
-  
-  .pagination .pagination-arrow {
-    background-color: blue;
-    color: white;
-    border: none;
-    padding: 10px 15px;
-    margin: 0 5px;
-    border-radius: 4px;
-    cursor: pointer;
-    font-weight: bold;
-  }
-  
-  .pagination .pagination-arrow:hover {
-    background-color: #0056b3; /* Cor ao passar o mouse */
-  }
-  
-  .pagination .pagination-arrow:disabled {
-    background-color: #ddd; /* Cor para setas desativadas */
-    color: #999;
-    cursor: not-allowed;
-  }
-  
-
-.edital-title{
-    padding-bottom: 5px;
-    border-bottom: 2px #999;
+.cabecalho-edital h1 {
+  color: blue;
 }
+
+.info-edital p {
+  font-weight: 400;
+  font-size: 1.2rem;
+  color: #333;
+}
+
+.info-edital p b {
+  color: #000;
+}
+
+.info-edital {
+  display: flex;
+  gap: 1rem;
+  flex-direction: column;
+
+  margin: 2rem 4rem 4rem 20vw;
+}
+
+.prof-avaliadores-wrapper {
+  margin-top: 3rem;
+
+}
+
+.prof-avaliadores-wrapper h2 {
+  font-size: 1.5rem;
+  color: blue;
+  margin-bottom: .75rem;
+}
+
+.list-prof-avaliador {
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+}
+
+.wrapper-show-matricula-prof-avaliador {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: .5rem;
+
+  border-radius: 8px;
+
+  width: 20%;
+  background: #ddd;
+}
+
+.wrapper-show-matricula-prof-avaliador p {
+  display: inline;
+  font-size: 1rem;
+  background: transparent;
+}
+
+.wrapper-show-matricula-prof-avaliador span {
+  background: transparent;
+  font-size: 1rem;
+  padding: 4px 6px;
+  border-radius: 8px;
+  background: #bbb;
+  transition: .2s;
+}
+
+.wrapper-show-matricula-prof-avaliador span:hover {
+  background: #888;
+  cursor: pointer;
+  color: #fff;
+}
+
+.wrapper-show-matricula-prof-avaliador span:active {
+  background: red;
+}
+
