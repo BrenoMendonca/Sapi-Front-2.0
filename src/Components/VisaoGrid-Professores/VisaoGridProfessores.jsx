@@ -12,11 +12,18 @@ import {ModalProfessores} from '../../Components/ModalProfessores/ModalProfessor
 import { ModalEdicaoProfessor } from '../../Components/ModalEdicaoProfessor/ModalEdicaoProfessor';
 
 
-export const VisaoGridProfessores = ({ professores = [] }) => {
-  const [modalCriacaoIsOpen, setModalCriacaoIsOpen] = useState(false);
+export const VisaoGridProfessores = ({ professores = [] }, atualizarProfessores) => {
+
+  // Modal de edição de professores  
   const [modalEdicaoIsOpen, setModalEdicaoIsOpen] = useState(false);
+
+  //Load da grid
   const [load, setLoad] = useState(false);
+
+  //Verificação de tipo de usuário
   const [typeOfUser, setTypeOfUser] = useState(null);
+  
+  //Carregar dados do modal de professores
   const [selectedProfessor, setSelectedProfessor] = useState(null);
 
   // Estados para paginação
@@ -41,6 +48,7 @@ export const VisaoGridProfessores = ({ professores = [] }) => {
     try {
       const response = await axios.get(`http://localhost:3001/user/matricula/${matricula}`);
       setSelectedProfessor(response.data);
+      //Abre o modal de edição
       setModalEdicaoIsOpen(true);
     } catch (error) {
       console.error("Erro ao buscar professor:", error);
@@ -51,7 +59,6 @@ export const VisaoGridProfessores = ({ professores = [] }) => {
     getTypeOfUser();
   }, []);
 
-  
 
   // Lógica para determinar itens da página atual
   const indexOfLastEdital = currentPage * professoresPerPage;
@@ -72,6 +79,9 @@ export const VisaoGridProfessores = ({ professores = [] }) => {
 
   return (
     <div className='BackgroundPaginaInicio'>
+        {modalEdicaoIsOpen && (
+                <ModalEdicaoProfessor setView={setModalEdicaoIsOpen} professor={selectedProfessor}  atualizarListaProfessores={atualizarProfessores} />
+            )}
       <div className="container">
         <div className="divTable">
           <table className='table-itens'>
@@ -96,7 +106,7 @@ export const VisaoGridProfessores = ({ professores = [] }) => {
                       <Link to={`/edital/${professor._id}`}>
                         <img alt="Ver mais informações" className='visualizar' src={vizualizar}></img>
                       </Link>
-                      <img alt="Editar" className='editar' src={editar}></img>
+                      <img alt="Editar" className='editar' src={editar} onClick={() => getProfessorByMatricula(professor.matricula)}></img>
                     </td>
                   </tr>
                 ))

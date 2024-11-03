@@ -14,7 +14,6 @@ import {VisaoGridProfessores} from '../../Components/VisaoGrid-Professores/Visao
 export const PaginaProfessores = () => {
   // Estado dos modais
   const [ModaCriacaolIsOpen, setModaCriacaolIsOpen] = useState(false);
-  const [ModalEdicaoIsOpen, setModalEdicaoIsOpen] = useState(false);
 
   // Estado dos professores, cursos e carregamento
   const [professores, setProfessores] = useState([]);
@@ -62,16 +61,6 @@ export const PaginaProfessores = () => {
       }
     } catch (error) {
       console.error("Erro ao buscar o tipo de usuário", error);
-    }
-  };
-
-  const getProfessorByMatricula = async (matricula) => {
-    try {
-      const response = await axios.get(`http://localhost:3001/user/matricula/${matricula}`);
-      setSelectedProfessor(response.data); // Atualiza o estado com os dados do professor
-      setModalEdicaoIsOpen(true); // Abre o modal de edição
-    } catch (error) {
-      console.error("Erro ao buscar professor:", error);
     }
   };
 
@@ -155,7 +144,7 @@ export const PaginaProfessores = () => {
                 </div>
             </div>
            <div className="container-grid">
-                <VisaoGridProfessores professores={filteredProfessores} />
+                <VisaoGridProfessores professores={filteredProfessores} atualizarProfessores={handleAtualizarListaProfessores}/>
             </div>
                               
            
