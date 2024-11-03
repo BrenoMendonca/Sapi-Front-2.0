@@ -3,7 +3,7 @@ import './ModalEdicaoProfessor.css';
 import axios from 'axios';
 import { toast } from 'sonner';
 
-export const ModalEdicaoProfessor = ({ professor, onClose, atualizarListaProfessores }) => {
+export const ModalEdicaoProfessor = ({ professor, setView, atualizarListaProfessores }) => {
     const [professorData, setProfessorData] = useState({
         name: '',
         cpf: '',
@@ -50,7 +50,7 @@ export const ModalEdicaoProfessor = ({ professor, onClose, atualizarListaProfess
         try {
             const response = await axios.put(`http://localhost:3001/user/matricula/${professorData.matricula}`, dataToUpdate);
             toast.success("Professor atualizado com sucesso");
-            onClose();
+            setView(null);
             atualizarListaProfessores();
         } catch (error) {
             console.error("Erro ao atualizar professor:", error);
@@ -63,7 +63,7 @@ export const ModalEdicaoProfessor = ({ professor, onClose, atualizarListaProfess
             <div className="box-modal-card-edital">
                 <div className="box-header-modal-edital">
                     <h1 className="titulo-modal-card-edital">Edição de usuário</h1>
-                    <button className="button-fechar-modal-edital" onClick={onClose}>x</button>
+                    <button className="button-fechar-modal-edital" onClick={() => setView(null)}>x</button>
                 </div>
 
                 <h4 className='instrucao'>PROFESSOR</h4>
