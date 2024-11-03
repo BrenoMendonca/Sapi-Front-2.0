@@ -1,0 +1,156 @@
+/* Conteúdo principal */
+.container {
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+    
+  }
+  
+  
+  /* Container da tabela */
+  .divTable {
+    width: 100%;
+    overflow-x: auto;
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Estilos da tabela */
+  
+  
+  .table-itens{
+    min-height: 200px;
+    
+  }
+  
+  /*tabela */
+  thead th {
+    background-color: #044cf4;
+    color: white;
+    padding: 10px;
+    text-align: center;
+    font-weight: bold;
+    border: 1px solid #044cf4;
+    position: sticky;
+    top: 0;
+    
+  }
+  
+  
+  .titulo-crud {
+    text-align: center;
+  }
+  
+  .titulo-crud-options {
+    background-color: #044cf4;
+    color: white;
+    padding: 10px;
+    text-align: center;
+    font-weight: bold;
+    border: 1px solid #044cf4;
+    position: sticky;
+    top: 0;
+    width: auto;
+  }
+  
+  /* Estilos das células da tabela */
+  tbody td {
+    padding: 5px;
+    text-align: center;
+    border: 1px solid #ddd;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  
+  .numero-itens{
+    font-weight: bold;
+  }
+  .titulo-edital-itens{
+    text-align: left;
+  }
+  /* Cores das linhas alternadas */
+  tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+  
+  tbody tr:hover {
+    background-color: #e8f1ff;
+  }
+  
+  /* Paginação */
+  .pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    background-color: #DAE7EF;
+    padding: 10px;
+    border-radius: 8px;
+  }
+  
+  .pagination-button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    margin: 0 5px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .pagination-button:hover {
+    background-color: #0056b3;
+  }
+  
+  .pagination-button.active {
+    background-color: #0056b3;
+  }
+  
+  .pagination button:disabled {
+    background-color: #ddd;
+    color: #999;
+    cursor: not-allowed;
+  }
+  
+  .pagination .pagination-arrow {
+    background-color: blue;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    margin: 0 5px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+  }
+  
+  .pagination .pagination-arrow:hover {
+    background-color: #0056b3;
+  }
+  
+  .pagination .pagination-arrow:disabled {
+    background-color: #ddd;
+    color: #999;
+    cursor: not-allowed;
+  }
+  
+  @media (max-width: 768px) {
+    .search-filter-bar {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 5px;
+    }
+  
+    .search-filter-bar input[type="text"],
+    .search-filter-bar select {
+        width: 100%;
+    }
+  
+    .pagination-button,
+    .pagination-arrow {
+        padding: 8px;
+        font-size: 14px;
+    }
+  }
+  

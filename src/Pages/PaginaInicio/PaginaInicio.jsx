@@ -7,8 +7,8 @@ import Apresentacao from '../../Components/Apresentacao/Apresentacao';
 import { ModalProfessores } from '../../Components/ModalProfessores/ModalProfessores';
 
 import {ModalCadastroEdital} from '../../Components/ModalCadastroEdital/ModalCadastroEdital'
-import { VisaoGrid } from '../../Components/VisaoGrid/VisaoGrid'; // Importando o VisaoGrid
-import { VisaoCard } from '../../Components/VisaoCard/VisaoCard'; // Importando o VisaoCard
+import { VisaoGrid } from '../../Components/VisaoGrid-Edital/VisaoGrid'; // Importando o VisaoGrid
+import { VisaoCard } from '../../Components/VisaoCard-Edital/VisaoCard'; // Importando o VisaoCard
 import { Footer } from '../../Components/Footer/Footer';
 
 export const PaginaInicio = () => {

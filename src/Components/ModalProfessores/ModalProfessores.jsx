@@ -4,7 +4,7 @@ import axios from 'axios';
 import { toast } from 'sonner';
 import { Trash } from '@phosphor-icons/react';
 
-export const ModalProfessores = ({ onClose, atualizarListaProfessores }) => {
+export const ModalProfessores = ({setView, atualizarListaProfessores }) => {
     const [professor, setProfessor] = useState({
         name: '',
         cpf: '',
@@ -36,7 +36,7 @@ export const ModalProfessores = ({ onClose, atualizarListaProfessores }) => {
             const response = await axios.post("http://localhost:3001/auth/register", formattedProfessor);
             atualizarListaProfessores();
             toast.success(response.data.msg);
-            onClose(); // Altere para onClose para fechar o modal
+            setView(null);
         } catch (err) {
             toast.error(JSON.stringify(err.response.data.msg));
             console.log(err);
@@ -48,7 +48,7 @@ export const ModalProfessores = ({ onClose, atualizarListaProfessores }) => {
             <div className="box-modal-card-edital">
                 <div className="box-header-modal-edital">
                     <h1 className="titulo-modal-card-edital">Cadastro docente doutor</h1>
-                    <button className="button-fechar-modal-edital" onClick={onClose}>x</button>
+                    <button className="button-fechar-modal-edital" onClick={() => setView(null)}>x</button>
                 </div>
 
                 <h4 className='instrucao'>PROFESSOR</h4>

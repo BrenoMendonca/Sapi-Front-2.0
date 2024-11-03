@@ -1,9 +1,9 @@
-import '../VisaoCard/VisaoCard.css'
+import './VisaoCard.css'
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import Apresentacao from '../../Components/Apresentacao/Apresentacao';
-import { Status } from '../../Components/Status/Status';
+import Apresentacao from '../Apresentacao/Apresentacao';
+import { Status } from '../Status/Status';
 import uniforbanner from '../../Assets/unifor-banner.jpg'
 
 

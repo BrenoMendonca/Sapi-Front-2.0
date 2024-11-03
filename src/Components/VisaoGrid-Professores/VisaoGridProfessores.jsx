@@ -1,4 +1,4 @@
-import '../VisaoGrid/VisaoGrid.css'
+import '../VisaoGrid-Professores/VisaoGridProfessores.css'
 import { useState, useEffect } from "react";
 import axios from 'axios';
 import { Load } from '../../Components/Load/Load'
@@ -12,7 +12,7 @@ import {ModalProfessores} from '../../Components/ModalProfessores/ModalProfessor
 import { ModalEdicaoProfessor } from '../../Components/ModalEdicaoProfessor/ModalEdicaoProfessor';
 
 
-export const VisaoGrid = ({ editais = [] }) => {
+export const VisaoGridProfessores = ({ professores = [] }) => {
   const [modalCriacaoIsOpen, setModalCriacaoIsOpen] = useState(false);
   const [modalEdicaoIsOpen, setModalEdicaoIsOpen] = useState(false);
   const [load, setLoad] = useState(false);
@@ -21,7 +21,10 @@ export const VisaoGrid = ({ editais = [] }) => {
 
   // Estados para paginação
   const [currentPage, setCurrentPage] = useState(1);
-  const editaisPerPage = 12; // Definindo 12 itens por página
+  const [currentBlock, setCurrentBlock] = useState(0); // Bloco inicial   
+  const professoresPerPage = 12; // Definindo 12 itens por página
+  const totalPages = Math.ceil(professores.length / professoresPerPage);  
+
 
   const getTypeOfUser = async () => {
     const lsSession = JSON.parse(localStorage.getItem('session'));
@@ -48,13 +51,24 @@ export const VisaoGrid = ({ editais = [] }) => {
     getTypeOfUser();
   }, []);
 
-  // Lógica para determinar itens da página atual
-  const indexOfLastEdital = currentPage * editaisPerPage;
-  const indexOfFirstEdital = indexOfLastEdital - editaisPerPage;
-  const currentEditais = editais.slice().reverse().slice(indexOfFirstEdital, indexOfLastEdital);
+  
 
-  // Função para navegar para uma página específica
-  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+  // Lógica para determinar itens da página atual
+  const indexOfLastEdital = currentPage * professoresPerPage;
+  const indexOfFirstEdital = indexOfLastEdital - professoresPerPage;
+  const currentEditais = professores.slice().reverse().slice(indexOfFirstEdital, indexOfLastEdital);
+
+  // Lógica para navegar entre os blocos
+  const paginate = (page) => {
+  setCurrentPage(page);
+  
+  const newBlock = Math.floor((page - 1) / professoresPerPage);
+  setCurrentBlock(newBlock);
+    };
+  
+    // Exibir um bloco de 12 páginas baseado no bloco atual
+  const startPage = currentBlock * professoresPerPage + 1;
+  const endPage = Math.min(startPage + professoresPerPage - 1, totalPages);
 
   return (
     <div className='BackgroundPaginaInicio'>
@@ -63,23 +77,23 @@ export const VisaoGrid = ({ editais = [] }) => {
           <table className='table-itens'>
             <thead>
               <tr>
-                <th className='titulo-crud'>Num edital</th>
-                <th className='titulo-crud'>Titulo do Edital</th>
-                <th className='titulo-crud'>Prazo</th>
-                <th className='titulo-crud'>Status</th>
+                <th className='titulo-crud'>Nome</th>
+                <th className='titulo-crud'>Matricula</th>
+                <th className='titulo-crud'>Curso</th>
+                <th className='titulo-crud'>Email</th>
                 <th className="titulo-crud-options">Ações</th>
               </tr>
             </thead>
             <tbody>
               {currentEditais.length > 0 ? (
-                currentEditais.map((edital) => (
-                  <tr key={edital._id}>
-                    <td className='numero-itens'>{edital.numeroEdital}</td>
-                    <td className='titulo-edital-itens'>{edital.nameEdital}</td>
-                    <td className='prazo-itens'>{edital.dataFinal}</td>
-                    <td className='status-itens'><Status status={edital.status} /></td>
+                currentEditais.map((professor) => (
+                  <tr key={professor._id}>
+                    <td className='numero-itens'>{professor.name}</td>
+                    <td className='titulo-edital-itens'>{professor.matricula}</td>
+                    <td className='prazo-itens'>{professor.curso}</td>
+                    <td className='status-itens'>{professor.email}</td>
                     <td className='centralizar-elemento'>
-                      <Link to={`/edital/${edital._id}`}>
+                      <Link to={`/edital/${professor._id}`}>
                         <img alt="Ver mais informações" className='visualizar' src={vizualizar}></img>
                       </Link>
                       <img alt="Editar" className='editar' src={editar}></img>
@@ -100,22 +114,42 @@ export const VisaoGrid = ({ editais = [] }) => {
 
           {/* Navegação de Paginação */}
           <div className="pagination">
-            <button className="pagination-arrow" onClick={() => paginate(currentPage - 1)} disabled={currentPage === 1}>&lt;</button>
-            {Array.from({ length: Math.ceil(editais.length / editaisPerPage) }, (_, index) => (
-              <button 
-                key={index + 1}
-                onClick={() => paginate(index + 1)}
-                className={`pagination-button ${currentPage === index + 1 ? 'active' : ''}`}
-              >
-                {index + 1}
-              </button>
-            ))}
-            <button className="pagination-arrow" onClick={() => paginate(currentPage + 1)} disabled={currentPage === Math.ceil(editais.length / editaisPerPage)}>&gt;</button>
-          </div>
+                <button
+                className="pagination-arrow"
+                onClick={() => paginate(currentPage - 1)}
+                disabled={currentPage === 1}
+                >
+                &lt;
+                </button>
+
+                {/* Páginas do bloco atual */}
+                {Array.from({ length: professoresPerPage }, (_, index) => {
+                const pageNumber = startPage + index;
+                return (
+                    <button
+                    key={pageNumber}
+                    onClick={() => paginate(pageNumber)}
+                    className={`pagination-button ${currentPage === pageNumber ? 'active' : ''}`}
+                    disabled={pageNumber > totalPages}
+                    >
+                    {pageNumber}
+                    </button>
+                );
+                })}
+
+                <button
+                className="pagination-arrow"
+                onClick={() => paginate(currentPage + 1)}
+                disabled={currentPage === totalPages}
+                >
+                &gt;
+                </button>
+            </div>
+
         </div>
       </div>
     </div>
   );
 };
 
-export default VisaoGrid;
+export default VisaoGridProfessores;

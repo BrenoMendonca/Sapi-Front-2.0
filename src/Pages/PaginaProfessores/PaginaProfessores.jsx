@@ -8,6 +8,8 @@ import Apresentacao from '../../Components/Apresentacao/Apresentacao';
 import editar from '../../Assets/escrever.png';
 import {ModalProfessores} from '../../Components/ModalProfessores/ModalProfessores'
 import { ModalEdicaoProfessor } from '../../Components/ModalEdicaoProfessor/ModalEdicaoProfessor';
+import { Footer } from '../../Components/Footer/Footer';
+import {VisaoGridProfessores} from '../../Components/VisaoGrid-Professores/VisaoGridProfessores'
 
 export const PaginaProfessores = () => {
   // Estado dos modais
@@ -30,6 +32,7 @@ export const PaginaProfessores = () => {
       const response = await axios.get("http://localhost:3001/user/");
       const data = response.data;
       setProfessores(data);
+      console.log(data)
 
       // Extrair cursos únicos
       const cursosUnicos = [...new Set(data.map(p => p.curso))];
@@ -96,113 +99,70 @@ export const PaginaProfessores = () => {
 
   return (
     <div className='PaginaInicio'>
-      <Navbar />
-      <Apresentacao />
+        <Navbar />
+        {ModaCriacaolIsOpen && (
+            <ModalProfessores setView={setModaCriacaolIsOpen} atualizarListaProfessores={handleAtualizarListaProfessores} />
+        )}
 
-      {/* Renderiza o ModalProfessores se o estado ModaCriacaolIsOpen for true */}
-      {ModaCriacaolIsOpen && (
-        <ModalProfessores 
-          onClose={() => setModaCriacaolIsOpen(false)} 
-          atualizarListaEditais={handleAtualizarListaProfessores} 
-        />
-      )}
+        <div className='BackgroundPaginaInicio'>
+            <Apresentacao />
 
-      {/* Renderiza o ModalEdicaoProfessor se o estado ModalEdicaoIsOpen for true */}
-      {ModalEdicaoIsOpen && (
-        <ModalEdicaoProfessor 
-          professor={selectedProfessor} // Passa os dados do professor para o modal
-          onClose={() => setModalEdicaoIsOpen(false)} 
-          atualizarListaProfessores={handleAtualizarListaProfessores} 
-        />
-      )}
-
-      <div className='BackgroundPaginaInicio'>
-        <div className="container">
-          <div className="header-prof-page">
-            <h1>Professores</h1>
-            <div className="header-filtros">
-              <h2>Filtros</h2>
-              <div className='filter-wrapper'>
-                {/* Filtro de Termo */}
-                <div className="search-filter">
-                  <input 
-                    type="text" 
-                    placeholder="Pesquisar..." 
-                    value={searchTerm}
-                    onChange={(e) => setSearchTerm(e.target.value)}
-                  />
-                </div>
-
-                {/* Filtro de Cursos */}
-                <div className="curso-filter">
-                  <select 
-                    value={selectedCurso} 
-                    onChange={(e) => setSelectedCurso(e.target.value)}
-                    className="curso-dropdown"
-                  >
-                    <option value="">Todos os Cursos</option>
-                    {cursos.map((curso, index) => (
-                      <option key={index} value={curso}>{curso}</option>
-                    ))}
-                  </select>
-                </div>
-              </div>
-            </div>
-            {typeOfUser < 2 && (
-              <button className = "button-criarprofessor"onClick={() => setModaCriacaolIsOpen(true)}>Criar Professor</button>
-            )}
-          </div>
-
-          <div className="divTable-profs">
-            <table>
-              <thead>
-                <tr>
-                  <th className='titulo-crud'>Nome</th>
-                  <th className='titulo-crud'>Matricula</th>
-                  <th className='titulo-crud'>Curso</th>
-                  <th className='titulo-crud centralizar-elemento'>Email</th>
-                  <th className="titulo-crud centralizar-elemento">Ações</th>
-                </tr>
-              </thead>
-              <tbody>
-                {filteredProfessores.length > 0 && filteredProfessores.slice().reverse().map((professor) => {
-                  const lsSession = JSON.parse(localStorage.getItem('session'));
-                  const isCurrentUser = lsSession && lsSession.matricula === professor.matricula;
-                  return (
-                  <tr style={{ maxHeight: '5rem' }} key={professor._id}>
-                    <td className='num-edital'>{professor.name}</td>
-                    <td className='limit-size objetivo'>{professor.matricula}</td>
-                    <td className='limit-size'>{professor.curso}</td>
-                    <td className='centralizar-elemento'>{professor.email}</td>
-                    <td className='centralizar-elemento'>
-                        {isCurrentUser && (
-                      <img 
-                        alt="" 
-                        title="Editar" 
-                        className='editar' 
-                        src={editar} 
-                        onClick={() => getProfessorByMatricula(professor.matricula)} // Passa a matrícula para a função
-                      />
-                        )}
-                    </td>
-                  </tr>
-                  );
-                })}
-
-                <tr>
-                  <td colSpan="6" className="loading-cell">
-                    <div className="loading-container">
-                      {load && <Load />}
+            <div className='div-table-header'>
+                <div className='header-apresentacao'>
+                    <h2 className='apresentacao-filtros'>Professores</h2>
+                    <div className='visao-editais'>
+                        <select className='visao-opcoes'>
+                            <option value="" disabled>Selecione o tipo de visão</option>
+                            <option value="grid">Grid</option>
+                            <option value="card">Card</option>
+                        </select>
                     </div>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
+                </div>
+                
+                <div className='header-filtro-btn'>
+                    <div className='header-filtros-edital'>
+                        <div className="filtro-pesquisa-edital">
+                            <input 
+                                className='filtro-pesquisa-edital-input' 
+                                type="text" 
+                                placeholder="Pesquisar..." 
+                                value={searchTerm} 
+                               
+                            />
+                        </div>
+                        {/*
+                        <div className="filtro-pesquisa-curso">
+                            <select className='filtro-pesquisa-curso-select'>
+                                <option value="" disabled selected>Selecione o curso</option>
+                            </select>
+                        </div>
+                        */}
+                        <div className="filtro-select-status">
+                          <div className="filtro-pesquisa-curso">
+                              <select className='filtro-pesquisa-curso-select'>
+                                  <option value="" disabled selected>Selecione o curso</option>
+                              </select>
+                          </div>
+                        </div>  
+                    </div>
+
+                    <div className='btn-header-paginainicio'>
+                            <button className='btn-criacao-edital' onClick={() => setModaCriacaolIsOpen(true)}>
+                                Criar Professor
+
+                            </button>
+                        </div>
+                </div>
+            </div>
+           <div className="container-grid">
+                <VisaoGridProfessores professores={filteredProfessores} />
+            </div>
+                              
+           
         </div>
-      </div>
+        <Footer></Footer>
     </div>
-  );
+);
 };
 
 export default PaginaProfessores;
